@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVARS Jean Hanzelet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --surface-2:#f0ede5; --ink:#1d1f24; --muted:#5d6270; --line:#ddd8cc;
+  --a1:#0f8b8d; --a1-soft:#dff3f2; --a2:#d9572b; --a2-soft:#fde8df; --a3:#6c4bb5; --a3-soft:#ece6fa;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15171c; --surface:#1e2128; --surface-2:#262a33; --ink:#eceae4; --muted:#a3a8b5; --line:#343945;
+    --a1:#4cc4c6; --a1-soft:#173537; --a2:#f08a62; --a2-soft:#3a2219; --a3:#a98bf0; --a3-soft:#2a2340;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:56px 16px 40px}
+.kicker{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:8px 0 12px;text-wrap:balance}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 28px}
+.axes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.pill{padding:4px 10px;border-radius:999px;font-size:.82rem;font-weight:600}
+.ax1{background:var(--a1-soft);color:var(--a1)} .ax2{background:var(--a2-soft);color:var(--a2)} .ax3{background:var(--a3-soft);color:var(--a3)}
+.choices{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.choice{display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:16px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
+.choice:hover,.choice:focus-visible{transform:translateY(-2px);border-color:var(--ink);outline:none}
+.choice .ico{font-size:2rem}
+.choice h2{font-family:Fraunces,Georgia,serif;font-size:1.5rem;margin:0}
+.choice p{margin:0;color:var(--muted)}
+.choice .go{margin-top:auto;padding-top:8px;font-weight:700}
+.t{border-top:5px solid var(--a1)} .t .go{color:var(--a1)}
+.e{border-top:5px solid var(--a2)} .e .go{color:var(--a2)}
+footer{max-width:860px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion:reduce){.choice{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">Lycée polyvalent Jean Hanzelet · Année 2026-2027</div>
+  <h1>Projet EVARS</h1>
+  <p class="lead">Éducation à la vie affective et relationnelle, et à la sexualité. Déroulés et supports communs à tous les enseignants d'un même niveau.</p>
+  <div class="axes">
+    <span class="pill ax1">Axe 1 · Se connaître, vivre et grandir avec son corps</span>
+    <span class="pill ax2">Axe 2 · Rencontrer les autres et construire des relations</span>
+    <span class="pill ax3">Axe 3 · Trouver sa place dans la société</span>
+  </div>
+  <div class="choices">
+    <a class="choice t" href="evars_seances_hanzelet.html">
+      <span class="ico">📘</span>
+      <h2>Guide enseignant</h2>
+      <p>Cadre commun, déroulés minutés, réponses types aux questions délicates, fiches réflexe et bilan à imprimer.</p>
+      <span class="go">Ouvrir le guide →</span>
+    </a>
+    <a class="choice e" href="evars_supports_eleves.html">
+      <span class="ico">📽️</span>
+      <h2>Supports élèves</h2>
+      <p>Diaporama à projeter, fiches et cartes à imprimer pour chaque séance, matériel commun.</p>
+      <span class="go">Ouvrir les supports →</span>
+    </a>
+  </div>
+</main>
+<footer>Conception : Mme Marie Frison · Lycée polyvalent Jean Hanzelet</footer>
+</body>
+</html>
