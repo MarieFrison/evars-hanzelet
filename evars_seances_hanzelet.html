@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Séances EVARS 2026-2027 (renforcée)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --surface-2:#f0ede5; --ink:#1d1f24; --muted:#5d6270; --line:#ddd8cc;
+  --a1:#0f8b8d; --a1-soft:#dff3f2; --a2:#d9572b; --a2-soft:#fde8df; --a3:#6c4bb5; --a3-soft:#ece6fa;
+  --warn:#b45309; --warn-soft:#fef3c7; --ok:#15803d; --ok-soft:#dcfce7; --stop:#b91c1c; --stop-soft:#fee2e2;
+  --accent:#1d4e89; --radius:14px; --shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15171c; --surface:#1e2128; --surface-2:#262a33; --ink:#eceae4; --muted:#a3a8b5; --line:#343945;
+    --a1:#4cc4c6; --a1-soft:#173537; --a2:#f08a62; --a2-soft:#3a2219; --a3:#a98bf0; --a3-soft:#2a2340;
+    --warn:#f5b54a; --warn-soft:#3a2d12; --ok:#5fd18a; --ok-soft:#163323; --stop:#f27a7a; --stop-soft:#3b1a1a;
+    --accent:#7fb2f0; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15171c; --surface:#1e2128; --surface-2:#262a33; --ink:#eceae4; --muted:#a3a8b5; --line:#343945;
+  --a1:#4cc4c6; --a1-soft:#173537; --a2:#f08a62; --a2-soft:#3a2219; --a3:#a98bf0; --a3-soft:#2a2340;
+  --warn:#f5b54a; --warn-soft:#3a2d12; --ok:#5fd18a; --ok-soft:#163323; --stop:#f27a7a; --stop-soft:#3b1a1a;
+  --accent:#7fb2f0; --shadow:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.2;margin:0}
+a{color:var(--accent)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header.top{padding:28px 0 18px;border-bottom:1px solid var(--line);background:var(--surface)}
+.top .kicker{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.top h1{font-size:clamp(1.6rem,4vw,2.4rem);margin:6px 0 10px}
+.axes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:.82rem;font-weight:600}
+.ax1{background:var(--a1-soft);color:var(--a1)} .ax2{background:var(--a2-soft);color:var(--a2)} .ax3{background:var(--a3-soft);color:var(--a3)}
+.tools{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer}
+.btn{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);padding:7px 12px;border-radius:10px;font-size:.88rem;font-weight:600}
+.btn:hover{border-color:var(--accent)}
+nav.tabs{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:8px;padding-bottom:8px;scrollbar-width:thin}
+.tab{white-space:nowrap;border:1px solid transparent;background:none;color:var(--muted);padding:8px 12px;border-radius:10px;font-weight:600;font-size:.9rem}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);border-color:var(--line);box-shadow:var(--shadow)}
+main{padding:24px 0 60px}
+.panel{display:none} .panel.on{display:block}
+.lead{color:var(--muted);max-width:75ch;margin:6px 0 20px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.card h3{font-size:1.1rem;margin-bottom:8px}
+.card ul{margin:6px 0 0;padding-left:20px} .card li{margin:4px 0}
+.box{border-radius:12px;padding:12px 14px;margin:12px 0;font-size:.95rem}
+.box.warn{background:var(--warn-soft);border-left:4px solid var(--warn)}
+.box.ok{background:var(--ok-soft);border-left:4px solid var(--ok)}
+.box.stop{background:var(--stop-soft);border-left:4px solid var(--stop)}
+.box strong{display:block;margin-bottom:4px}
+/* séances */
+.seance{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin:0 0 16px;box-shadow:var(--shadow);overflow:hidden}
+.seance > summary{list-style:none;cursor:pointer;padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}
+.seance > summary::-webkit-details-marker{display:none}
+.num{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:800;font-size:1.2rem;color:#fff}
+.s1 .num{background:var(--a1)} .s2 .num{background:var(--a2)} .s3 .num{background:var(--a3)}
+.s1{border-top:4px solid var(--a1)} .s2{border-top:4px solid var(--a2)} .s3{border-top:4px solid var(--a3)}
+.sum-title{font-weight:700;font-size:1.05rem}
+.sum-meta{font-size:.85rem;color:var(--muted);margin-top:2px}
+.chev{transition:transform .2s;color:var(--muted)} details[open] .chev{transform:rotate(180deg)}
+.sbody{padding:0 18px 20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:14px}
+.meta div{background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:.9rem}
+.meta b{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.sec-h{font-weight:700;font-size:.8rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.steps{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.steps li{position:relative;padding:0 0 14px 18px}
+.steps li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.steps .t{font-size:.78rem;font-weight:700;color:var(--accent)}
+.steps .h{font-weight:700}
+.steps .elv{font-size:.85rem;color:var(--a3);margin-top:4px}
+.steps .proj{font-size:.8rem;color:var(--muted);margin-top:2px}
+.phase{font-weight:800;font-size:.85rem;color:var(--a2);margin:14px 0 8px;text-transform:uppercase;letter-spacing:.05em}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.8rem;padding:3px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line)}
+/* jeu */
+.game{background:var(--surface-2);border-radius:12px;padding:14px}
+.game-title{font-weight:700;margin-bottom:4px}
+.game-rule{font-size:.9rem;color:var(--muted);margin-bottom:10px}
+.flips{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.flip{perspective:900px;min-height:150px;border:none;background:none;padding:0;text-align:left;color:inherit}
+.flip-in{position:relative;width:100%;height:100%;min-height:150px;transition:transform .45s;transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:12px;padding:12px 14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;font-size:.92rem;border:1px solid var(--line)}
+.front{background:var(--surface)}
+.front small{color:var(--muted);font-size:.72rem;margin-top:8px}
+.back{background:var(--ink);color:var(--bg);transform:rotateY(180deg);overflow:auto}
+.back b{font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;opacity:.8;margin-bottom:4px}
+.debat{display:grid;gap:8px}
+.debat-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.debat-item .st{font-weight:700}
+.debat-item details summary{cursor:pointer;font-size:.85rem;color:var(--accent);margin-top:4px}
+.debat-item p{margin:6px 0 0;font-size:.9rem}
+.tri{display:grid;gap:8px}
+.tri-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.92rem}
+.tri-btns{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.tri-btns button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:8px;padding:4px 8px;font-size:.8rem;font-weight:600}
+.tri-btns button.good{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.tri-btns button.bad{background:var(--stop-soft);border-color:var(--stop);color:var(--stop)}
+.tri-fb{grid-column:1/-1;font-size:.85rem;color:var(--muted);display:none}
+.tri-row.done .tri-fb{display:block}
+.faq{display:grid;gap:8px}
+.faq details{background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.faq summary{cursor:pointer;font-weight:600;font-size:.93rem}
+.faq p{margin:8px 0 0;font-size:.92rem}
+.say{font-style:italic;border-left:3px solid var(--accent);padding-left:10px;margin:6px 0}
+table.num-t{width:100%;border-collapse:collapse;font-size:.93rem}
+table.num-t td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.num-t td:first-child{font-weight:700;white-space:nowrap;width:1%}
+.charte{font-family:Fraunces,serif;font-size:1.15rem}
+.charte li{margin:8px 0}
+.hint{font-size:.85rem;color:var(--muted)}
+/* médias */
+.media{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.mcard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+.mcard:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.1)}
+.thumb{position:relative;aspect-ratio:16/9;background:var(--surface-2);display:grid;place-items:center;font-size:2.4rem;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb.t-video{background:linear-gradient(135deg,var(--a2-soft),var(--a3-soft))}
+.thumb.t-doc{background:linear-gradient(135deg,var(--a1-soft),var(--surface-2))}
+.thumb.t-atelier{background:linear-gradient(135deg,var(--a3-soft),var(--a1-soft))}
+.thumb .play{position:absolute;width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,.65);display:grid;place-items:center}
+.thumb .play::after{content:"";border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.thumb .badge{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.65);color:#fff;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:999px;letter-spacing:.03em}
+.mbody{padding:10px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+.mtitle{font-weight:700;font-size:.93rem;line-height:1.3}
+.msrc{font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.mnote{font-size:.85rem;color:var(--muted)}
+.mgo{margin-top:auto;font-size:.82rem;font-weight:700;color:var(--accent)}
+.visual{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;position:relative}
+.visual svg{width:100%;height:auto;display:block}
+.visual .fs{position:absolute;right:10px;top:10px}
+.visual:fullscreen{display:grid;place-items:center;background:var(--bg);padding:4vh 4vw}
+.visual:fullscreen svg{max-height:90vh}
+.visual:fullscreen .fs{display:none}
+.vis-wrap{display:grid;gap:12px}
+
+.a4{background:#fff;color:#1d1f24;max-width:210mm;margin:0 auto 18px;padding:14mm 15mm;box-shadow:0 2px 14px rgba(0,0,0,.12);border-radius:4px;font-size:10.5pt}
+.a4 h2{font-size:17pt;margin:0 0 3mm}.a4 h3{font-size:11.5pt;margin:4mm 0 2mm;color:#1d4e89}
+.a4 ol{margin:0;padding-left:6mm}.a4 li{margin:1mm 0}
+.a4h{display:flex;justify-content:space-between;font-size:8pt;color:#5d6270;border-bottom:1px solid #ccc;padding-bottom:2mm;margin-bottom:4mm}
+.rt,.fb{width:100%;border-collapse:collapse}.rt td,.fb td{border:1px solid #bbb;padding:1.8mm 2.5mm;vertical-align:top;font-size:9.5pt}
+.rt td:first-child{width:32%;font-weight:600;background:#f3f1ec}.fb td{height:9mm}.fb td:nth-child(odd){font-weight:600;background:#f3f1ec;width:30%}
+.lines{height:24mm;background:repeating-linear-gradient(#fff 0 7.5mm,#999 7.5mm 7.8mm)}
+.a4f{margin-top:5mm;border-top:1px solid #ccc;padding-top:2mm;font-size:9pt;font-weight:600}
+@media print{
+  body[data-printfiche] header.top, body[data-printfiche] footer, body[data-printfiche] .panel:not(#p-fiches), body[data-printfiche] #p-fiches > :not(.a4){display:none!important}
+  body[data-printfiche] #p-fiches{display:block!important;page-break-before:auto}
+  body[data-printfiche="reflexe"] #f-bilan, body[data-printfiche="bilan"] #f-reflexe{display:none!important}
+  body[data-printfiche] .a4{box-shadow:none;margin:0;max-width:none;padding:12mm 14mm}
+}
+.vbadge{display:inline-block;padding:1px 8px;border-radius:999px;font-weight:700;letter-spacing:.02em;text-transform:none}.vbadge a{color:inherit}.v-essentielle{background:var(--a1-soft);color:var(--a1)}.v-renforcee{background:var(--a2-soft);color:var(--a2)}
+footer{border-top:1px solid var(--line);padding:18px 0;color:var(--muted);font-size:.82rem}
+@media (max-width:600px){.seance > summary{grid-template-columns:auto 1fr}.chev{display:none}}
+@media print{
+  nav.tabs,.tools,.chev{display:none!important}
+  .panel{display:block!important;page-break-before:always}
+  .panel:first-of-type{page-break-before:auto}
+  details{display:block} details > *{display:block!important}
+  .seance{break-inside:avoid-page}
+  .flip-in{transform:none!important;min-height:0}
+  .face{position:static;backface-visibility:visible;transform:none!important;margin-bottom:4px}
+  .back{background:#eee;color:#000}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">Lycée polyvalent Jean Hanzelet · Année 2026-2027 · Conçu par Mme Marie Frison</div>
+    <h1>Projet EVARS — Séances clés en main</h1>
+    <p class="lead" style="margin:0">Éducation à la vie affective et relationnelle, et à la sexualité. Déroulés et supports communs à tous les enseignants d'un même niveau.</p>
+    <div class="axes">
+      <span class="pill ax1">Axe 1 · Se connaître, vivre et grandir avec son corps</span>
+      <span class="pill ax2">Axe 2 · Rencontrer les autres, construire des relations, s'épanouir</span>
+      <span class="pill ax3">Axe 3 · Trouver sa place dans la société, y être libre et responsable</span>
+    </div>
+    <div class="tools">
+      <button class="btn" id="openAll">Tout déplier</button>
+      <button class="btn" id="closeAll">Tout replier</button>
+      <button class="btn" onclick="window.print()">Imprimer / PDF</button>
+      <button class="btn" id="theme">Thème clair/sombre</button>
+      <a class="btn" style="text-decoration:none" href="evars_supports_eleves.html" target="_blank" rel="noopener">📽️ Supports élèves</a>
+    </div>
+  </div>
+</header>
+<nav class="tabs" aria-label="Niveaux"><div class="wrap" id="tabbar" role="tablist"></div></nav>
+<main><div class="wrap" id="panels"></div></main>
+<footer><div class="wrap">Document de travail interne — Projet global EVARS, Lycée Jean Hanzelet. Conception : Mme Marie Frison. Sources d'appui : onsexprime.fr, comitys.com, Santé publique France (éducation à la sexualité et catalogue d'outils pour les jeunes). Informations juridiques à jour au 11/11/2026 (loi n° 2025-1057 du 6 novembre 2025 sur le non-consentement).</div></footer>
+
+<script>
+/* =====================================================================
+   CADRE COMMUN
+   ===================================================================== */
+const CADRE = `
+<h2>Cadre commun — à lire avant toute séance</h2>
+<p class="lead">En EVARS, l'enseignant n'a pas à être un expert : il est <b>garant d'un cadre</b> où l'on réfléchit, débat et s'informe. Ce cadre protège les élèves comme l'adulte.</p>
+
+<div class="grid">
+  <div class="card"><h3>🎯 Votre rôle</h3><ul>
+    <li>Animer, faire circuler la parole, reformuler.</li>
+    <li>Apporter des repères <b>fiables</b> (loi, santé, lieux ressources) — pas des opinions.</li>
+    <li>Orienter vers les bons interlocuteurs : infirmière, CPE, CeGIDD, centre de santé sexuelle.</li>
+    <li>Avoir le droit de dire : « Je ne sais pas, je vérifie et je te réponds la prochaine fois. »</li>
+  </ul></div>
+  <div class="card"><h3>🚫 Ce qu'on ne fait jamais</h3><ul>
+    <li>Parler de sa vie privée ou demander celle des élèves.</li>
+    <li>Projeter des images explicites ou montrer des contenus pornographiques.</li>
+    <li>Donner un avis personnel, moral ou religieux sur des choix intimes.</li>
+    <li>Faire des démonstrations sur le corps, ou interroger un élève sur son orientation ou son identité.</li>
+    <li>Promettre le secret absolu à un élève (voir « Si un élève se confie »).</li>
+  </ul></div>
+  <div class="card"><h3>🧰 Les 3 outils qui sécurisent</h3><ul>
+    <li><b>La charte de groupe</b> projetée en début de séance (ci-dessous).</li>
+    <li><b>La boîte à questions anonyme</b> : papier plié, tout le monde écrit (même « pas de question ») pour garantir l'anonymat. Vous triez à froid et répondez la fois suivante.</li>
+    <li><b>Le « parking »</b> : une zone du tableau où l'on gare les questions hors cadre pour les transmettre à l'infirmière ou aux intervenants.</li>
+  </ul></div>
+</div>
+
+<div class="card" style="margin-top:14px">
+  <h3>📜 Charte de groupe — à projeter et faire valider</h3>
+  <ol class="charte">
+    <li>On parle en « on », pas de « je » ou de « il/elle » : <b>personne ne raconte sa vie</b>, ni la sienne, ni celle des autres.</li>
+    <li>On respecte toutes les paroles : pas de moquerie, pas de jugement.</li>
+    <li>On a le droit de ne pas parler, et de quitter le groupe un moment si on se sent mal.</li>
+    <li>Ce qui est dit ici reste ici — sauf si quelqu'un est en danger.</li>
+    <li>Il n'y a pas de question bête : celles qu'on n'ose pas poser vont dans la boîte.</li>
+  </ol>
+  <p class="hint">Astuce : faites ajouter une règle par la classe ; elle s'approprie mieux le cadre.</p>
+</div>
+
+<h2 style="margin:28px 0 8px">🗣️ Faire échanger la classe (et pas seulement faire faire)</h2>
+<p class="lead">Chaque activité ludique est un <b>support d'échange</b>, pas une fin en soi. Chaque séance comporte un temps d'échange collectif d'au moins 15 minutes, avec des questions de relance prêtes à l'emploi.</p>
+<div class="grid">
+  <div class="card"><h3>La règle 1-2-4-Tous</h3><p><b>1</b> : chacun réfléchit seul 1 min. <b>2</b> : on compare en binôme 2 min. <b>4</b> : deux binômes se rejoignent et se mettent d'accord. <b>Tous</b> : un rapporteur par groupe partage avec la classe. Tout le monde a parlé, personne n'est exposé seul.</p></div>
+  <div class="card"><h3>L'enseignant relance, il ne tranche pas tout de suite</h3><ul>
+    <li>« Qui pense autrement ? »</li><li>« Qu'est-ce qui te fait dire ça ? »</li><li>« Est-ce que c'est toujours vrai ? Dans quel cas non ? »</li><li>« Si tu étais à la place de… ? »</li><li>« Qu'est-ce que dit la loi / la santé là-dessus ? »</li></ul>
+    <p class="hint">Les repères (loi, santé) arrivent en <b>conclusion</b> de l'échange, pas avant.</p></div>
+  <div class="card"><h3>Faire circuler la parole</h3><ul>
+    <li>Un objet de parole : seul celui qui le tient parle.</li>
+    <li>On répond à l'idée d'un camarade avant de donner la sienne : « Je rejoins / je ne suis pas d'accord avec ce qu'a dit… parce que… »</li>
+    <li>Reformuler : « Si je comprends bien, tu dis que… »</li>
+    <li>Faire parler ceux qui se taisent par l'écrit (post-it) puis lecture anonyme par l'enseignant.</li></ul></div>
+  <div class="card"><h3>Toujours parler de personnages, pas de soi</h3><p>Les échanges portent sur des situations fictives ou des affirmations générales. C'est ce qui rend la discussion libre <b>et</b> sans risque pour les élèves comme pour l'enseignant.</p></div>
+</div>
+
+<h2 style="margin:28px 0 8px">💬 Questions délicates : réponses types</h2>
+<p class="lead">Les élèves testent souvent l'adulte. Une réponse calme, courte et identique d'un enseignant à l'autre désamorce presque tout.</p>
+<div class="faq">
+  <details><summary>« Et vous, Monsieur/Madame, vous l'avez déjà fait ? Vous êtes en couple ? »</summary>
+  <p class="say">« Rappelle-toi la règle n° 1 : ici, personne ne parle de sa vie privée, ni vous, ni moi. Par contre, ta question cache peut-être une vraie question générale : on la reformule ensemble ? »</p></details>
+  <details><summary>Une question très médicale ou technique dont je ne connais pas la réponse</summary>
+  <p class="say">« C'est une vraie question, et je ne veux pas te dire une bêtise. Je la mets au parking : je te réponds la prochaine fois avec une source fiable, ou l'infirmière / la sage-femme te répondra. »</p>
+  <p>Ensuite : chercher sur onsexprime.fr (rubrique « vos questions ») ou demander à l'infirmière / au référent EVARS.</p></details>
+  <details><summary>Une question provocante, pour faire rire la classe</summary>
+  <p>Ne pas rire, ne pas s'offusquer. Reformuler en question sérieuse :</p>
+  <p class="say">« Si je traduis en langage du lycée, la question est : … ? C'est une bonne question, elle concerne beaucoup de monde. » </p>
+  <p>Si la question est volontairement choquante : « Ce n'est pas le cadre ici. Si c'est une vraie question, tu peux la mettre dans la boîte. »</p></details>
+  <details><summary>« Est-ce que c'est normal si mon corps / si moi… ? »</summary>
+  <p class="say">« Chaque corps est différent et il existe une très grande variété de “normal”. Pour une question qui te concerne personnellement, la bonne personne c'est l'infirmière, un médecin ou le centre de santé sexuelle : c'est confidentiel et gratuit. »</p></details>
+  <details><summary>Questions sur la pornographie</summary>
+  <p class="say">« Le porno est une fiction pour adultes, tournée avec des acteurs, des cascades et du montage. C'est interdit aux mineurs. Il ne montre ni la réalité des corps, ni la manière dont on demande et respecte le consentement. Ce n'est pas un cours d'éducation sexuelle. »</p></details>
+  <details><summary>Débat sur l'homosexualité, la religion, les « valeurs »</summary>
+  <p class="say">« Chacun a le droit d'avoir ses convictions personnelles. Ici, notre règle commune, c'est la loi : en France, chacun est libre de son orientation sexuelle et de son identité, et les discriminations et insultes sont punies. On peut ne pas être d'accord, mais on ne peut pas manquer de respect. »</p>
+  <p>Ne pas entrer dans un débat théologique ; ramener à la loi et au respect.</p></details>
+  <details><summary>« C'est quoi l'âge légal pour… ? »</summary>
+  <p>Repères factuels : un mineur de 15 ans et plus peut avoir des relations consenties avec une personne de son choix. Un adulte qui a une relation sexuelle avec un mineur de moins de 15 ans commet une infraction (et c'est un viol si l'écart d'âge est d'au moins 5 ans, sans qu'il soit besoin de prouver l'absence de consentement). Toute relation avec un mineur est interdite à une personne qui a autorité sur lui (enseignant, éducateur…), même après 15 ans.</p></details>
+  <details><summary>Questions sur la contraception d'urgence, la grossesse, l'IVG</summary>
+  <p>Repères factuels, puis orientation : la contraception d'urgence est disponible en pharmacie, gratuite et sans ordonnance, et à l'infirmerie du lycée. Le centre de santé sexuelle accueille les mineurs gratuitement et en toute confidentialité. Pour toute situation personnelle : infirmière, centre de santé sexuelle, numéro vert 0 800 08 11 11.</p></details>
+</div>
+
+<h2 style="margin:28px 0 8px">🛟 Si un élève se confie (révélation)</h2>
+<div class="box stop"><strong>Ce que vous faites</strong>
+<ol style="margin:0;padding-left:20px">
+<li><b>Pendant la séance</b> : si un élève commence à raconter une situation personnelle grave devant la classe, l'interrompre avec douceur : « Ce que tu dis est important. Je préfère qu'on en parle tous les deux juste après. » Puis le retrouver.</li>
+<li><b>En tête-à-tête</b> : écouter, croire, ne pas questionner en détail, ne pas juger. Dire : « Tu as bien fait d'en parler. Ce n'est pas de ta faute. »</li>
+<li><b>Ne pas promettre le secret</b> : « Je vais devoir en parler à des personnes qui peuvent t'aider. Je te dirai à qui. »</li>
+<li><b>Le jour même</b> : informer la direction, le CPE ou l'infirmière. Noter les mots exacts de l'élève, datés.</li>
+<li>L'établissement transmet une information préoccupante (CRIP) ou un signalement au procureur selon la gravité. En cas de doute : <b>119</b> (aussi pour les adultes qui s'interrogent).</li>
+</ol></div>
+<div class="box warn"><strong>Pour vous</strong>Une séance peut faire remonter des émotions, chez les élèves comme chez l'adulte. Vous pouvez en parler au référent EVARS ou à la direction. Vous n'êtes pas seul.</div>
+
+<h2 style="margin:28px 0 8px">🧩 Boîte à outils des activités ludiques</h2>
+<div class="grid">
+  <div class="card"><h3>Le débat mouvant</h3><p>On lit une affirmation. Les élèves se placent côté « d'accord » ou « pas d'accord » (pas de milieu). Chaque camp argumente ; on a le droit de changer de côté. Variante sans déplacement : cartons vert/rouge.</p></div>
+  <div class="card"><h3>Vrai / Faux à retourner</h3><p>Cartes cliquables dans chaque séance : on vote à main levée, puis on retourne la carte. Idéal en accroche pour lever les idées reçues.</p></div>
+  <div class="card"><h3>Le feu tricolore</h3><p>Situations à classer en vert (sain), orange (signal d'alerte) ou rouge (violence / interdit). Cartons de couleur ou boutons dans la page.</p></div>
+  <div class="card"><h3>Études de cas en îlots</h3><p>Groupes de 4. Une situation fictive (prénoms inventés), 3 questions, 10 min, restitution par un rapporteur. On ne joue jamais de scène de violence.</p></div>
+  <div class="card"><h3>Le nuage de mots</h3><p>Chacun écrit 1 à 3 mots sur un post-it (ou via un outil en ligne). On regroupe au tableau : c'est le point de départ de la discussion.</p></div>
+  <div class="card"><h3>Le ticket de sortie</h3><p>Fin de séance : « 1 chose que je retiens / 1 question qui me reste / 1 lieu ou numéro où je peux m'adresser ». Anonyme, ramassé.</p></div>
+</div>
+
+<h2 style="margin:28px 0 8px">📚 Pistes intradisciplinaires</h2>
+<div class="grid">
+  <div class="card"><h3>Français</h3><p>Le sentiment amoureux en littérature (poésie, roman), le débat argumenté, le vocabulaire des émotions.</p></div>
+  <div class="card"><h3>EMC</h3><p>Égalité femmes-hommes, lutte contre les discriminations, liberté et responsabilité, droit et réseaux sociaux.</p></div>
+  <div class="card"><h3>SVT / Sciences</h3><p>Puberté, reproduction, immunité et IST, vaccination HPV, esprit critique face aux infos santé.</p></div>
+  <div class="card"><h3>EPS</h3><p>Image du corps, respect de l'intimité dans les vestiaires, mixité et stéréotypes dans le sport.</p></div>
+  <div class="card"><h3>LVE</h3><p>Campagnes de prévention étrangères, comparaison des lois sur le consentement, vocabulaire des émotions.</p></div>
+  <div class="card"><h3>Enseignement pro / technologique</h3><p>Harcèlement et sexisme au travail, en stage, sur le chantier ; droits du salarié ; qui alerter en entreprise.</p></div>
+</div>
+`;
+
+/* =====================================================================
+   NUMÉROS UTILES
+   ===================================================================== */
+const NUMEROS = `
+<h2>Numéros et lieux ressources</h2>
+<p class="lead">À afficher en fin de chaque séance. Tous gratuits ; la plupart anonymes.</p>
+<div class="card"><table class="num-t">
+<tr><td>Au lycée</td><td>L'infirmière et le CPE, ainsi que tout adulte de confiance (professeur principal, référent EVARS)</td></tr>
+<tr><td>119</td><td>Allô Enfance en danger — 24h/24, pour un mineur ou un adulte inquiet pour un mineur</td></tr>
+<tr><td>3020</td><td>Non au harcèlement (harcèlement scolaire)</td></tr>
+<tr><td>3018</td><td>Cyberharcèlement, diffusion d'images intimes, chantage en ligne (aussi par appli et tchat)</td></tr>
+<tr><td>3919</td><td>Violences faites aux femmes — 24h/24, anonyme</td></tr>
+<tr><td>0 800 08 11 11</td><td>Numéro national sexualités, contraception, IVG</td></tr>
+<tr><td>0 800 235 236</td><td>Fil Santé Jeunes (12-25 ans) — santé, sexualité, mal-être</td></tr>
+<tr><td>0 800 840 800</td><td>Sida Info Service — IST, VIH, dépistage, prévention</td></tr>
+<tr><td>0 980 980 930</td><td>Alcool Info Service</td></tr>
+<tr><td>0 800 23 13 13</td><td>Drogues Info Service</td></tr>
+<tr><td>3114</td><td>Prévention du suicide — 24h/24</td></tr>
+<tr><td>17 / 112</td><td>Urgence, danger immédiat (114 par SMS)</td></tr>
+<tr><td>CeGIDD</td><td>Centre gratuit d'information, de dépistage et de diagnostic des IST — gratuit, possible sans autorisation parentale</td></tr>
+<tr><td>Centre de santé sexuelle</td><td>Contraception, dépistage, consultations, écoute — gratuit et confidentiel pour les mineurs</td></tr>
+<tr><td>En ligne</td><td><a href="https://www.onsexprime.fr/" target="_blank" rel="noopener">onsexprime.fr</a> (Santé publique France, 12-18 ans) · <a href="https://www.comitys.com/" target="_blank" rel="noopener">comitys.com</a> · <a href="https://www.santepubliquefrance.fr/determinants-de-sante/sante-sexuelle/articles/l-education-a-la-sexualite" target="_blank" rel="noopener">Santé publique France — éducation à la sexualité</a> · <a href="https://www.santepubliquefrance.fr/determinants-de-sante/sante-sexuelle/documents/depliant-flyer/outils-sur-la-sante-sexuelle-a-destination-des-jeunes" target="_blank" rel="noopener">catalogue d'outils pour les jeunes</a> · commentonsaime.fr (tchat relations amoureuses, association En avant toute(s))</td></tr>
+</table></div>
+<div class="box ok"><strong>Repères « gratuité » pour les moins de 26 ans</strong>Préservatifs gratuits en pharmacie sans ordonnance ; contraception d'urgence gratuite sans ordonnance en pharmacie ; dépistage des IST possible directement en laboratoire sans ordonnance, pris en charge à 100 %. À vérifier chaque année sur ameli.fr ou onsexprime.fr.</div>
+`;
+
+/* =====================================================================
+   SÉANCES
+   Chaque séance : axe, titre, periode, intervenant, duree, objectif,
+   themes, materiel, deroule[], jeu{}, faq[], vigilance[], cloture
+   ===================================================================== */
+const VERSION = "renforcee";
+const LOI_CONSENT = `Depuis la loi du 6 novembre 2025, le Code pénal définit le viol et les agressions sexuelles à partir de l'<b>absence de consentement</b> : tout acte sexuel non consenti est une agression sexuelle. Le consentement doit être libre, éclairé, spécifique, préalable et révocable ; il ne se déduit ni du silence ni de l'absence de réaction.`;
+
+const NIVEAUX = [
+/* ------------------------------------------------------------------ 3e PM */
+{ id:"3pm", label:"3e Prépa Métiers", age:"14-15 ans", seances:[
+ { axe:1, titre:"Émotions, désir, sentiments : qu'est-ce qui nous rend heureux ?", periode:"Décembre", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Interroger les liens entre bonheur, émotions et sexualité.",
+   themes:["Émotions","Désir","Sentiments"],
+   materiel:"Post-it, 18 cartes « situations » (ou la version cliquable ci-dessous), roue des émotions projetée.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Projeter la charte, la faire valider. Présenter la boîte à questions."},
+    {t:"5-15 min", h:"Nuage de mots « Être heureux, c'est… »", x:"Chacun écrit 2 mots sur post-it. Regrouper au tableau : relations (amis, famille, amour), réussite, santé, liberté… Faire remarquer que l'amour n'est qu'une des sources du bonheur."},
+    {t:"15-35 min", h:"Jeu : Émotion, sentiment ou désir ?", x:"En binômes, classer les situations. Définitions à poser : <b>émotion</b> = réaction rapide et passagère (peur, joie, colère) ; <b>sentiment</b> = plus durable, construit dans le temps (amitié, amour, rancune) ; <b>désir</b> = envie, attirance vers quelque chose ou quelqu'un. Correction avec les cartes."},
+    {t:"35-50 min", h:"Débat mouvant", x:"2 ou 3 affirmations ci-dessous. Insister : toutes les émotions sont légitimes, ce sont nos actes qui doivent respecter les autres."},
+    {t:"50-55 min", h:"Ticket de sortie", x:"« Une émotion que j'ai appris à nommer aujourd'hui » + lieux ressources."}
+   ],
+   jeu:{type:"tri", titre:"Émotion, sentiment ou désir ?", regle:"Cliquez sur la catégorie : la page indique si c'est juste et pourquoi.", choix:["Émotion","Sentiment","Désir"], items:[
+    {s:"Avoir le cœur qui bat fort avant de parler devant la classe", r:"Émotion", e:"Le trac est une émotion : rapide, physique, passagère."},
+    {s:"Tenir à son meilleur ami depuis la primaire", r:"Sentiment", e:"L'amitié se construit dans le temps : c'est un sentiment."},
+    {s:"Avoir envie de passer plus de temps avec quelqu'un qu'on trouve attirant", r:"Désir", e:"L'attirance, l'envie d'être proche : c'est du désir. Il ne donne aucun droit sur l'autre."},
+    {s:"Se mettre en colère parce qu'on a été insulté", r:"Émotion", e:"La colère est une émotion. Elle est légitime ; la violence qui peut suivre ne l'est pas."},
+    {s:"Être amoureux depuis plusieurs mois", r:"Sentiment", e:"L'amour est un sentiment durable, qui évolue."},
+    {s:"Ressentir de la jalousie en voyant son ex avec quelqu'un", r:"Émotion", e:"La jalousie est une émotion fréquente ; elle ne justifie jamais de surveiller ou contrôler l'autre."}
+   ]},
+   debat:["On peut être heureux sans être en couple.","Quand on est amoureux, on doit tout partager.","Un garçon qui pleure, c'est un signe de faiblesse."],
+   faq:[
+    {q:"« Monsieur, c'est quoi le désir sexuel ? »", a:"Réponse simple et non détaillée : « C'est une forme d'attirance, une envie de proximité avec quelqu'un. Elle peut exister ou non, elle varie selon les personnes et les moments. Le désir d'une personne ne crée aucune obligation pour l'autre. »"},
+    {q:"« À quel âge on doit avoir un copain / une copine ? »", a:"« Il n'y a pas d'âge “normal”. Certains ont une relation tôt, d'autres tard, d'autres pas du tout, et c'est très bien. Le bon moment, c'est quand on en a envie soi-même, pas pour faire comme les autres. »"}
+   ],
+   vigilance:["Rester sur le registre des émotions : à ce niveau, le mot « sexualité » renvoie aux relations et à l'intimité, pas aux pratiques.","Un élève qui parle d'un chagrin ou d'une colère forte : proposer un échange après la séance, orienter vers l'infirmière ou le CPE."]
+ },
+ { axe:2, titre:"IST, dépistage, consentement, responsabilité — intervention du Centre de santé sexuelle", periode:"Janvier - Février", intervenant:"Centre de santé sexuelle (sage-femme + conseillère conjugale et familiale) — 2 h", duree:"Préparation 30 min + intervention 2 h + retour 25 min",
+   objectif:"Construire une relation réciproque et égalitaire ; savoir reconnaître et caractériser des contextes de danger et de vulnérabilité.",
+   themes:["IST","Dépistage","Santé","Consentement","Responsabilité"],
+   materiel:"Boîte à questions, cartes Vrai/Faux, fiche « lieux ressources ».",
+   deroule:[
+    {t:"Avant · 0-10 min", h:"Préparation de la venue", x:"Expliquer qui sont les intervenantes (métiers de sage-femme et de conseillère conjugale et familiale) et pourquoi on peut leur poser des questions qu'on n'oserait pas poser à un prof."},
+    {t:"Avant · 10-20 min", h:"Vrai / Faux d'amorce", x:"Cartes ci-dessous, sans donner toutes les réponses : « Vous vérifierez avec les intervenantes ! »"},
+    {t:"Avant · 20-30 min", h:"Boîte à questions", x:"Chaque élève écrit une question (ou « pas de question »). Transmettre la boîte aux intervenantes avant leur venue."},
+    {t:"Pendant · 2 h", h:"Rôle de l'enseignant", x:"Présent dans la salle, garant du cadre et de la discipline. Il ne répond pas à la place des intervenantes et ne commente pas les questions des élèves."},
+    {t:"Après · 25 min", h:"Retour « 3-2-1 »", x:"En îlots : 3 choses apprises, 2 lieux où s'adresser, 1 question qui reste (au parking). Mise en commun et affiche de classe."}
+   ],
+   jeu:{type:"flip", titre:"Vrai ou faux ? (accroche)", regle:"Vote à main levée, puis cliquez pour retourner la carte.", items:[
+    {q:"On voit toujours quand quelqu'un a une IST.", a:"<b>Faux</b> Beaucoup d'IST ne donnent aucun signe pendant longtemps. Seul un dépistage permet de savoir."},
+    {q:"Le préservatif est le seul moyen qui protège à la fois des IST et des grossesses.", a:"<b>Vrai</b> Les autres contraceptifs ne protègent pas des IST."},
+    {q:"Un mineur peut aller au centre de santé sexuelle sans ses parents.", a:"<b>Vrai</b> C'est gratuit et confidentiel."},
+    {q:"Si on a dit oui une fois, on ne peut plus dire non.", a:"<b>Faux</b> On peut changer d'avis à tout moment, et un « oui » ne vaut que pour ce moment-là."},
+    {q:"Être en couple oblige à faire ce que l'autre demande.", a:"<b>Faux</b> Une relation égalitaire, c'est deux personnes qui décident ensemble, chacune pouvant refuser."}
+   ]},
+   faq:[
+    {q:"Un élève pose une question médicale précise avant l'intervention", a:"« Super question pour la sage-femme : mets-la dans la boîte, elle y répondra mieux que moi. »"}
+   ],
+   vigilance:["Prévenir les familles de l'intervention via l'ENT (information, pas autorisation : l'EVARS est obligatoire).","Les intervenantes peuvent recevoir des confidences : faire le point avec elles en fin d'intervention."]
+ },
+ { axe:3, titre:"Mon espace, mes limites : intimité, emprise, violences", periode:"Mars - Avril", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Inscrire la sexualité dans la définition et le respect des droits humains.",
+   themes:["Intimité","Emprise","Violences"],
+   materiel:"Schéma des « cercles de l'intimité » au tableau, cartons vert/orange/rouge.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Rappel de la charte. Annoncer que le thème peut toucher : droit de sortir un moment."},
+    {t:"5-20 min", h:"Les cercles de l'intimité", x:"Dessiner 5 cercles : moi / famille proche / amis / connaissances / inconnus. Par groupes, placer : mon corps, mon mot de passe, mes photos, mes émotions, mon adresse… Conclusion : <b>l'intimité, c'est ce que je choisis de partager, avec qui, et quand</b>. Personne ne peut l'exiger."},
+    {t:"20-40 min", h:"Le feu tricolore", x:"Situations ci-dessous : vert = respect, orange = signal d'alerte, rouge = violence ou interdit. Faire justifier."},
+    {t:"40-50 min", h:"Repères : emprise et loi", x:"<b>Emprise</b> : quand une personne prend peu à peu le contrôle d'une autre (isoler, culpabiliser, surveiller, alterner gentillesse et menaces), au point que la victime a du mal à partir. Les violences peuvent être physiques, verbales, psychologiques, sexuelles, numériques. Elles sont interdites par la loi et la victime n'est jamais responsable."},
+    {t:"50-55 min", h:"Qui peut m'aider ?", x:"Afficher : adultes du lycée, 119, 3020, 3018. Ticket de sortie."}
+   ],
+   jeu:{type:"tri", titre:"Feu tricolore", regle:"Vert, orange ou rouge ?", choix:["🟢 Vert","🟠 Orange","🔴 Rouge"], items:[
+    {s:"Mon copain me demande si j'ai passé une bonne journée.", r:"🟢 Vert", e:"Intérêt bienveillant."},
+    {s:"Ma copine veut connaître le code de mon téléphone « pour être sûre ».", r:"🟠 Orange", e:"Début de contrôle : la confiance ne se prouve pas par la surveillance."},
+    {s:"Il m'interdit de voir mes amis parce qu'ils « me montent la tête ».", r:"🔴 Rouge", e:"Isoler l'autre est un mécanisme classique d'emprise."},
+    {s:"Elle accepte que je ne veuille pas lui envoyer de photo.", r:"🟢 Vert", e:"Respect du refus."},
+    {s:"Il menace de partager une photo de moi si je le quitte.", r:"🔴 Rouge", e:"Chantage : c'est une infraction. 3018 et adulte de confiance."},
+    {s:"Après une dispute, il m'offre un cadeau et dit que c'était de ma faute.", r:"🟠 Orange", e:"Culpabiliser l'autre puis « réparer » : un cycle à surveiller."}
+   ]},
+   faq:[
+    {q:"« Et si c'est mon frère / mon père qui… ? » (devant la classe)", a:"Interrompre avec douceur : « C'est important, on en parle tous les deux juste après. » Puis suivre le protocole « Si un élève se confie »."},
+    {q:"« Mais si elle s'habille comme ça, elle l'a cherché ? »", a:"« Non. Aucune tenue, aucun comportement ne donne la permission à quelqu'un. Le seul responsable d'une violence, c'est celui qui la commet. »"}
+   ],
+   vigilance:["Séance à fort risque de révélation : prévenir l'infirmière et le CPE de la date.","Pas de jeu de rôle sur des situations de violence."]
+ }
+]},
+/* ------------------------------------------------------------------ 2nde */
+{ id:"2nde", label:"Seconde", age:"15-16 ans", seances:[
+ { axe:1, titre:"Santé sexuelle, anatomie, sexe biologique, genre, consentement — intervention du Centre de santé sexuelle", periode:"Janvier - Février", intervenant:"Centre de santé sexuelle (sage-femme + conseillère conjugale et familiale) — 2 h", duree:"Préparation 30 min + intervention 2 h + retour 25 min",
+   objectif:"Prendre soin de son corps et développer une image positive de soi.",
+   themes:["Santé sexuelle","Anatomie","Sexe biologique","Genre","Consentement"],
+   materiel:"Cartes « mots / définitions », boîte à questions.",
+   deroule:[
+    {t:"Avant · 0-15 min", h:"Jeu des définitions", x:"Associer chaque mot à sa définition (cartes ci-dessous). Objectif : avoir un vocabulaire commun et respectueux avant l'intervention. <b>L'anatomie n'est pas traitée par l'enseignant</b> : c'est le rôle de la sage-femme."},
+    {t:"Avant · 15-30 min", h:"Boîte à questions", x:"Chaque élève écrit une question ; transmission aux intervenantes."},
+    {t:"Pendant · 2 h", h:"Rôle de l'enseignant", x:"Présent, garant du cadre, ne commente pas."},
+    {t:"Après · 25 min", h:"« Mon corps, mes droits »", x:"Production collective d'une affiche : 5 droits que j'ai sur mon corps (ex. : être informé, être soigné en confidentialité, dire non, être respecté quelle que soit mon apparence, choisir ce que je partage)."}
+   ],
+   jeu:{type:"flip", titre:"Le bon mot", regle:"Lisez le mot, proposez une définition, retournez.", items:[
+    {q:"Sexe biologique", a:"<b>Définition</b> Caractéristiques du corps (chromosomes, organes, hormones) attribuées à la naissance."},
+    {q:"Genre", a:"<b>Définition</b> Rôles, comportements et attentes qu'une société associe au fait d'être femme ou homme. Ils varient selon les époques et les pays."},
+    {q:"Identité de genre", a:"<b>Définition</b> Le genre auquel une personne sent qu'elle appartient, qui peut correspondre ou non au sexe assigné à la naissance."},
+    {q:"Orientation sexuelle", a:"<b>Définition</b> Vers qui une personne est attirée (personnes de même genre, d'un autre genre, plusieurs, aucune). À ne pas confondre avec l'identité de genre."},
+    {q:"Santé sexuelle", a:"<b>Définition</b> Selon l'OMS, un état de bien-être physique, émotionnel, mental et social lié à la sexualité, qui suppose respect, sécurité et absence de violence."},
+    {q:"Consentement", a:"<b>Définition</b> Accord libre, éclairé, donné à l'avance pour un acte précis, et qu'on peut retirer à tout moment."}
+   ]},
+   faq:[
+    {q:"« Monsieur, c'est normal d'avoir un corps comme ci ou comme ça ? »", a:"« Les corps sont très variés. La sage-femme pourra répondre ; et pour toi personnellement, l'infirmière est là, c'est confidentiel. »"},
+    {q:"« Le genre, c'est une théorie / une idéologie ? »", a:"« Le genre est un outil utilisé en sciences sociales pour décrire les rôles que la société attribue aux femmes et aux hommes. On l'utilise ici pour parler d'égalité et de respect, pas pour dire à qui que ce soit ce qu'il doit être. »"}
+   ],
+   vigilance:["Ne jamais demander à un élève de se situer (orientation, identité).","Prévenir les familles de l'intervention (information)."]
+ },
+ { axe:2, titre:"Le détective des émotions", periode:"Mars - Avril", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Reconnaître et comprendre ses émotions, ses sentiments et ceux des autres.",
+   themes:["Émotions","Désirs","Sentiments"],
+   materiel:"4 études de cas imprimées, tableau « émotion → besoin → réaction ».",
+   deroule:[
+    {t:"0-5 min", h:"Cadre + météo intérieure", x:"Chacun indique (sans parler) sa météo du jour avec les doigts : 1 = orage, 5 = grand soleil."},
+    {t:"5-15 min", h:"Mimes express", x:"5 volontaires tirent une émotion (fierté, honte, jalousie, gêne, soulagement) et la miment. La classe devine. Constat : les émotions se lisent, mais on peut aussi se tromper → il faut demander."},
+    {t:"15-40 min", h:"Études de cas en îlots", x:"Pour chaque personnage : quelle émotion ? quel besoin derrière ? quelle réaction respectueuse ? Cas : (1) Inès voit une photo de sa copine en soirée sans elle ; (2) Yanis reçoit un « vu » sans réponse ; (3) Léo n'ose pas dire qu'il n'a pas envie d'embrasser ; (4) Sarah se sent mise à l'écart depuis qu'elle sort avec quelqu'un."},
+    {t:"40-52 min", h:"Débat mouvant", x:"Affirmations ci-dessous."},
+    {t:"52-55 min", h:"Clôture", x:"« Une émotion, c'est un message, pas un ordre » : on peut ressentir de la jalousie sans agir de façon jalouse."}
+   ],
+   debat:["La jalousie est une preuve d'amour.","On peut désirer quelqu'un sans être amoureux.","Quand on aime quelqu'un, on devine ce qu'il ressent sans avoir besoin de parler."],
+   jeu:{type:"flip", titre:"Émotion → besoin", regle:"Quel besoin se cache derrière l'émotion ? Retournez pour une piste.", items:[
+    {q:"Je me sens jaloux.", a:"<b>Besoin possible</b> Être rassuré, se sentir important. → Le dire, plutôt que surveiller."},
+    {q:"Je me sens gêné quand on me touche sans prévenir.", a:"<b>Besoin possible</b> Respect de mon espace. → J'ai le droit de le dire, l'autre doit l'entendre."},
+    {q:"Je suis triste après une rupture.", a:"<b>Besoin possible</b> Du soutien, du temps. → Entourage, activités, adulte de confiance si ça dure."},
+    {q:"Je suis en colère quand on se moque de moi.", a:"<b>Besoin possible</b> Être respecté. → Poser une limite, demander de l'aide si c'est répété (3020)."}
+   ]},
+   faq:[
+    {q:"« Et si on n'a jamais été amoureux, c'est grave ? »", a:"« Pas du tout. Chacun a son rythme, et certaines personnes ne ressentent pas d'attirance amoureuse ou sexuelle : c'est aussi une façon d'être. »"}
+   ],
+   vigilance:["Tristesse persistante, isolement, idées noires évoquées : orienter vers l'infirmière ou le CPE, et rappeler le 3114."]
+ },
+ { axe:3, titre:"Mon fil d'actu : intimité, réseaux sociaux et cyberviolences", periode:"Mai - Juin", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Se protéger et protéger les autres : l'intimité à l'ère des réseaux sociaux.",
+   themes:["Réseaux sociaux","Cyberviolence","Responsabilités","Facteurs sociaux de la sexualité"],
+   materiel:"Faux « posts » imprimés (fictifs), cartons Liker / Partager / Signaler / En parler.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte + boîte à questions."},
+    {t:"5-25 min", h:"Le fil d'actu", x:"Projeter des situations de réseau social fictives (ci-dessous). Pour chacune, la classe brandit un carton : Liker / Partager / Signaler / En parler à un adulte. Discuter des réactions et de la responsabilité de chacun (le témoin qui partage participe)."},
+    {t:"25-40 min", h:"Ce que dit la loi", x:"Cartes à retourner : diffusion d'image intime, cyberharcèlement, usurpation d'identité. Message clé : <b>la honte doit changer de camp</b> — la faute est du côté de celui qui diffuse."},
+    {t:"40-50 min", h:"Facteurs sociaux", x:"Brainstorm : qu'est-ce qui influence notre vision du couple et de la sexualité ? (amis, famille, culture, religion, séries, influenceurs, publicité). Une influence n'est pas une obligation : on peut trier."},
+    {t:"50-55 min", h:"Clôture", x:"Afficher 3018 (appli, tchat) et ses réflexes : capture d'écran, signalement, ne pas répondre au chantage, en parler."}
+   ],
+   jeu:{type:"tri", titre:"Que fais-tu ?", regle:"Choisissez la réaction la plus responsable.", choix:["Partager","Ignorer","Signaler + en parler"], items:[
+    {s:"Un groupe classe fait circuler une photo intime d'une élève.", r:"Signaler + en parler", e:"Partager = participer à une infraction. Signaler, prévenir un adulte, 3018."},
+    {s:"Un compte anonyme note le physique des filles du lycée.", r:"Signaler + en parler", e:"Cyberharcèlement sexiste : signalement plateforme + adulte du lycée."},
+    {s:"Un ami se fait insulter en commentaire tous les jours.", r:"Signaler + en parler", e:"La répétition caractérise le harcèlement ; le soutien des témoins change tout."},
+    {s:"Une rumeur sur la sexualité d'un élève circule en story.", r:"Signaler + en parler", e:"Ne pas relayer : une rumeur peut détruire. Prévenir le CPE."}
+   ]},
+   jeu2:{type:"flip", titre:"Ce que dit la loi", regle:"Retournez pour découvrir la règle.", items:[
+    {q:"Diffuser une photo intime de quelqu'un sans son accord…", a:"<b>Infraction</b> Même si la personne avait envoyé la photo elle-même. Jusqu'à 2 ans de prison et 60 000 € d'amende (adulte). Pour l'image d'un mineur, c'est encore plus grave."},
+    {q:"Participer à un cyberharcèlement en « juste » partageant…", a:"<b>Infraction</b> Chaque participant peut être poursuivi, même s'il n'a posté qu'une fois, dès lors que les messages se répètent de la part du groupe."},
+    {q:"Créer un faux compte au nom d'un camarade…", a:"<b>Infraction</b> Usurpation d'identité numérique."},
+    {q:"Être mineur, ça protège de toute sanction…", a:"<b>Faux</b> Dès 13 ans, un mineur peut être condamné pénalement ; dans l'établissement, des sanctions disciplinaires s'appliquent."}
+   ]},
+   faq:[
+    {q:"« Mais elle n'avait qu'à pas envoyer la photo ! »", a:"« Envoyer une photo à une personne de confiance n'est pas une faute. La trahir en la diffusant, si. La victime n'est jamais coupable. »"}
+   ],
+   vigilance:["Ne jamais projeter de vraie capture de réseau social concernant des élèves.","Si une affaire réelle circule dans le lycée : en parler d'abord à la direction avant la séance."]
+ }
+]},
+/* ------------------------------------------------------------------ 1re */
+{ id:"1re", label:"Première", age:"16-17 ans", seances:[
+ { axe:1, titre:"Escape game santé : faire des choix en restant maître de soi", periode:"Mars - Avril", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Faire des choix en restant maître de soi et attentif à sa santé.",
+   themes:["IST","Dépistage","Santé","Dangers et risques : alcool","Drogues"],
+   materiel:"4 enveloppes d'énigmes par équipe, cadenas factices ou codes à trouver, chronomètre.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre + mission", x:"« Vous êtes l'équipe de prévention d'une soirée. Il faut trouver 4 codes pour que tout le monde rentre en sécurité. »"},
+    {t:"5-35 min", h:"4 énigmes en équipes", x:"<b>1. IST</b> : Vrai/Faux (cartes ci-dessous) → chaque « vrai » donne un chiffre. <b>2. Où aller ?</b> : associer besoins et lieux (CeGIDD, pharmacie, centre de santé sexuelle, infirmerie). <b>3. Alcool et consentement</b> : étude de cas « Léa a beaucoup bu, Tom veut la raccompagner seul » → bonne réaction ? <b>4. Urgence</b> : un ami ne réagit plus après avoir bu → ordre des gestes (le mettre sur le côté, appeler le 15, rester avec lui)."},
+    {t:"35-50 min", h:"Débrief", x:"Messages clés : beaucoup d'IST sont silencieuses ; le dépistage est simple et gratuit ; l'alcool et les drogues altèrent le jugement et <b>une personne fortement alcoolisée ou droguée ne peut pas consentir</b> ; en soirée, on veille les uns sur les autres."},
+    {t:"50-55 min", h:"Clôture", x:"Numéros : Alcool Info Service, Drogues Info Service, Sida Info Service."}
+   ],
+   jeu:{type:"flip", titre:"Énigme 1 — IST : vrai ou faux ?", regle:"Retournez après le vote.", items:[
+    {q:"La pilule protège des IST.", a:"<b>Faux</b> Seuls les préservatifs (externe ou interne) protègent des IST."},
+    {q:"On peut se faire dépister gratuitement sans ordonnance quand on a moins de 26 ans.", a:"<b>Vrai</b> En laboratoire ou au CeGIDD."},
+    {q:"Un vaccin protège contre certains papillomavirus (HPV).", a:"<b>Vrai</b> Recommandé pour les filles et les garçons ; il prévient des cancers."},
+    {q:"Si on a eu une IST une fois, on est immunisé.", a:"<b>Faux</b> On peut se réinfecter."},
+    {q:"Les préservatifs sont gratuits en pharmacie pour les moins de 26 ans.", a:"<b>Vrai</b> Sans ordonnance, sur simple demande."}
+   ]},
+   faq:[
+    {q:"« C'est quoi les doses pour ne pas être malade ? »", a:"Ne jamais donner de conseils de consommation. « Je ne donnerai pas de chiffres : le seul repère fiable, c'est que moins on consomme, moins on prend de risques. Pour des questions précises : Alcool Info Service ou Drogues Info Service, anonymes et gratuits. »"},
+    {q:"Question sur une IST précise (symptômes, traitement)", a:"« Je ne suis pas médecin : onsexprime.fr ou Sida Info Service ont des fiches claires, et le CeGIDD répond gratuitement. »"}
+   ],
+   vigilance:["Ne pas décrire de symptômes en détail ni montrer de photos médicales.","Aucune information sur les modes de consommation des produits."]
+ },
+ { axe:2, titre:"Atelier relations saines : consentement, respect, harcèlement", periode:"Janvier - Février", intervenant:"Enseignants + CPE (à confirmer) · ressources comitys.com", duree:"55 min (ou 2 × 55 min)",
+   objectif:"Désirer et vouloir, donner ou refuser son consentement, savoir être libre et respecter les autres et leurs propres libertés.",
+   themes:["Consentement","Respect","Harcèlement","Responsabilités","Atelier « relations saines »"],
+   materiel:"Vidéo courte sur le consentement (ex. la vidéo « Le consentement, c'est comme une tasse de thé », version sous-titrée) ou module comitys.com, cartes green/red flags.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte. Le CPE présente son rôle (écoute, harcèlement)."},
+    {t:"5-15 min", h:"Accroche vidéo", x:"Visionner, puis : qu'est-ce qui rend un « oui » valable ? Construire au tableau les 5 critères : <b>libre</b> (sans pression), <b>éclairé</b> (on sait à quoi on dit oui), <b>spécifique</b> (oui à une chose ≠ oui à tout), <b>réversible</b> (on peut changer d'avis), <b>enthousiaste</b> (un « bof » ou un silence n'est pas un oui)."},
+    {t:"15-25 min", h:"Ce que dit la loi", x:`${LOI_CONSENT}`},
+    {t:"25-45 min", h:"Atelier green flags / red flags", x:"Par équipes, trier les cartes (ci-dessous) puis compléter avec ses propres exemples. S'appuyer sur les supports de comitys.com si disponibles."},
+    {t:"45-52 min", h:"Harcèlement", x:"Définition : propos ou comportements répétés qui dégradent les conditions de vie de quelqu'un. Délit, y compris à l'école. Rôle des témoins. 3020."},
+    {t:"52-55 min", h:"Ticket de sortie", x:"« Une phrase que je peux dire pour poser une limite. »"}
+   ],
+   jeu:{type:"tri", titre:"Green flag ou red flag ?", regle:"Signe de relation saine ou signal d'alerte ?", choix:["✅ Green flag","🚩 Red flag"], items:[
+    {s:"Il demande « Ça te va ? » et accepte la réponse, quelle qu'elle soit.", r:"✅ Green flag", e:"Le consentement se vérifie, il ne se suppose pas."},
+    {s:"Elle insiste jusqu'à ce que je finisse par dire oui.", r:"🚩 Red flag", e:"Un oui obtenu par insistance n'est pas libre."},
+    {s:"Il respecte que je veuille garder du temps pour mes amis.", r:"✅ Green flag", e:"Chacun garde sa liberté."},
+    {s:"Il dit que si je l'aimais vraiment, je le ferais.", r:"🚩 Red flag", e:"Chantage affectif."},
+    {s:"On peut ne pas être d'accord sans que ça finisse en cris ou en menaces.", r:"✅ Green flag", e:"Les désaccords font partie des relations saines."},
+    {s:"Elle répète partout des rumeurs sur mon ex pour l'humilier.", r:"🚩 Red flag", e:"Humiliation, possible harcèlement."}
+   ]},
+   debat:["Si on ne dit pas non, c'est que c'est oui.","Dans un couple, le consentement va de soi.","Celui qui rigole quand quelqu'un se fait harceler n'est pas responsable."],
+   faq:[
+    {q:"« Donc maintenant il faut signer un contrat ? »", a:"« Non. Le consentement, c'est surtout de l'attention à l'autre : demander, écouter, observer, et s'arrêter en cas de doute. Ça se fait naturellement quand on respecte quelqu'un. »"},
+    {q:"« Et si l'autre a bu ? »", a:"« Une personne très alcoolisée ou droguée n'est pas en état de consentir. Dans le doute, on s'abstient et on veille sur elle. »"}
+   ],
+   vigilance:["Séance à risque de révélation (harcèlement, violences) : CPE prévenu.","Ne pas mettre en scène de situations d'agression."]
+ },
+ { axe:3, titre:"Être soi : stéréotypes et identité de genre", periode:"Mai - Juin", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Être soi, entre acceptation et déni.",
+   themes:["Stéréotypes","Identité de genre"],
+   materiel:"Affirmations stéréotypées sur bandelettes, publicités ou jouets (images génériques), cartes vocabulaire.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte, et rappel : on ne demande jamais à quelqu'un de dire qui il est ou qui il aime."},
+    {t:"5-20 min", h:"Le chapeau des stéréotypes", x:"Tirer des bandelettes (« Les garçons ne pleurent pas », « Les filles sont nulles en maths », « Un vrai homme ne fait pas le ménage »…). La classe décide : fait prouvé ou stéréotype ? Puis : d'où vient-il ? à qui fait-il du tort ?"},
+    {t:"20-35 min", h:"Les métiers et le genre", x:"Particulièrement parlant en lycée polyvalent : lister les filières du lycée, compter filles/garçons. Les écarts viennent-ils des capacités ou des représentations ? Témoignages de parcours contre-stéréotypés (vidéos de l'ONISEP)."},
+    {t:"35-50 min", h:"Vocabulaire et loi", x:"Cartes ci-dessous. Loi : les discriminations et injures en raison du sexe, de l'orientation sexuelle ou de l'identité de genre sont punies."},
+    {t:"50-55 min", h:"Clôture", x:"« Une chose que je fais / aime alors qu'on me dit que ce n'est “pas pour moi”. » (facultatif, écrit)"}
+   ],
+   jeu:{type:"flip", titre:"Stéréotype ou réalité ?", regle:"Votez, puis retournez.", items:[
+    {q:"« Les filles sont moins douées pour la technique. »", a:"<b>Stéréotype</b> Aucune différence de capacité démontrée ; les écarts d'orientation viennent surtout des représentations et de l'encouragement reçu."},
+    {q:"« Les garçons ne savent pas exprimer leurs émotions. »", a:"<b>Stéréotype</b> Ils ont les mêmes émotions, mais on leur apprend souvent à les cacher — ce qui peut nuire à leur santé."},
+    {q:"Identité de genre et orientation sexuelle, c'est la même chose.", a:"<b>Faux</b> L'identité, c'est qui je suis ; l'orientation, c'est vers qui je suis attiré·e."},
+    {q:"Insulter quelqu'un en raison de son orientation sexuelle est puni par la loi.", a:"<b>Vrai</b> C'est une circonstance aggravante."}
+   ]},
+   debat:["Il existe des métiers d'hommes et des métiers de femmes.","On peut jouer avec les codes du masculin et du féminin.","Les stéréotypes, c'est juste pour rire, ça ne fait de mal à personne."],
+   faq:[
+    {q:"« Vous êtes pour ou contre les personnes trans ? »", a:"« Mon rôle n'est pas de donner mon avis sur la vie des gens. Ce que je peux dire : la loi protège chacun contre les discriminations, et à l'école tout le monde a droit au respect. »"},
+    {q:"Un élève fait son coming out en classe", a:"Accueillir simplement (« Merci de ta confiance »), recadrer toute réaction moqueuse, ne pas en faire le sujet de la séance. Proposer un échange après si besoin."}
+   ],
+   vigilance:["Ne jamais « outer » un élève ni commenter l'apparence de quelqu'un.","Rester sur des faits et la loi, sans militantisme dans un sens ou dans l'autre."]
+ }
+]},
+/* ------------------------------------------------------------------ Tle */
+{ id:"tle", label:"Terminale", age:"17-18 ans", seances:[
+ { axe:1, titre:"Mythe ou réalité ? Émotions, désirs et plaisir", periode:"Décembre - Janvier", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Reconnaître ses émotions et ses désirs pour mieux se connaître.",
+   themes:["Excitation","Sentiments","Désirs et plaisir"],
+   materiel:"Cartes « mythe ou réalité », boîte à questions préparée une semaine avant.",
+   deroule:[
+    {t:"Une semaine avant", h:"Boîte à questions", x:"Recueillir les questions anonymes. Préparer les réponses à l'aide d'onsexprime.fr ; écarter celles qui sortent du cadre et les confier à l'infirmière."},
+    {t:"0-5 min", h:"Cadre", x:"Charte. Annoncer : « On va parler de ce qu'on ressent, pas de ce qu'on fait. »"},
+    {t:"5-25 min", h:"Mythe ou réalité ?", x:"Cartes ci-dessous en équipes, points à la clé. Messages clés : le désir et l'excitation sont des réactions du corps et de l'esprit, variables et parfois involontaires ; <b>une réaction du corps n'est jamais un consentement</b> ; le plaisir se construit à deux, dans la communication et le respect du rythme de chacun ; il n'y a ni âge ni performance attendus."},
+    {t:"25-45 min", h:"Réponses à la boîte à questions", x:"Lire les questions retenues, faire réagir la classe, compléter avec des sources fiables (onsexprime.fr). L'enseignant peut se contenter de lire des réponses préparées."},
+    {t:"45-55 min", h:"Fiction ≠ réalité", x:"Comparer en 2 colonnes ce que montrent les séries, films, réseaux et la réalité (durée, corps, communication, consentement, protection). Clôture et lieux ressources."}
+   ],
+   jeu:{type:"flip", titre:"Mythe ou réalité ?", regle:"Retournez la carte après le vote de l'équipe.", items:[
+    {q:"Si le corps réagit, c'est que la personne est d'accord.", a:"<b>Mythe</b> Une réaction physique peut être involontaire. Seule une parole ou une attitude claire et libre exprime un accord."},
+    {q:"Tout le monde a sa « première fois » vers 15 ans.", a:"<b>Mythe</b> L'âge moyen en France se situe autour de 17-18 ans, et il varie beaucoup. Il n'y a pas d'âge normal."},
+    {q:"On peut aimer quelqu'un sans le désirer, et le désirer sans l'aimer.", a:"<b>Réalité</b> Sentiments et désir sont distincts et peuvent exister séparément."},
+    {q:"Les garçons ont toujours envie.", a:"<b>Mythe</b> Le désir varie chez tout le monde, filles comme garçons, selon les moments, la fatigue, les émotions."},
+    {q:"Le désir peut varier selon les moments, le stress, la fatigue.", a:"<b>Réalité</b> C'est normal et ce n'est pas un problème."},
+    {q:"Parler de ce qu'on aime ou n'aime pas casse l'ambiance.", a:"<b>Mythe</b> La communication est au cœur d'une relation où chacun se sent bien."}
+   ]},
+   faq:[
+    {q:"Questions sur des pratiques sexuelles précises", a:"« On n'entre pas dans les pratiques ici : c'est votre vie privée. Ce qui compte pour toutes les situations : le consentement de chacun, la protection, et le droit de s'arrêter. Pour des questions précises : onsexprime.fr, Fil Santé Jeunes, le centre de santé sexuelle. »"},
+    {q:"« Monsieur, c'est quoi l'orgasme ? » (pour provoquer)", a:"Réponse brève, factuelle et sans détail : « C'est le moment où le plaisir sexuel est le plus intense. Il n'est pas obligatoire ni un objectif à atteindre. » Puis passer à la suite."}
+   ],
+   vigilance:["Aucune image explicite, aucun schéma détaillé.","Si la séance met l'enseignant mal à l'aise, la co-animer avec un collègue ou l'infirmière."]
+ },
+ { axe:2, titre:"L'histoire de Léa et Sam : relation saine ou emprise ?", periode:"Février ou Avril", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"S'épanouir dans une relation équilibrée à l'autre.",
+   themes:["Relation saine","Emprise"],
+   materiel:"Récit en 5 épisodes (ci-dessous), cartons vert/orange/rouge, violentomètre (outil de l'Observatoire des violences envers les femmes, téléchargeable gratuitement).",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte. Prévenir que le sujet peut toucher."},
+    {t:"5-30 min", h:"Récit à épisodes", x:"Lire les 5 épisodes un par un. À chaque fois : vote vert/orange/rouge + justification. Les élèves découvrent que l'emprise s'installe <b>progressivement</b>, souvent derrière des marques d'attention."},
+    {t:"30-40 min", h:"Le violentomètre", x:"Distribuer ou projeter le violentomètre : situer les comportements des épisodes. Il fonctionne quel que soit le genre des personnes."},
+    {t:"40-50 min", h:"Et si c'était mon ami·e ?", x:"En îlots : que dire à un ami qui vit une relation « orange » ou « rouge » ? (écouter sans juger, ne pas forcer la rupture, rester présent, en parler à un adulte, 3919, commentonsaime.fr)."},
+    {t:"50-55 min", h:"Clôture", x:"Les 4 piliers d'une relation saine : respect, confiance, liberté, égalité."}
+   ],
+   jeu:{type:"tri", titre:"Léa et Sam — 5 épisodes", regle:"À chaque épisode, votez.", choix:["🟢 Vert","🟠 Orange","🔴 Rouge"], items:[
+    {s:"Ép. 1 — Sam envoie des messages adorables à Léa toute la journée et veut la voir chaque soir.", r:"🟠 Orange", e:"Agréable au début, mais une présence envahissante peut préparer l'isolement. On reste attentif."},
+    {s:"Ép. 2 — Sam boude quand Léa sort avec ses amies et dit qu'elles ont une mauvaise influence.", r:"🟠 Orange", e:"Culpabilisation et dénigrement de l'entourage : signal d'alerte."},
+    {s:"Ép. 3 — Sam exige ses mots de passe « parce qu'on n'a rien à se cacher ».", r:"🔴 Rouge", e:"Contrôle et surveillance : violence psychologique et numérique."},
+    {s:"Ép. 4 — Après une dispute, Sam crie, puis s'excuse avec des fleurs : « Tu me pousses à bout. »", r:"🔴 Rouge", e:"Inversion de la culpabilité, cycle tension-explosion-excuses typique de l'emprise."},
+    {s:"Ép. 5 — Léa n'ose plus voir personne et se dit que c'est sa faute.", r:"🔴 Rouge", e:"Emprise installée. Léa a besoin d'aide extérieure ; ce n'est pas sa faute."}
+   ]},
+   faq:[
+    {q:"« Pourquoi elle ne part pas, tout simplement ? »", a:"« L'emprise s'installe petit à petit : la personne perd confiance, s'isole, a peur, se sent coupable, espère que ça va changer. Partir est difficile et parfois dangereux : c'est pour ça qu'il faut de l'aide extérieure. »"}
+   ],
+   vigilance:["Utiliser des prénoms qui ne sont pas ceux d'élèves de la classe.","Présenter l'emprise comme possible dans tous les types de couples."]
+ },
+ { axe:3, titre:"Libre et responsable : consentement, violences sexistes et sexuelles, sources fiables", periode:"Mars", intervenant:"TPRO Indus + STI2D + BTS : association Hépatite France (3 ateliers + dépistage IST) · Autres classes : séance Moodle (enseignant)", duree:"Variable selon la classe",
+   objectif:"Être libre d'être soi parmi les autres et réfléchir aux conditions sociales garantissant cette liberté.",
+   themes:["Consentement","Violences sexistes et sexuelles","Santé sexuelle","Lieux et sources fiables"],
+   materiel:"Classes avec intervention : boîte à questions. Autres classes : salle informatique, parcours Moodle (structure ci-dessous).",
+   deroule:[
+    {t:"A · TPRO Indus, STI2D, BTS", h:"Avant les ateliers (20 min)", x:"Présenter l'association et le principe du dépistage : volontaire, gratuit, confidentiel, sans obligation. Boîte à questions transmise à l'association."},
+    {t:"A · Pendant", h:"Rôle de l'enseignant", x:"Organiser les rotations entre les 3 ateliers, garantir la confidentialité du dépistage (aucun commentaire sur qui y va ou non)."},
+    {t:"A · Après (20 min)", h:"Débrief", x:"« Info ou intox ? » (cartes ci-dessous) + rappel des lieux de dépistage."},
+    {t:"B · Autres classes", h:"Séance Moodle en binômes (35 min) + échange en classe (20 min)", x:"Les élèves travaillent <b>à deux sur un poste</b> et doivent se mettre d'accord avant de répondre. <b>Module 1 — Le consentement et la loi</b> (8 min) : vidéo + lecture du repère légal + 3 questions. <b>Module 2 — Les VSS, reconnaître</b> (10 min) : continuum des violences (remarques sexistes → harcèlement → agressions) ; à classer ; qui alerter, y compris en stage ou au travail. <b>Module 3 — Santé sexuelle</b> (7 min) : dépistage, contraception, gratuité < 26 ans. <b>Module 4 — Info ou intox ?</b> (10 min) : évaluer 6 sources (site institutionnel, forum, influenceur, média, association) avec la grille « Qui parle ? Quelles preuves ? Quelle date ? Quel intérêt ? ». Puis retour en classe entière pour le temps d'échange ci-dessous."}
+   ],
+   jeu:{type:"flip", titre:"Info ou intox ?", regle:"Votez, puis retournez la carte.", items:[
+    {q:"Depuis 2025, la loi française définit le viol à partir de l'absence de consentement.", a:"<b>Info</b> Loi du 6 novembre 2025 : tout acte sexuel non consenti est une agression sexuelle."},
+    {q:"Une remarque sexiste au travail, « c'est pour rire », ce n'est pas grave.", a:"<b>Intox</b> L'agissement sexiste et l'outrage sexiste sont sanctionnés ; le harcèlement sexuel est un délit, y compris en stage."},
+    {q:"Un influenceur santé avec beaucoup d'abonnés est une source fiable.", a:"<b>Intox</b> La popularité n'est pas une preuve. Vérifier qui parle, ses sources et ses intérêts (placement de produit ?)."},
+    {q:"onsexprime.fr est un site de Santé publique France.", a:"<b>Info</b> Site institutionnel, validé par des professionnels."},
+    {q:"On peut faire un dépistage IST sans que ses parents le sachent.", a:"<b>Info</b> Au CeGIDD ou au centre de santé sexuelle, c'est confidentiel."},
+    {q:"Si la victime connaît l'agresseur, ce n'est pas vraiment une agression.", a:"<b>Intox</b> Dans la grande majorité des cas, l'agresseur est connu de la victime (proche, ex, partenaire)."}
+   ]},
+   faq:[
+    {q:"« On est accusé facilement maintenant avec cette loi »", a:"« La loi ne crée pas de présomption de culpabilité : il y a toujours une enquête et la présomption d'innocence. Elle rappelle une règle simple : on s'assure que l'autre est d'accord. »"}
+   ],
+   vigilance:["Dépistage : ne jamais demander qui y est allé ni pourquoi.","Le module VSS peut faire remonter des souvenirs : laisser accessible la page ressources du Moodle et prévenir l'infirmière."]
+ }
+]},
+/* ------------------------------------------------------------------ CAP 1 */
+{ id:"cap1", label:"CAP 1re année", age:"15-17 ans", seances:[
+ { axe:1, titre:"Prendre soin de soi : mon corps, ma santé, mon image", periode:"Période à fixer (non précisée dans le projet)", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Prendre soin de son corps et développer une image positive de soi.",
+   themes:["Santé sexuelle","Anatomie","Sexe biologique","Genre"],
+   materiel:"Cartes mots/définitions, deux photos d'une même personne avant/après retouche (photos libres de droits, ou démonstration d'un filtre), schémas du catalogue d'outils Santé publique France.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte, boîte à questions."},
+    {t:"5-20 min", h:"Filtre ou pas filtre ?", x:"Montrer des images retouchées et naturelles : la classe devine. Discussion : comment les réseaux influencent l'image qu'on a de son corps ? Message : les corps réels sont variés ; on n'a pas à ressembler à une image."},
+    {t:"20-35 min", h:"Le bon mot (vocabulaire)", x:"Jeu de cartes ci-dessous. Pour l'anatomie : s'appuyer sur les schémas validés de Santé publique France ou d'onsexprime.fr, <b>en restant aux noms et aux fonctions</b> ; tout le reste va au parking pour l'infirmière."},
+    {t:"35-50 min", h:"Prendre soin de soi", x:"En îlots, une affiche par thème : sommeil, alimentation, hygiène, sport, santé sexuelle (se protéger, se faire vacciner, consulter). Chaque îlot propose 3 conseils réalistes."},
+    {t:"50-55 min", h:"Clôture", x:"Qui consulter pour sa santé gratuitement : infirmière, centre de santé sexuelle, médecin."}
+   ],
+   jeu:{type:"flip", titre:"Le bon mot", regle:"Proposez une définition, puis retournez.", items:[
+    {q:"Puberté", a:"<b>Définition</b> Période où le corps se transforme pour devenir adulte, à un rythme différent pour chacun."},
+    {q:"Sexe biologique", a:"<b>Définition</b> Caractéristiques du corps attribuées à la naissance."},
+    {q:"Genre", a:"<b>Définition</b> Ce que la société attend des femmes et des hommes (rôles, comportements). Ça change selon les pays et les époques."},
+    {q:"Santé sexuelle", a:"<b>Définition</b> Se sentir bien dans son corps et ses relations, en sécurité, sans violence."},
+    {q:"Image de soi", a:"<b>Définition</b> La façon dont je me vois. Elle peut être influencée par les autres et les réseaux, et elle peut s'améliorer."}
+   ]},
+   faq:[
+    {q:"Question précise sur un organe ou une transformation du corps", a:"« Bonne question, elle va au parking : l'infirmière viendra y répondre / te répondra en privé. »"}
+   ],
+   vigilance:["Ne pas commenter le corps d'un élève, même positivement.","Attention aux élèves en souffrance avec leur image (troubles alimentaires possibles) : orienter vers l'infirmière."]
+ },
+ { axe:2, titre:"Ce que je ressens, ce que je veux : émotions et consentement", periode:"Période à fixer (non précisée dans le projet)", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Reconnaître et comprendre ses émotions, ses sentiments et ceux des autres ; donner ou refuser son consentement.",
+   themes:["Émotions","Désirs","Sentiments","Consentement","Violences","Harcèlement"],
+   materiel:"Un gros dé des émotions (à fabriquer : joie, peur, colère, tristesse, dégoût, surprise), cartons Oui / Non / Pas sûr.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte."},
+    {t:"5-20 min", h:"Le dé des émotions", x:"Un élève lance le dé ; la classe donne une situation de la vie quotidienne qui provoque cette émotion, et comment la reconnaître chez quelqu'un d'autre (visage, voix, attitude)."},
+    {t:"20-35 min", h:"Oui, non, pas sûr ?", x:"Situations ci-dessous. Règle d'or : <b>« pas sûr », c'est non</b>. Le consentement vaut pour un câlin, une photo, un bisou, une main sur l'épaule…"},
+    {t:"35-50 min", h:"Violences et harcèlement", x:"Définir : violence (physique, verbale, psychologique, sexuelle, en ligne) ; harcèlement = répétition. Que faire si je suis victime ou témoin ? Construire ensemble une fiche-réflexe."},
+    {t:"50-55 min", h:"Clôture", x:"3020, 3018, adultes du lycée."}
+   ],
+   jeu:{type:"tri", titre:"Oui, non ou pas sûr ?", regle:"Y a-t-il consentement ?", choix:["Oui","Non / pas sûr"], items:[
+    {s:"Nour dit « vas-y » en souriant quand son ami propose de prendre une photo ensemble.", r:"Oui", e:"Accord clair et libre, pour cette photo-là."},
+    {s:"Kevin ne répond rien quand on lui prend son téléphone pour lire ses messages.", r:"Non / pas sûr", e:"Le silence n'est pas un accord."},
+    {s:"Maëlle avait dit oui pour un bisou, puis elle recule.", r:"Non / pas sûr", e:"On peut changer d'avis : on s'arrête."},
+    {s:"Adam dit oui après qu'on lui a répété dix fois « allez, fais pas ton relou ».", r:"Non / pas sûr", e:"Un oui obtenu par la pression n'est pas libre."},
+    {s:"Jade demande « je peux te faire un câlin ? » et son amie répond « oui, avec plaisir ».", r:"Oui", e:"On demande, l'autre répond librement : parfait."}
+   ]},
+   faq:[
+    {q:"« Si on demande à chaque fois, c'est gênant »", a:"« Demander, c'est montrer qu'on respecte l'autre. Avec le temps, on apprend aussi à lire les signes, mais dans le doute, on demande. »"}
+   ],
+   vigilance:["Vocabulaire simple, beaucoup d'exemples concrets.","Séance propice aux confidences sur le harcèlement : CPE prévenu."]
+ },
+ { axe:3, titre:"Qui influence mes choix ? Intimité et réseaux sociaux", periode:"Période à fixer (non précisée dans le projet)", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Se protéger et protéger les autres : l'intimité à l'ère des réseaux sociaux.",
+   themes:["Facteurs sociaux de la sexualité","Intimité en ligne"],
+   materiel:"Grande feuille « carte des influences », cartes « Public / Amis proches / Pour moi seul ».",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte."},
+    {t:"5-25 min", h:"La carte des influences", x:"Au centre : « Ma vision de l'amour et du couple ». Autour, la classe place ce qui l'influence : famille, amis, culture, religion, séries, musique, influenceurs, publicité, loi. Pour chacun : influence positive, négative, les deux ? Message : on a le droit de garder ce qui nous convient et de remettre en question le reste."},
+    {t:"25-45 min", h:"Public, amis ou pour moi seul ?", x:"Jeu ci-dessous : classer des contenus selon le niveau de partage. Rappels : une fois envoyé, on ne contrôle plus ; une capture d'écran est vite faite ; diffuser l'image de quelqu'un sans accord est interdit."},
+    {t:"45-55 min", h:"Fiche-réflexes et clôture", x:"Paramètres de confidentialité, signaler/bloquer, 3018."}
+   ],
+   jeu:{type:"tri", titre:"Où je partage ?", regle:"À qui partager ce contenu ?", choix:["Public","Amis proches","Pour moi seul"], items:[
+    {s:"Une photo de mon diplôme de fin d'année", r:"Public", e:"Sans risque, si on est à l'aise."},
+    {s:"Mon adresse et mes horaires", r:"Pour moi seul", e:"Information qui peut me mettre en danger."},
+    {s:"Une photo de moi en sous-vêtements", r:"Pour moi seul", e:"Ne jamais céder à la pression. Une image intime peut être diffusée sans accord : c'est la faute de celui qui diffuse, mais la protection commence par là."},
+    {s:"Une photo de groupe en soirée", r:"Amis proches", e:"Et seulement avec l'accord de chaque personne présente."},
+    {s:"Un message où je raconte que je suis triste", r:"Amis proches", e:"À une personne de confiance plutôt qu'en story."}
+   ]},
+   faq:[
+    {q:"« Si on me fait du chantage avec une photo ? »", a:"« Ne paie pas, ne renvoie rien, garde les preuves (captures), bloque et parle-en tout de suite à un adulte ou au 3018. Tu n'es pas coupable. »"}
+   ],
+   vigilance:["Ne pas culpabiliser les élèves qui ont déjà partagé des images : le message porte sur la protection et la responsabilité de celui qui diffuse."]
+ }
+]},
+/* ------------------------------------------------------------------ CAP 2 */
+{ id:"cap2", label:"CAP 2e année", age:"16-18 ans", seances:[
+ { axe:1, titre:"Le grand jeu de l'oie de la santé", periode:"Période à fixer (non précisée dans le projet)", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Se connaître, rester maître de soi.",
+   themes:["Dangers et risques : alcool, drogues","IST, dépistage","Santé","Excitation, sentiments, désirs et plaisir"],
+   materiel:"Plateau de jeu de l'oie de 30 cases (dessiné au tableau), dé, cartes questions des 4 couleurs.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre + règles", x:"4 équipes. Chaque case correspond à une couleur de carte : 🔵 IST & dépistage, 🟢 alcool & drogues, 🟣 émotions & désir, 🟠 « je fais quoi ? ». Bonne réponse = on avance."},
+    {t:"5-45 min", h:"Partie", x:"Questions ci-dessous (et à compléter). L'enseignant valide et ajoute une phrase d'explication. Messages clés : se protéger et se dépister ; l'alcool et les drogues font perdre le contrôle et exposent à des risques (accidents, rapports non protégés, violences subies ou commises) ; on ne consent pas sous emprise ; désir et plaisir ne vont qu'avec le respect et l'accord des deux."},
+    {t:"45-55 min", h:"Débrief + ressources", x:"Chaque équipe cite le message le plus important pour elle. Numéros santé."}
+   ],
+   jeu:{type:"flip", titre:"Cartes du jeu de l'oie", regle:"Lisez la question, retournez pour la réponse.", items:[
+    {q:"🔵 Où peut-on se faire dépister gratuitement ?", a:"<b>Réponse</b> CeGIDD, centre de santé sexuelle, et en laboratoire sans ordonnance pour les moins de 26 ans."},
+    {q:"🔵 Une IST, ça se voit toujours ?", a:"<b>Réponse</b> Non, souvent elles sont silencieuses. D'où le dépistage."},
+    {q:"🟢 Mélanger alcool et cannabis, ça s'annule ?", a:"<b>Réponse</b> Non, les effets s'additionnent et les risques augmentent."},
+    {q:"🟢 Une personne ivre peut-elle consentir à un rapport ?", a:"<b>Réponse</b> Non. Si elle n'est pas en état de décider, c'est non."},
+    {q:"🟣 Avoir du désir pour quelqu'un, est-ce que ça donne des droits sur lui ?", a:"<b>Réponse</b> Non. Le désir est personnel ; l'autre reste libre."},
+    {q:"🟣 Le plaisir, c'est forcément pareil pour tout le monde ?", a:"<b>Réponse</b> Non. Chacun est différent, d'où l'importance de se parler et de respecter le rythme de chacun."},
+    {q:"🟠 Ton pote ne réagit plus en soirée après avoir bu. Tu fais quoi ?", a:"<b>Réponse</b> Le mettre sur le côté, appeler le 15, ne pas le laisser seul."},
+    {q:"🟠 Un ami pense avoir pris un risque d'IST. Que lui conseiller ?", a:"<b>Réponse</b> Se faire dépister : au CeGIDD, ou en laboratoire sans ordonnance (gratuit pour les moins de 26 ans). L'infirmière ou un médecin peuvent le conseiller."}
+   ]},
+   faq:[
+    {q:"Questions sur les produits (« ça fait quoi, la… ? »)", a:"« Je ne détaillerai pas les effets. Retiens qu'aucun produit n'est sans risque. Drogues Info Service répond anonymement. »"}
+   ],
+   vigilance:["Pas de conseils de consommation, pas de « recettes ».","Rester bref et factuel sur le thème « désir et plaisir »."]
+ },
+ { axe:2, titre:"Relation saine ou emprise ? Le violentomètre", periode:"Période à fixer (non précisée dans le projet)", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"S'épanouir dans une relation équilibrée à l'autre.",
+   themes:["Relation saine","Emprise","Respect","Harcèlement"],
+   materiel:"Violentomètre (téléchargeable gratuitement), cartes comportements, ruban adhésif pour tracer une échelle au sol.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte."},
+    {t:"5-25 min", h:"L'échelle vivante", x:"Tracer au sol une ligne verte → orange → rouge. Chaque élève tire une carte comportement et se place sur la ligne. La classe valide ou corrige. Puis comparer avec le violentomètre officiel."},
+    {t:"25-40 min", h:"Ce qu'est l'emprise", x:"Expliquer simplement : quelqu'un prend le contrôle petit à petit (isoler, critiquer, surveiller, faire peur, puis s'excuser). La victime finit par croire que c'est sa faute. Ce n'est jamais le cas."},
+    {t:"40-50 min", h:"Harcèlement : et au travail ?", x:"Lien avec les stages : remarques sexistes, gestes déplacés, insultes répétées. Qui alerter : tuteur, professeur référent, CPE, inspection du travail. Personne n'a à « s'habituer »."},
+    {t:"50-55 min", h:"Clôture", x:"3919, 3020, commentonsaime.fr, adultes du lycée."}
+   ],
+   jeu:{type:"tri", titre:"Cartes comportements", regle:"Placez sur l'échelle.", choix:["🟢 Sain","🟠 Vigilance","🔴 Danger"], items:[
+    {s:"Il/elle respecte mes choix et mes amis.", r:"🟢 Sain", e:"Base d'une relation équilibrée."},
+    {s:"Il/elle se moque de moi devant les autres.", r:"🟠 Vigilance", e:"Humiliation : ce n'est pas de l'humour."},
+    {s:"Il/elle fouille mon téléphone.", r:"🔴 Danger", e:"Contrôle : violence psychologique."},
+    {s:"Il/elle m'oblige à des gestes intimes.", r:"🔴 Danger", e:"Agression sexuelle : c'est interdit, c'est grave. 17 ou adulte de confiance."},
+    {s:"On discute calmement quand on n'est pas d'accord.", r:"🟢 Sain", e:"Le désaccord fait partie des relations."},
+    {s:"Il/elle est jaloux/jalouse de tous mes amis.", r:"🟠 Vigilance", e:"La jalousie excessive est un signal d'alerte."}
+   ]},
+   faq:[
+    {q:"« Mais une claque, c'est pas grave si on s'aime »", a:"« Aucune violence n'est une preuve d'amour. Une claque, c'est de la violence, et c'est puni par la loi, encore plus dans un couple. »"}
+   ],
+   vigilance:["Séance à risque de révélation : protocole prêt, CPE prévenu.","Pas de mise en scène de violences."]
+ },
+ { axe:3, titre:"Mes droits, mes responsabilités", periode:"Période à fixer (non précisée dans le projet)", intervenant:"Enseignant(s)", duree:"55 min",
+   objectif:"Être libre d'être soi parmi les autres et réfléchir aux conditions sociales garantissant cette liberté.",
+   themes:["Facteurs sociaux de la sexualité","Responsabilités"],
+   materiel:"Cartes « loi » (ci-dessous), affirmations pour le débat mouvant.",
+   deroule:[
+    {t:"0-5 min", h:"Cadre", x:"Charte."},
+    {t:"5-20 min", h:"Débat mouvant", x:"Affirmations ci-dessous. Faire émerger : la pression du groupe, les normes sociales, la peur du regard des autres."},
+    {t:"20-40 min", h:"Le quiz de la loi", x:"Équipes, cartes à retourner. Chaque droit va avec une responsabilité : je suis libre, et je respecte la liberté des autres."},
+    {t:"40-52 min", h:"Ma charte de la liberté", x:"La classe rédige 5 règles pour que chacun puisse « être soi » au lycée et en entreprise. Affichage."},
+    {t:"52-55 min", h:"Clôture", x:"Ressources."}
+   ],
+   debat:["Il faut faire comme les autres pour être accepté.","On choisit librement qui on aime.","Ce qui se passe sur les réseaux n'a pas de conséquences dans la vraie vie."],
+   jeu:{type:"flip", titre:"Le quiz de la loi", regle:"Votez, puis retournez.", items:[
+    {q:"À partir de quel âge peut-on avoir une relation sexuelle consentie avec la personne de son choix ?", a:"<b>Loi</b> 15 ans (« majorité sexuelle »). Un adulte ne peut pas avoir de relation sexuelle avec un mineur de moins de 15 ans."},
+    {q:"Un acte sexuel sans consentement, c'est…", a:"<b>Loi</b> Une agression sexuelle ou un viol (loi du 6 novembre 2025 : tout acte sexuel non consenti)."},
+    {q:"Insulter quelqu'un en raison de son origine, de sa religion, de son sexe ou de son orientation sexuelle…", a:"<b>Loi</b> C'est une infraction, plus lourdement punie qu'une injure ordinaire."},
+    {q:"Faire des remarques sexuelles répétées à une collègue en stage…", a:"<b>Loi</b> Harcèlement sexuel : délit, l'employeur doit protéger la victime."},
+    {q:"Diffuser la photo intime de quelqu'un…", a:"<b>Loi</b> Infraction, même si la photo avait été envoyée volontairement."},
+    {q:"Siffler ou faire des remarques sexuelles à quelqu'un dans la rue…", a:"<b>Loi</b> Outrage sexiste : c'est puni d'une amende. La personne visée n'a pas à « prendre ça comme un compliment »."}
+   ]},
+   faq:[
+    {q:"« Dans ma culture / ma religion, c'est différent »", a:"« Chacun a ses convictions et elles sont respectées. Mais en France, la loi est la même pour tous et elle protège la liberté de chacun. »"}
+   ],
+   vigilance:["Rester sur les droits et responsabilités de chacun ; toute situation personnelle évoquée relève du protocole « Si un élève se confie »."]
+ }
+]}
+];
+
+/* =====================================================================
+   PLAN UNIQUE DES SÉANCES
+   Source commune du déroulé enseignant ET du diaporama élèves.
+   Étape : d = durée (min) · h = titre · prof = notes enseignant
+           el = consigne affichée aux élèves · b = supports projetés
+   Supports : 'charte' 'jeu' 'jeu2' 'debat' 'ech' 'retiens' 'ress' 'ticket'
+              'vis:<clé>' 'cas' 'cas:<n>' {c:"html"} (diapo personnalisée)
+   ===================================================================== */
+const CLOT = ['retiens','ress','ticket'];
+const CLOT_PROF = "Projeter « Ce qu'on retient », puis les numéros utiles. Distribuer et ramasser les tickets de sortie (anonymes).";
+const CADRE_PROF = "Projeter la charte, la faire valider (la classe peut ajouter une règle). Présenter la boîte à questions : tout le monde écrit, même « pas de question ».";
+const CADRE_EL = "On relit notre charte ensemble avant de commencer.";
+const S_BOITE = {c:`<h2>📮 La boîte à questions</h2><p class="big">Sur ton papier, écris une question que tu aimerais poser — ou « pas de question ».</p><p class="big">Tout le monde écrit : c'est ce qui garantit l'anonymat. On plie, on dépose dans la boîte.</p>`};
+const S_CLOT = {c:`<h2>⏱ Merci à tous</h2><p class="big">On termine par ce qu'on retient, les personnes à qui parler, et le ticket de sortie.</p>`};
+
+const PLAN = {
+/* ============================== 3e PRÉPA MÉTIERS ============================== */
+"3pm":[
+ {phases:[{steps:[
+  {d:5,h:"Cadre",prof:CADRE_PROF,el:CADRE_EL,b:['charte']},
+  {d:8,h:"Nuage de mots « Être heureux, c'est… »",prof:"Chacun écrit 2 mots sur un post-it. Les coller au tableau en les regroupant : relations (amis, famille, amour), réussite, santé, liberté… Faire remarquer que l'amour n'est qu'une des sources du bonheur.",el:"Sur un post-it, écris 2 mots pour compléter la phrase. On les regroupe au tableau.",
+   b:[{c:`<p class="stmt" style="font-size:6cqw">Être heureux, c'est…</p><p class="big">✍️ 2 mots sur ton post-it</p>`},{c:`<h2>Qu'est-ce qui revient le plus ?</h2><div class="tagrow big"><span>👫 Les relations</span><span>🏆 La réussite</span><span>💪 La santé</span><span>🕊️ La liberté</span><span>❤️ L'amour</span><span>… ?</span></div><p class="big">L'amour est-il la seule source de bonheur ?</p>`}]},
+  {d:15,h:"Jeu : émotion, sentiment ou désir ?",prof:"Poser les définitions (diapo), puis faire classer les situations en binômes. Correction diapo par diapo : vote, puis clic sur la bonne réponse.",el:"En binômes, classez chaque situation : émotion, sentiment ou désir ?",
+   b:['vis:emotions',{c:`<h2>Trois mots à distinguer</h2><div class="rgrid" style="grid-template-columns:repeat(3,1fr)"><div><b>Émotion</b><span style="font-size:1.9cqw">réaction rapide et passagère : peur, joie, colère…</span></div><div><b>Sentiment</b><span style="font-size:1.9cqw">plus durable, construit dans le temps : amitié, amour…</span></div><div><b>Désir</b><span style="font-size:1.9cqw">envie, attirance vers quelque chose ou quelqu'un</span></div></div>`},'jeu']},
+  {d:12,h:"Échange 1-2-4-Tous",prof:"Seul 1 min, à deux 2 min, à quatre 3 min, puis un rapporteur par groupe. Relancer : « Qui pense autrement ? Pourquoi ? »",el:"1 min seul · 2 min à deux · 3 min à quatre · puis on partage avec la classe.",b:['ech']},
+  {d:10,h:"Débat mouvant",prof:"Lire les affirmations une par une. Les élèves se placent côté « d'accord » ou « pas d'accord » et argumentent. Conclure : toutes les émotions sont légitimes, ce sont nos actes qui doivent respecter les autres.",el:"Choisis ton camp, explique pourquoi. On a le droit de changer d'avis.",b:['debat']},
+  {d:5,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],bonus:["Une émotion que tu as du mal à exprimer : pourquoi ?","Peut-on être triste et heureux en même temps ?"]},
+
+ {phases:[
+  {nom:"Avant l'intervention (30 min)",steps:[
+   {d:5,h:"Cadre et présentation des intervenantes",prof:"Charte, puis expliquer qui vient : une sage-femme et une conseillère conjugale et familiale. On peut leur poser des questions qu'on n'oserait pas poser à un professeur.",el:"Bientôt, deux professionnelles viennent vous rencontrer.",
+    b:['charte',{c:`<h2>Qui va venir ?</h2><div class="rgrid" style="grid-template-columns:1fr 1fr"><div><b>🩺 Une sage-femme</b><span style="font-size:1.9cqw">santé, corps, contraception, IST</span></div><div><b>💬 Une conseillère conjugale et familiale</b><span style="font-size:1.9cqw">relations, émotions, consentement</span></div></div><p class="big">Elles ont l'habitude : on peut tout leur demander.</p>`}]},
+   {d:12,h:"Vrai ou faux ?",prof:"Faire voter sur chaque carte, révéler la réponse. Ne pas développer : « Vous pourrez approfondir avec les intervenantes. »",el:"Vrai ou faux ? Votez, puis on vérifie.",b:['jeu']},
+   {d:10,h:"Boîte à questions",prof:"Chaque élève écrit une question (ou « pas de question »). Transmettre la boîte aux intervenantes avant leur venue.",el:"Ta question pour les intervenantes.",b:[S_BOITE]},
+   {d:3,h:"Où s'adresser ?",prof:"Montrer les lieux ressources : ils seront détaillés par les intervenantes.",el:"Des lieux gratuits et confidentiels existent.",b:['vis:ressources']}]},
+  {nom:"Pendant l'intervention (2 h)",prof:true,steps:[
+   {d:120,h:"Rôle de l'enseignant",prof:"Présent dans la salle, garant du cadre et de la discipline. Ne répond pas à la place des intervenantes et ne commente pas les questions des élèves. Faire un point avec elles à la fin (confidences éventuelles).",noSlide:true}]},
+  {nom:"Après l'intervention (25 min)",steps:[
+   {d:12,h:"Retour 3-2-1 en îlots",prof:"Chaque îlot remplit sa fiche 3-2-1, puis la présente. Construire une affiche de classe.",el:"En îlot : 3 choses apprises · 2 lieux où s'adresser · 1 question qui reste.",b:[{c:`<h2>3 · 2 · 1</h2><ol class="ret"><li><b>3</b> choses que nous avons apprises</li><li><b>2</b> lieux où l'on peut s'adresser</li><li><b>1</b> question qui nous reste</li></ol>`}]},
+   {d:9,h:"Échange",prof:"Relancer avec les questions projetées. Les questions restantes vont au « parking » pour l'infirmière.",el:"On partage avec la classe.",b:['ech']},
+   {d:4,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}]}
+ ],bonus:["Pourquoi les jeunes hésitent-ils à aller se faire dépister ?"]},
+
+ {phases:[{steps:[
+  {d:5,h:"Cadre",prof:CADRE_PROF+" Annoncer que le thème peut toucher : droit de sortir un moment.",el:CADRE_EL,b:['charte',{c:`<h2>Avant de commencer</h2><p class="big">Le thème d'aujourd'hui peut toucher certains d'entre nous.</p><p class="big">Tu as le droit de ne pas parler, et de sortir un moment si tu en as besoin.</p>`}]},
+  {d:12,h:"Les cercles de l'intimité",prof:"En groupes, placer les éléments (fiche) dans les cercles. Comparer entre groupes. Conclure : l'intimité, c'est ce que je choisis de partager, avec qui et quand ; personne ne peut l'exiger.",el:"En groupe, placez chaque élément de votre fiche dans un cercle.",b:['vis:intimite',{c:`<h2>Où placer… ?</h2><div class="tagrow big"><span>Mon corps</span><span>Le code de mon téléphone</span><span>Mes photos</span><span>Ce que je ressens</span><span>Mon adresse</span><span>Mes notes</span><span>Mes secrets</span><span>Mon prénom</span></div>`}]},
+  {d:15,h:"Le feu tricolore",prof:"Pour chaque situation : vote, justification, puis réponse. Insister sur les signaux orange.",el:"Vert, orange ou rouge ? Votez et justifiez.",b:['vis:feu','jeu']},
+  {d:13,h:"Échange",prof:"Mise en commun groupe par groupe à partir des questions projetées.",el:"On échange ensemble.",b:['ech']},
+  {d:5,h:"Repères : emprise et loi",prof:"Lire la diapo. Insister : la victime n'est jamais responsable.",el:"Ce qu'il faut savoir.",b:[{c:`<h2>L'emprise, c'est quoi ?</h2><p class="big">Une personne prend peu à peu le contrôle d'une autre : elle l'isole, la culpabilise, la surveille, alterne gentillesse et menaces.</p><p class="big">Les violences peuvent être <b>physiques, verbales, psychologiques, sexuelles, en ligne</b>. Elles sont interdites par la loi.</p><p class="big"><b>La victime n'est jamais responsable.</b></p>`}]},
+  {d:5,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],bonus:["Comment aider un ami sans le juger ?"]}
+],
+/* ============================== SECONDE ============================== */
+"2nde":[
+ {phases:[
+  {nom:"Avant l'intervention (30 min)",steps:[
+   {d:5,h:"Cadre",prof:CADRE_PROF+" Annoncer la venue de la sage-femme et de la conseillère conjugale et familiale.",el:CADRE_EL,b:['charte']},
+   {d:15,h:"Le bon mot",prof:"Pour chaque mot, faire proposer une définition, puis révéler. L'anatomie n'est pas traitée par l'enseignant : c'est le rôle de la sage-femme.",el:"Proposez une définition, puis on vérifie.",b:['vis:vocab','jeu']},
+   {d:10,h:"Boîte à questions",prof:"Recueillir les questions et les transmettre aux intervenantes.",el:"Ta question pour les intervenantes.",b:[S_BOITE]}]},
+  {nom:"Pendant l'intervention (2 h)",prof:true,steps:[
+   {d:120,h:"Rôle de l'enseignant",prof:"Présent, garant du cadre, ne commente pas. Point avec les intervenantes à la fin.",noSlide:true}]},
+  {nom:"Après l'intervention (25 min)",steps:[
+   {d:10,h:"Échange",prof:"Retour en îlots puis en classe, avec les questions projetées.",el:"En îlots, puis tous ensemble.",b:['ech']},
+   {d:11,h:"Affiche « Mon corps, mes droits »",prof:"La classe choisit 5 droits (ex. : être informé, être soigné en confidentialité, dire non, être respecté quelle que soit son apparence, choisir ce qu'on partage). Afficher en classe.",el:"Ensemble, choisissons 5 droits pour notre affiche.",b:[{c:`<h2>Mon corps, mes droits</h2><ol class="ret"><li>J'ai le droit de…</li><li>J'ai le droit de…</li><li>J'ai le droit de…</li><li>J'ai le droit de…</li><li>J'ai le droit de…</li></ol>`}]},
+   {d:4,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}]}
+ ],bonus:["Pourquoi est-il important d'utiliser les bons mots ?"]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre et météo intérieure",prof:"Charte, puis chacun montre sa « météo » avec les doigts, sans parler (1 = orage, 5 = grand soleil).",el:CADRE_EL,b:['charte',{c:`<h2>Ta météo du jour</h2><p class="stmt" style="font-size:7cqw">⛈️ 1 · 🌧️ 2 · ⛅ 3 · 🌤️ 4 · ☀️ 5</p><p class="big">Montre-la avec tes doigts, sans parler.</p>`}]},
+  {d:6,h:"Mimes express",prof:"5 volontaires tirent une carte émotion (à imprimer : fierté, honte, jalousie, gêne, soulagement) et la miment. La classe devine. Constat : les émotions se lisent, mais on peut se tromper → il faut demander.",el:"Un volontaire mime une émotion : devinez laquelle !",b:[{c:`<p class="stmt" style="font-size:6cqw">🎭 Devinez l'émotion !</p><p class="big">Visage, regard, posture… Qu'est-ce qui vous a mis sur la piste ? Peut-on se tromper ?</p>`}]},
+  {d:6,h:"Émotion → besoin",prof:"Pour chaque émotion, faire chercher le besoin qui se cache derrière, puis révéler.",el:"Quel besoin se cache derrière chaque émotion ?",b:['jeu']},
+  {d:14,h:"Études de cas en îlots",prof:"Un cas par îlot (fiches imprimées). 3 questions : émotion, besoin, réaction respectueuse.",el:"Un cas par îlot. Répondez aux 3 questions.",b:['vis:emotions','cas']},
+  {d:12,h:"Échange : restitution des îlots",prof:"Chaque îlot présente son cas, les autres réagissent. Relancer avec les questions projetées.",el:"Chaque îlot présente, les autres réagissent.",b:['ech']},
+  {d:9,h:"Débat mouvant",prof:"Conclure : une émotion est un message, pas un ordre. On peut ressentir de la jalousie sans agir de façon jalouse.",el:"Choisis ton camp, explique pourquoi.",b:['debat']},
+  {d:4,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],bonus:["Comment réagir quand un ami est en colère ?","Les émotions se voient-elles toujours ?"]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF,el:CADRE_EL,b:['charte']},
+  {d:12,h:"Le fil d'actu",prof:"Pour chaque situation (fictive), la classe choisit sa réaction. Discuter de la responsabilité de chacun : le témoin qui partage participe.",el:"Que fais-tu face à ce contenu ?",b:['jeu']},
+  {d:10,h:"Ce que dit la loi",prof:"Vote puis révélation. Message clé : la honte doit changer de camp, la faute est du côté de celui qui diffuse.",el:"Infraction ou pas ? Votez.",b:['jeu2']},
+  {d:8,h:"Qui influence notre vision de l'amour ?",prof:"Brainstorm : amis, famille, culture, religion, séries, influenceurs, publicité. Une influence n'est pas une obligation : on peut trier. Si un élève évoque la pornographie : réponse type du cadre commun, sans développer.",el:"Qu'est-ce qui influence notre façon de voir l'amour et le couple ?",b:[{c:`<h2>Qui nous influence ?</h2><div class="tagrow big"><span>👫 Les amis</span><span>🏠 La famille</span><span>🎬 Les séries</span><span>📱 Les influenceurs</span><span>🎵 La musique</span><span>📺 La publicité</span><span>🌍 La culture, la religion</span></div><p class="big">Influence positive, négative, les deux ?</p>`}]},
+  {d:14,h:"Échange",prof:"Comparer les réactions, relancer avec les questions projetées.",el:"On échange ensemble.",b:['ech']},
+  {d:7,h:"Clôture et réflexes en ligne",prof:"Projeter les 4 réflexes, puis la clôture habituelle.",el:"",b:['vis:reflexes',...CLOT]}
+ ]}],bonus:["Faut-il avoir le droit d'être anonyme en ligne ?"]}
+],
+/* ============================== PREMIÈRE ============================== */
+"1re":[
+ {phases:[{steps:[
+  {d:4,h:"Cadre et mission",prof:"Charte, puis présenter la mission. Former 4 à 6 équipes.",el:CADRE_EL,b:['charte',{c:`<p class="kick">🔐 Escape game</p><h1>Mission : tout le monde rentre en sécurité</h1><p class="big">Vous êtes l'équipe de prévention d'une soirée. Résolvez les 4 énigmes pour réussir la mission.</p>`}]},
+  {d:10,h:"Énigme 1 — IST : vrai ou faux ?",prof:"Chaque équipe note ses réponses, puis correction diapo par diapo. 1 point par bonne réponse.",el:"Notez vos réponses en équipe.",b:['jeu']},
+  {d:6,h:"Énigme 2 — Où aller ?",prof:"Réponses : (a) CeGIDD ou laboratoire · (b) pharmacie (gratuits pour les moins de 26 ans) · (c) centre de santé sexuelle · (d) infirmerie, CPE.",el:"Reliez chaque besoin au bon lieu.",b:['cas:0']},
+  {d:7,h:"Énigme 3 — La soirée",prof:"Attendu : ne pas laisser Léa partir seule avec Tom ; une personne très alcoolisée ne peut pas consentir ; ses amis la raccompagnent ou appellent un adulte.",el:"Que doivent faire les amis de Léa ?",b:['cas:1']},
+  {d:7,h:"Énigme 4 — Urgence",prof:"Ordre : vérifier qu'il respire, le mettre sur le côté (PLS), appeler le 15, rester avec lui.",el:"Remettez les gestes dans l'ordre.",b:['cas:2']},
+  {d:15,h:"Débrief de l'escape game",prof:"Messages clés : beaucoup d'IST sont silencieuses ; dépistage simple et gratuit ; une personne fortement alcoolisée ou droguée ne peut pas consentir ; en soirée on veille les uns sur les autres. Aucune information sur les modes de consommation.",el:"On fait le point ensemble.",b:['ech']},
+  {d:6,h:"Clôture",prof:CLOT_PROF+" Ajouter Alcool Info Service et Drogues Info Service.",el:"",b:['vis:ressources',...CLOT]}
+ ]}],bonus:["Comment refuser un verre sans perdre la face ?"]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF+" Le CPE présente son rôle s'il co-anime.",el:CADRE_EL,b:['charte']},
+  {d:9,h:"Vidéo et les 5 critères",prof:"Projeter « Consentir ou céder ? » (Comitys, 1 min 15, à visionner avant). Demander : qu'est-ce qui rend un « oui » valable ? Puis afficher les 5 critères. ⚠️ Vidéo de la version renforcée : monologue d'une jeune fille qui a « cédé ». Rester sur la question « consentir ou céder ? », ne pas demander de témoignages ; risque de confidence : protocole « Si un élève se confie ».",el:"Après la vidéo : qu'est-ce qui rend un « oui » valable ?",b:[{c:`<p class="kick">🎬 Comitys</p><h1>Consentir ou céder ?</h1><p class="big">Regardez, puis répondez : la jeune fille était-elle vraiment d'accord ?</p><a class="startT" style="text-decoration:none" href="https://www.comitys.com/consentir-ou-ceder/" target="_blank" rel="noopener">▶ Ouvrir la vidéo</a>`},'vis:consent']},
+  {d:6,h:"Ce que dit la loi",prof:"Lire la diapo, répondre aux questions de compréhension.",el:"La loi a changé en 2025.",b:[{c:`<h2>⚖️ Ce que dit la loi</h2><p class="big">Depuis la loi du 6 novembre 2025, <b>tout acte sexuel non consenti est une agression sexuelle</b>.</p><p class="big">Le consentement doit être libre, éclairé, donné avant, pour un acte précis, et on peut le retirer à tout moment.</p><p class="big">Le silence ou l'absence de réaction ne valent pas consentement.</p>`}]},
+  {d:12,h:"Atelier green flags / red flags",prof:"Par équipes, voter puis révéler. Faire ajouter ses propres exemples sur la fiche.",el:"Signe de relation saine ou signal d'alerte ?",b:['vis:feu','jeu']},
+  {d:7,h:"Le harcèlement",prof:"Définir, insister sur le rôle des témoins et le 3020.",el:"Harcèlement : de quoi parle-t-on ?",b:[{c:`<h2>Le harcèlement</h2><p class="big">Des propos ou comportements <b>répétés</b> qui dégradent la vie de quelqu'un. C'est un délit, y compris à l'école et en ligne.</p><p class="big">Les témoins peuvent tout changer : <b>soutenir, ne pas relayer, signaler, en parler</b>.</p><p class="big">📞 3020 · 3018</p>`}]},
+  {d:8,h:"Échange",prof:"Relancer avec les questions projetées.",el:"On échange ensemble.",b:['ech']},
+  {d:6,h:"Débat mouvant",prof:"Conclure avec les repères de la séance.",el:"Choisis ton camp, explique pourquoi.",b:['debat']},
+  {d:3,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],warn1:"« Consentir ou céder ? » (1re partie) : monologue d'une jeune fille qui a « cédé ». Rester sur la distinction consentir / céder ; ne pas demander de témoignages ; risque de confidence : protocole « Si un élève se confie ».",bonus:["Trouvez une phrase pour dire non sans blesser, et une pour accepter un non sans se vexer."]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF+" Rappeler : on ne demande jamais à quelqu'un qui il est ou qui il aime.",el:CADRE_EL,b:['charte']},
+  {d:13,h:"Le chapeau des stéréotypes",prof:"Tirer des bandelettes (à imprimer) : fait prouvé ou stéréotype ? D'où vient-il ? À qui fait-il du tort ? Puis les cartes projetées.",el:"Fait ou stéréotype ? D'où vient-il ? À qui fait-il du tort ?",b:['jeu']},
+  {d:10,h:"Les métiers et le genre",prof:"Lister les filières du lycée, estimer filles/garçons. Les écarts viennent-ils des capacités ou des représentations ? Possibilité de montrer un témoignage ONISEP.",el:"Dans nos filières, combien de filles et de garçons ? Pourquoi ?",b:[{c:`<h2>Nos filières</h2><p class="big">Pour chaque filière du lycée : plutôt des filles, plutôt des garçons, mixte ?</p><p class="big">👉 Les écarts viennent-ils des capacités… ou de ce qu'on nous a appris à croire ?</p>`}]},
+  {d:7,h:"Vocabulaire et loi",prof:"Distinguer les 4 notions. Rappeler que les discriminations et injures liées au sexe, à l'orientation ou à l'identité de genre sont punies.",el:"Quatre mots à ne pas confondre.",b:['vis:vocab',{c:`<h2>⚖️ Ce que dit la loi</h2><p class="big">Les discriminations et les insultes en raison du sexe, de l'orientation sexuelle ou de l'identité de genre sont <b>punies par la loi</b>.</p>`}]},
+  {d:9,h:"Débat mouvant",prof:"Faire argumenter, conclure sur la liberté de chacun.",el:"Choisis ton camp, explique pourquoi.",b:['debat']},
+  {d:9,h:"Échange",prof:"Relancer avec les questions projetées.",el:"On échange ensemble.",b:['ech']},
+  {d:3,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],bonus:["Un métier que vous aimeriez faire et qu'on dit « pas pour vous » ?"]}
+],
+/* ============================== TERMINALE ============================== */
+"tle":[
+ {phases:[{steps:[
+  {d:0,h:"Une semaine avant : boîte à questions",prof:"Recueillir les questions anonymes. Préparer les réponses avec onsexprime.fr ; écarter celles hors cadre et les confier à l'infirmière.",noSlide:true},
+  {d:4,h:"Cadre",prof:CADRE_PROF+" Annoncer : « On va parler de ce qu'on ressent, pas de ce qu'on fait. »",el:CADRE_EL,b:['charte',{c:`<p class="stmt">Aujourd'hui, on parle de ce qu'on ressent,<br>pas de ce qu'on fait.</p>`}]},
+  {d:14,h:"Mythe ou réalité ?",prof:"En équipes, vote puis révélation. Messages clés : une réaction du corps n'est jamais un consentement ; le plaisir se construit à deux ; ni âge ni performance attendus.",el:"Mythe ou réalité ? Votez en équipe.",b:['jeu']},
+  {d:15,h:"Vos questions, nos réponses",prof:"Lire les questions retenues de la boîte, faire réagir, lire les réponses préparées (sources onsexprime.fr). Si la boîte contient peu de questions, utiliser les « questions fréquentes » projetées : elles ont des réponses prêtes et restent dans le cadre de la séance.",el:"On répond à vos questions anonymes.",b:[{c:`<h2>📮 Vos questions, nos réponses</h2><p class="big">Vos questions de la semaine dernière, anonymes.</p><p class="big">Réponses vérifiées avec onsexprime.fr (Santé publique France).</p>`},{g:{type:"flip",titre:"Questions fréquentes",items:[{q:"Comment savoir si on est amoureux ?",a:"<b>Réponse</b> Il n'y a pas de signe unique : envie de voir l'autre, penser souvent à lui, se sentir bien ensemble. Le sentiment se construit avec le temps."},{q:"Est-ce normal de ne pas avoir envie ?",a:"<b>Réponse</b> Oui. Le désir varie selon les personnes et les moments, et certaines personnes n'en ressentent pas. Personne n'a à se forcer."},{q:"Comment savoir si l'autre a envie ?",a:"<b>Réponse</b> En lui demandant, et en écoutant sa réponse. Un silence ou une hésitation, ce n'est pas un oui."},{q:"Y a-t-il un âge pour la « première fois » ?",a:"<b>Réponse</b> Non. Le bon moment, c'est quand on en a envie soi-même, sans pression, avec une personne en qui on a confiance."},{q:"Pourquoi est-ce gênant d'en parler ?",a:"<b>Réponse</b> Parce que c'est intime, et c'est normal. On peut en parler avec des personnes de confiance ou se renseigner sur onsexprime.fr."}]}}]},
+  {d:8,h:"Fiction ou réalité ?",prof:"Compléter le tableau avec la classe.",el:"Qu'est-ce qui change entre la fiction et la vraie vie ?",b:['vis:fiction']},
+  {d:11,h:"Échange",prof:"Relancer avec les questions projetées.",el:"On échange ensemble.",b:['ech']},
+  {d:3,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],bonus:["Pourquoi est-il parfois difficile de parler de ce qu'on aime ou pas ?"]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF+" Prévenir que le sujet peut toucher.",el:CADRE_EL,b:['charte']},
+  {d:22,h:"L'histoire de Léa et Sam",prof:"Un épisode à la fois : vote vert/orange/rouge, justification, puis réponse. Faire remarquer que l'emprise s'installe progressivement, souvent derrière des marques d'attention.",el:"À chaque épisode, votez : vert, orange ou rouge ?",b:['jeu']},
+  {d:8,h:"Le cycle de la violence et le violentomètre",prof:"Projeter le cycle, puis le violentomètre (lien dans le guide) ; situer les comportements des épisodes. Valable quel que soit le genre des personnes.",el:"Comment l'emprise fonctionne-t-elle ?",b:['vis:cycle',{c:`<h2>📏 Le violentomètre</h2><p class="big">Situez les comportements de Sam sur la règle : profite, vigilance, protège-toi.</p><a class="startT" style="text-decoration:none" href="https://france-victimes.fr/index.php/docman/grand-public/fv-vie-externe/3557-affiche-violentometre-france-victimes" target="_blank" rel="noopener">▶ Ouvrir le violentomètre</a>`}]},
+  {d:10,h:"Et si c'était mon ami·e ?",prof:"En îlots : que dire sans braquer ? que ne pas dire ? vers qui orienter ?",el:"En îlots, répondez aux 3 questions.",b:['cas']},
+  {d:8,h:"Échange",prof:"Relancer avec les questions projetées. Conclure : respect, confiance, liberté, égalité.",el:"On échange ensemble.",b:['ech']},
+  {d:3,h:"Clôture",prof:CLOT_PROF+" Ajouter 3919 et commentonsaime.fr.",el:"",b:CLOT}
+ ]}],bonus:["Quels sont pour vous les 3 signes d'une relation saine ?"]},
+
+ {phases:[
+  {nom:"Version A — TPRO Indus, STI2D, BTS · avant les ateliers (20 min)",steps:[
+   {d:4,h:"Cadre",prof:CADRE_PROF,el:CADRE_EL,b:['charte']},
+   {d:6,h:"Le dépistage, comment ça marche ?",prof:"Présenter l'association Hépatite France et le principe : volontaire, gratuit, confidentiel, sans obligation.",el:"Ce qui va se passer.",b:[{c:`<h2>🧪 Le dépistage</h2><div class="rgrid" style="grid-template-columns:repeat(3,1fr)"><div><b>Volontaire</b><span style="font-size:1.8cqw">personne n'est obligé</span></div><div><b>Gratuit</b><span style="font-size:1.8cqw">aucun frais</span></div><div><b>Confidentiel</b><span style="font-size:1.8cqw">personne ne saura qui y est allé</span></div></div>`}]},
+   {d:10,h:"Boîte à questions",prof:"Transmettre la boîte à l'association.",el:"Ta question pour l'association.",b:[S_BOITE]}]},
+  {nom:"Version A — pendant les ateliers",prof:true,steps:[
+   {d:0,h:"Rôle de l'enseignant",prof:"Organiser les rotations entre les 3 ateliers ; garantir la confidentialité du dépistage (aucun commentaire sur qui y va ou non).",noSlide:true}]},
+  {nom:"Version A — après les ateliers (20 min)",steps:[
+   {d:8,h:"Info ou intox ?",prof:"Vote puis révélation.",el:"Info ou intox ? Votez.",b:['jeu']},
+   {d:9,h:"Vidéo et échange",prof:"Projeter « Les conseils des autres (sur l'amour) » (Comitys, 2 min, à visionner avant), puis relancer avec les questions projetées : à qui se fier pour sa santé et ses relations ?",el:"Regardez, puis on échange ensemble.",b:[{c:`<p class="kick">🎬 Comitys</p><h1>Les conseils des autres (sur l'amour)</h1><p class="big">Regardez attentivement, puis on en parle : à qui peut-on se fier ?</p><a class="startT" style="text-decoration:none" href="https://www.comitys.com/les-conseils-des-autres-sur-lamour/" target="_blank" rel="noopener">▶ Ouvrir la vidéo</a>`},'ech']},
+   {d:3,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}]},
+  {nom:"Version B — autres classes : séance Moodle (55 min)",steps:[
+   {d:4,h:"Cadre",prof:CADRE_PROF+" Former les binômes.",el:CADRE_EL,b:['charte']},
+   {d:31,h:"Parcours Moodle en binômes",prof:"Module 1 — consentement et loi (8 min) ; Module 2 — reconnaître les VSS, y compris en stage (10 min) ; Module 3 — santé sexuelle, dépistage, gratuité (7 min) ; Module 4 — info ou intox, grille des 4 questions (6 min). Les binômes se mettent d'accord avant chaque réponse.",el:"À deux sur un poste : mettez-vous d'accord avant de répondre.",b:[{c:`<h2>💻 Parcours en binômes</h2><ol class="ret"><li>Le consentement et la loi · 8 min</li><li>Reconnaître les violences sexistes et sexuelles · 10 min</li><li>Santé sexuelle : dépistage et prévention · 7 min</li><li>Info ou intox ? · 6 min</li></ol>`},'vis:sources']},
+   {d:17,h:"Échange en classe entière",prof:"Obligatoire : retour sur le parcours avec les questions projetées, puis les cartes « Info ou intox ? » si le temps le permet.",el:"On échange ensemble.",b:['ech','jeu']},
+   {d:3,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}]}
+ ],bonus:["Un exemple de fausse information sur la sexualité que vous avez déjà vue ?"]}
+],
+/* ============================== CAP 1re ANNÉE ============================== */
+"cap1":[
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF,el:CADRE_EL,b:['charte']},
+  {d:13,h:"Filtre ou pas filtre ?",prof:"Aucune photo à chercher : les cartes « vrai ou faux » suffisent. Faire voter, révéler, puis discuter de l'influence des réseaux sur l'image de soi. Ne jamais photographier d'élève ni commenter un physique.",el:"Vrai ou faux ? Votez, puis on vérifie.",b:[{c:`<p class="stmt" style="font-size:6cqw">📸 Filtre ou pas filtre ?</p><p class="big">Comment les réseaux influencent-ils l'image qu'on a de son corps ?</p>`},{g:{type:"flip",titre:"Images et réseaux : vrai ou faux ?",items:[{q:"Les photos de publicité sont souvent retouchées.",a:"<b>Vrai</b> Peau, silhouette, couleurs : la retouche est très courante."},{q:"Un filtre peut changer la forme du visage ou du corps.",a:"<b>Vrai</b> Certains filtres affinent, lissent ou agrandissent sans qu'on s'en rende compte."},{q:"Les influenceurs montrent toujours leur vraie vie.",a:"<b>Faux</b> Ils choisissent ce qu'ils montrent, et certains contenus sont des publicités."},{q:"Se comparer aux images des réseaux peut faire baisser l'estime de soi.",a:"<b>Vrai</b> C'est pour ça qu'il est utile de prendre du recul sur ces images."},{q:"Il existe un seul « corps normal ».",a:"<b>Faux</b> Les corps sont tous différents : c'est ça, la normalité."}]}}]},
+  {d:13,h:"Le bon mot",prof:"Proposer une définition, puis révéler. Pour l'anatomie : rester aux noms et aux fonctions, le reste va au parking pour l'infirmière.",el:"Proposez une définition, puis on vérifie.",b:['vis:vocab','jeu']},
+  {d:13,h:"Prendre soin de soi en îlots",prof:"Un thème par îlot (sommeil, alimentation, hygiène, sport, santé sexuelle) : 3 conseils réalistes sur la fiche.",el:"Un thème par îlot : 3 conseils réalistes.",b:[{c:`<h2>Prendre soin de soi</h2><div class="tagrow big"><span>😴 Sommeil</span><span>🥗 Alimentation</span><span>🚿 Hygiène</span><span>⚽ Sport</span><span>🩺 Santé sexuelle</span></div><p class="big">3 conseils réalistes pour votre thème.</p>`}]},
+  {d:9,h:"Échange : présentation des îlots",prof:"Chaque îlot présente, les autres réagissent.",el:"Chaque îlot présente, les autres réagissent.",b:['ech']},
+  {d:3,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],bonus:["Une chose que tu fais déjà pour prendre soin de toi ?"]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF,el:CADRE_EL,b:['charte']},
+  {d:10,h:"Le dé des émotions",prof:"Un élève lance le dé (à fabriquer, faces imprimables) ; la classe donne une situation qui provoque cette émotion et comment la reconnaître chez quelqu'un.",el:"Lance le dé : une situation qui provoque cette émotion ?",b:['vis:emotions']},
+  {d:12,h:"Oui, non ou pas sûr ?",prof:"Vote, puis révélation. Règle d'or : « pas sûr », c'est non.",el:"Y a-t-il consentement ?",b:['vis:consent','jeu']},
+  {d:12,h:"Violences et harcèlement",prof:"Définir les formes de violence et le harcèlement (répétition). Victime ou témoin : que faire ?",el:"De quoi parle-t-on ?",b:[{c:`<h2>Violences et harcèlement</h2><p class="big">Une violence peut être <b>physique, verbale, psychologique, sexuelle ou en ligne</b>.</p><p class="big">Le harcèlement, c'est quand ça se <b>répète</b>.</p><p class="big">Victime ou témoin : tu peux en parler · 📞 3020 · 3018</p>`}]},
+  {d:13,h:"Échange et fiche-réflexe",prof:"Relancer avec les questions, puis construire ensemble la fiche-réflexe harcèlement.",el:"On échange, puis on construit notre fiche-réflexe.",b:['ech']},
+  {d:4,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],bonus:["Comment dire non à un ami sans le perdre ?"]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF,el:CADRE_EL,b:['charte']},
+  {d:15,h:"La carte des influences",prof:"Au centre : « Ma vision de l'amour et du couple ». La classe place les influences et dit si elles sont positives, négatives ou les deux. On peut garder ce qui nous convient. Si la pornographie est évoquée : réponse type du cadre commun, sans développer.",el:"Qu'est-ce qui influence notre vision de l'amour et du couple ?",b:[{c:`<h2>Ma vision de l'amour et du couple</h2><div class="tagrow big"><span>🏠 Famille</span><span>👫 Amis</span><span>🌍 Culture / religion</span><span>🎬 Séries</span><span>🎵 Musique</span><span>📱 Influenceurs</span><span>📺 Publicité</span><span>⚖️ La loi</span></div><p class="big">+ positive · − négative · ± les deux</p>`}]},
+  {d:15,h:"Où je partage ?",prof:"Classer chaque contenu. Rappels : une fois envoyé, on ne contrôle plus ; diffuser l'image de quelqu'un sans accord est interdit.",el:"Public, amis proches ou pour moi seul ?",b:['vis:intimite','jeu']},
+  {d:13,h:"Échange",prof:"Relancer avec les questions projetées.",el:"On échange ensemble.",b:['ech']},
+  {d:8,h:"Réflexes en ligne et clôture",prof:"Projeter les 4 réflexes (paramètres de confidentialité, bloquer, signaler, 3018), puis la clôture.",el:"",b:['vis:reflexes',...CLOT]}
+ ]}],bonus:["Un réglage de confidentialité que tout le monde devrait connaître ?"]}
+],
+/* ============================== CAP 2e ANNÉE ============================== */
+"cap2":[
+ {phases:[{steps:[
+  {d:4,h:"Cadre et règles du jeu",prof:"Charte, puis 4 équipes. Plateau de 30 cases au tableau, 4 couleurs de cartes. Bonne réponse = on avance.",el:CADRE_EL,b:['charte',{c:`<p class="kick">🎲 Le grand jeu de l'oie de la santé</p><h2>Les règles</h2><div class="rgrid"><div><b>🔵</b><span style="font-size:1.7cqw">IST et dépistage</span></div><div><b>🟢</b><span style="font-size:1.7cqw">Alcool et drogues</span></div><div><b>🟣</b><span style="font-size:1.7cqw">Émotions et désir</span></div><div><b>🟠</b><span style="font-size:1.7cqw">Je fais quoi ?</span></div></div><p class="big">Bonne réponse = votre équipe avance !</p>`}]},
+  {d:34,h:"La partie",prof:"Lire la carte de la couleur de la case, valider, ajouter une phrase d'explication. Pas de conseils de consommation ; rester bref et factuel sur le désir et le plaisir.",el:"À vous de jouer !",b:['jeu']},
+  {d:10,h:"Échange : débrief",prof:"Chaque équipe cite le message le plus important pour elle, puis questions projetées.",el:"Le message le plus important pour votre équipe ?",b:['ech']},
+  {d:7,h:"Clôture",prof:CLOT_PROF+" Ajouter Alcool Info Service et Drogues Info Service.",el:"",b:['vis:ressources',...CLOT]}
+ ]}],bonus:["Inventez une carte question pour une autre classe."]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF,el:CADRE_EL,b:['charte']},
+  {d:16,h:"L'échelle vivante",prof:"Ligne au sol vert → orange → rouge. Chaque élève tire une carte comportement (imprimée) et se place. La classe valide ou corrige, puis on compare avec le violentomètre.",el:"Tire une carte et place-toi sur la ligne.",b:['vis:feu','jeu',{c:`<h2>📏 Le violentomètre</h2><p class="big">Comparez vos placements avec le violentomètre.</p><a class="startT" style="text-decoration:none" href="https://france-victimes.fr/index.php/docman/grand-public/fv-vie-externe/3557-affiche-violentometre-france-victimes" target="_blank" rel="noopener">▶ Ouvrir le violentomètre</a>`}]},
+  {d:8,h:"L'emprise",prof:"Expliquer simplement avec le cycle : isoler, critiquer, surveiller, faire peur, puis s'excuser. Ce n'est jamais la faute de la victime.",el:"Comment fonctionne l'emprise ?",b:['vis:cycle']},
+  {d:8,h:"Et au travail ?",prof:"Lien avec les stages : remarques sexistes, gestes déplacés, insultes répétées. Qui alerter : tuteur, professeur référent, CPE, inspection du travail.",el:"En stage, qu'est-ce qui n'est pas normal ?",b:[{c:`<h2>👷 En stage aussi</h2><p class="big">Remarques sexistes, gestes déplacés, insultes répétées : <b>personne n'a à s'y habituer</b>.</p><p class="big">J'alerte : mon tuteur · mon professeur référent · le CPE · l'inspection du travail.</p>`}]},
+  {d:15,h:"Échange",prof:"Relancer avec les questions projetées.",el:"On échange ensemble.",b:['ech']},
+  {d:4,h:"Clôture",prof:CLOT_PROF+" Ajouter 3919 et commentonsaime.fr.",el:"",b:CLOT}
+ ]}],bonus:["Qu'est-ce qu'une jalousie « normale » ?"]},
+
+ {phases:[{steps:[
+  {d:4,h:"Cadre",prof:CADRE_PROF,el:CADRE_EL,b:['charte']},
+  {d:12,h:"Débat mouvant",prof:"Faire émerger : pression du groupe, normes sociales, peur du regard des autres.",el:"Choisis ton camp, explique pourquoi.",b:['debat']},
+  {d:15,h:"Le quiz de la loi",prof:"En équipes, vote puis révélation. Chaque droit va avec une responsabilité.",el:"Votez en équipe, puis on vérifie.",b:['jeu']},
+  {d:12,h:"Notre charte de la liberté",prof:"La classe rédige 5 règles pour que chacun puisse être soi au lycée et en entreprise. Affichage.",el:"Ensemble : 5 règles pour que chacun puisse être soi.",b:[{c:`<h2>Notre charte de la liberté</h2><ol class="ret"><li>…</li><li>…</li><li>…</li><li>…</li><li>…</li></ol>`}]},
+  {d:9,h:"Échange",prof:"Relancer avec les questions projetées.",el:"On échange ensemble.",b:['ech']},
+  {d:3,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+ ]}],bonus:["Une loi que vous aimeriez voir exister ?"]}
+]};
+
+/* ---- rendu du plan dans le guide enseignant ---- */
+const SUP_LBL = b => typeof b==='object' ? (b.g?'cartes « '+b.g.titre+' »':'diapo') : ({charte:'charte',jeu:'jeu',jeu2:'jeu',debat:'débat',ech:"questions d'échange",retiens:'à retenir',ress:'numéros',ticket:'ticket de sortie',cas:'études de cas'}[b] || (b.startsWith('vis:')?'visuel « '+(VISUELS[b.slice(4)]||{t:b}).t+' »':b.startsWith('cas:')?'étude de cas':b));
+function renderPlan(pl){
+  if(!pl) return '';
+  return pl.phases.map(ph=>{
+    let t=0;
+    const tot=ph.steps.reduce((a,x)=>a+x.d,0);
+    const lis=ph.steps.map(st=>{
+      const lab = st.d===0 ? '' : (ph.prof ? `${st.d} min` : `${t}-${t+st.d} min`); t+=st.d;
+      const sup = st.noSlide ? '' : `<div class="proj">📽️ Projeté : ${[...new Set(st.b.map(SUP_LBL))].join(' · ')}</div>`;
+      return `<li><div class="t">${lab}${lab?' · ':''}⏱ ${st.d?st.d+' min':'en amont'}</div><div class="h">${st.h}</div><div>${st.prof}</div>${st.el?`<div class="elv">Consigne affichée aux élèves : « ${st.el} »</div>`:''}${sup}</li>`;
+    }).join('');
+    return `${ph.nom?`<div class="phase">${ph.nom}</div>`:''}<ol class="steps">${lis}</ol>`;
+  }).join('') + `<p class="hint">Le diaporama élèves suit exactement ces étapes et ces durées (fichier « Supports élèves »).${pl.bonus?' Bonus si la classe a du temps : '+pl.bonus.map(b=>'« '+b+' »').join(' · '):''}</p>`;
+}
+
+/* =====================================================================
+   TEMPS D'ÉCHANGE — un par séance (ordre : axe 1, 2, 3)
+   ===================================================================== */
+const ECHANGES = {
+ "3pm":[
+  {f:"Après le jeu de tri : 1-2-4-Tous, puis mise en commun (15 min)", q:["Quelles cartes ont fait débat dans votre groupe ? Pourquoi ?","Une émotion peut-elle devenir un sentiment ? Donnez un exemple.","Le bonheur dépend-il des autres, de soi, des deux ?","Pourquoi est-ce important de savoir nommer ce qu'on ressent ?"]},
+  {f:"Retour en cercle après l'intervention (20 min)", q:["Qu'est-ce qui vous a surpris ? Qu'est-ce que vous saviez déjà ?","Une information qui vous semble utile pour quelqu'un de votre âge ?","Pourquoi est-ce difficile de parler de santé sexuelle ? Comment le rendre plus simple ?","Qu'est-ce qu'une relation « égalitaire » selon vous ?"]},
+  {f:"Mise en commun des cercles et du feu tricolore, groupe par groupe (15 min)", q:["Avez-vous placé les mêmes choses dans les mêmes cercles ? Pourquoi des différences ?","Où passe la limite entre « s'intéresser à quelqu'un » et « le contrôler » ?","Pourquoi une personne sous emprise ne s'en rend-elle pas toujours compte ?","Que peut faire un ami qui remarque une situation orange ?"]}
+ ],
+ "2nde":[
+  {f:"Retour en îlots puis classe (20 min)", q:["Quelle est la différence entre sexe biologique, genre, identité et orientation ? Expliquez-la à un camarade avec vos mots.","Qu'est-ce qui peut abîmer l'image qu'on a de son corps ? Qu'est-ce qui peut l'aider ?","Parmi les 5 droits de l'affiche, lequel vous semble le plus important ? Le plus souvent oublié ?"]},
+  {f:"Restitution des études de cas : chaque îlot présente, les autres réagissent (20 min)", q:["Êtes-vous d'accord avec la réaction proposée par l'autre groupe ? Que changeriez-vous ?","Peut-on se tromper sur ce que ressent quelqu'un ? Comment vérifier ?","Ressentir de la jalousie, est-ce un problème ? À quel moment cela en devient-il un ?","Les garçons et les filles ont-ils le même droit d'exprimer leurs émotions ? Pourquoi ?"]},
+  {f:"Débat après le fil d'actu : on compare les cartons levés (15 min)", q:["Pourquoi tout le monde n'a-t-il pas levé le même carton ?","Le témoin qui partage ou qui rit est-il responsable ? Jusqu'où ?","Qu'est-ce qui nous pousse à partager sans réfléchir (groupe, humour, peur) ?","Les réseaux changent-ils notre façon de voir l'amour et le couple ? En bien, en mal ?"]}
+ ],
+ "1re":[
+  {f:"Débrief de l'escape game, équipe par équipe (15 min)", q:["Quelle énigme a posé le plus de difficulté ? Pourquoi ?","Dans le cas de Léa, qu'auriez-vous fait concrètement ? Qui d'autre aurait pu agir ?","Pourquoi est-ce difficile de demander à se faire dépister ? Comment lever cette gêne ?","Qu'est-ce que « rester maître de soi » en soirée ?"]},
+  {f:"Mise en commun des green/red flags + débat mouvant (20 min)", q:["Avez-vous trouvé d'autres exemples de green flags ? de red flags ?","Comment dire non sans blesser ? Comment recevoir un non sans se vexer ?","Pourquoi le consentement a-t-il été inscrit dans la loi en 2025 ? Qu'est-ce que ça change ?","Que peut faire concrètement un témoin de harcèlement ?"]},
+  {f:"Échange après le chapeau des stéréotypes (20 min)", q:["D'où viennent les stéréotypes ? Qui les transmet ?","Un stéréotype peut-il avoir l'air positif et pourtant enfermer ? (« les filles sont douces »…)","Dans nos filières, qu'est-ce qui empêche certains de choisir ce qui leur plaît ?","Qu'est-ce que le lycée pourrait faire pour que chacun se sente libre d'être soi ?"]}
+ ],
+ "tle":[
+  {f:"Discussion en grand groupe à partir des cartes et de la boîte à questions (20 min)", q:["Quelles idées reçues circulent le plus chez les jeunes ? D'où viennent-elles ?","Pourquoi une réaction du corps n'est-elle pas un consentement ?","Quelle différence entre ce que montrent les séries, les films ou les réseaux et une vraie relation ?","Pourquoi est-ce important de pouvoir parler avec son ou sa partenaire ?"]},
+  {f:"Échange après chaque épisode puis en îlots « Et si c'était mon ami·e ? » (20 min)", q:["À quel épisode auriez-vous commencé à vous inquiéter ? Pourquoi pas avant ?","Pourquoi Léa ne voit-elle pas ce qui se passe ?","Qu'est-ce qu'on peut dire à un ami sans le braquer ?","L'emprise existe-t-elle aussi chez les garçons victimes, dans les couples de même sexe ?"]},
+  {f:"Classes avec intervention : retour collectif · Autres classes : 20 min d'échange en classe après le Moodle (obligatoire)", q:["Quelle réponse du quiz vous a le plus surpris ? Comparez vos résultats.","Comment repère-t-on une source fiable ? Donnez un exemple de site que vous utilisiez et que vous voyez autrement.","Les violences sexistes au travail ou en stage : en avez-vous entendu parler ? Que faire si on en est témoin ?","Qu'est-ce qui, dans la société, permet à chacun d'être libre (loi, éducation, entourage) ?"]}
+ ],
+ "cap1":[
+  {f:"Présentation des affiches par chaque îlot, la classe réagit (15 min)", q:["Pourquoi les filtres et les retouches nous influencent-ils autant ?","Un conseil d'une autre affiche que vous trouvez utile ? Un qui vous semble irréaliste ?","Qu'est-ce qui aide à se sentir bien dans son corps ?"]},
+  {f:"Après « Oui, non, pas sûr ? » : on discute les désaccords (20 min)", q:["Sur quelles situations n'étiez-vous pas d'accord ? Expliquez.","Comment savoir si l'autre est vraiment d'accord ?","Pourquoi certains n'osent pas dire non ?","Que faire si on voit quelqu'un se faire harceler ? Construisons ensemble la fiche-réflexe."]},
+  {f:"Discussion autour de la carte des influences (15 min)", q:["Quelle influence est la plus forte pour les jeunes aujourd'hui ? Êtes-vous d'accord entre vous ?","Peut-on refuser une influence de son entourage ? Comment ?","Pourquoi partage-t-on des choses intimes en ligne ? Quels risques ?"]}
+ ],
+ "cap2":[
+  {f:"Débrief en grand groupe (10 min) + discussion après les cartes 🟠 au fil du jeu", q:["Quelle question vous a appris quelque chose ?","Pourquoi l'alcool augmente-t-il les risques dans les relations ?","Qu'est-ce qui empêche parfois d'aller se faire dépister ? Comment dépasser la gêne ?"]},
+  {f:"Échange à partir de l'échelle vivante : on discute chaque placement (20 min)", q:["Pourquoi certains comportements sont-ils difficiles à placer ?","La jalousie, c'est vert, orange ou rouge ? Ça dépend de quoi ?","En stage, qu'est-ce qui est normal et qu'est-ce qui ne l'est pas ?","Que dire à un ami qui est dans une relation qui fait mal ?"]},
+  {f:"Débat mouvant puis rédaction collective de la charte (25 min)", q:["Pourquoi a-t-on parfois peur d'être soi devant les autres ?","Une loi qui vous a surpris ? Une qui vous semble juste ? Pourquoi ?","Qu'est-ce qui vous aiderait à vous sentir libres au lycée ? en entreprise ?"]}
+ ]
+};
+
+/* =====================================================================
+   VISUELS À PROJETER (créés pour le projet, libres d'usage)
+   ===================================================================== */
+const SV = (vb, body) => `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif" role="img">${body}</svg>`;
+const T = (x,y,txt,o={}) => `<text x="${x}" y="${y}" text-anchor="${o.a||'middle'}" font-size="${o.s||15}" font-weight="${o.w||600}" fill="${o.c||'var(--ink)'}">${txt}</text>`;
+const VISUELS = {
+ emotions:{t:"La roue des émotions", svg:SV("0 0 600 350",
+   `<circle cx="300" cy="175" r="62" fill="var(--surface-2)" stroke="var(--line)" stroke-width="2"/>`+T(300,170,"Ce que",{s:16,w:700})+T(300,190,"je ressens",{s:16,w:700})+
+   [["Joie","😊",420,175,"--a1"],["Peur","😨",360,279,"--a3"],["Colère","😠",240,279,"--a2"],["Tristesse","😢",180,175,"--a3"],["Surprise","😮",240,71,"--a1"],["Dégoût","🤢",360,71,"--a2"]]
+   .map(([w,e,x,y,c])=>`<line x1="300" y1="175" x2="${x}" y2="${y}" stroke="var(--line)" stroke-width="2"/><circle cx="${x}" cy="${y}" r="52" fill="var(${c}-soft)" stroke="var(${c})" stroke-width="2.5"/>`+T(x,y-4,e,{s:28})+T(x,y+24,w,{s:14,w:700,c:`var(${c})`})).join('')+
+   T(300,342,"Une émotion est un message, pas un ordre.",{s:13,w:500,c:"var(--muted)"}))},
+ intimite:{t:"Les cercles de l'intimité", svg:SV("0 0 600 380",
+   [[170,"Inconnus","--line"],[134,"Connaissances","--a3"],[98,"Amis","--a2"],[62,"Famille proche","--a1"]].map(([r,l,c])=>`<circle cx="300" cy="190" r="${r}" fill="none" stroke="var(${c})" stroke-width="3"/>`+T(300,190-r+20,l,{s:13,w:700,c:c==='--line'?'var(--muted)':`var(${c})`})).join('')+
+   `<circle cx="300" cy="190" r="28" fill="var(--ink)"/>`+T(300,196,"MOI",{s:15,w:800,c:"var(--bg)"})+
+   T(300,376,"Je choisis ce que je partage, avec qui et quand. Personne ne peut l'exiger.",{s:13,w:500,c:"var(--muted)"}))},
+ feu:{t:"Le feu tricolore des relations", svg:SV("0 0 600 330",
+   [["--ok","RESPECT","Je peux dire non, on m'écoute, je garde mes amis."],["--warn","ALERTE","Jalousie, contrôle du téléphone, culpabilisation."],["--stop","VIOLENCE","Menace, chantage, coups, contrainte sexuelle."]]
+   .map(([c,h,d],i)=>`<rect x="20" y="${20+i*100}" width="560" height="84" rx="14" fill="var(${c}-soft)"/><circle cx="70" cy="${62+i*100}" r="26" fill="var(${c})"/>`+T(115,57+i*100,h,{a:'start',s:18,w:800,c:`var(${c})`})+T(115,82+i*100,d,{a:'start',s:14,w:500})).join('')+
+   T(300,325,"Orange ou rouge : j'en parle à un adulte de confiance.",{s:13,w:600,c:"var(--muted)"}))},
+ consent:{t:"Le consentement en 5 mots", svg:SV("0 0 600 330",
+   [["Libre","sans pression ni peur"],["Éclairé","je sais à quoi je dis oui"],["Spécifique","oui à ça ≠ oui à tout"],["Réversible","je peux changer d'avis"],["Enthousiaste","un « bof » n'est pas un oui"]]
+   .map(([h,d],i)=>{const x=20+(i%3)*190+(i>2?95:0),y=i<3?20:140;return `<rect x="${x}" y="${y}" width="175" height="104" rx="14" fill="var(--a2-soft)" stroke="var(--a2)" stroke-width="2"/>`+T(x+87,y+44,h,{s:20,w:800,c:"var(--a2)"})+T(x+87,y+74,d,{s:12.5,w:500})}).join('')+
+   `<rect x="150" y="268" width="300" height="46" rx="23" fill="var(--ink)"/>`+T(300,298,"Pas sûr ? Alors c'est non.",{s:17,w:800,c:"var(--bg)"}))},
+ vocab:{t:"Quatre mots à ne pas confondre", svg:SV("0 0 600 300",
+   [["Sexe biologique","mon corps","--a1"],["Genre","ce que la société attend","--a2"],["Identité de genre","qui je suis","--a3"],["Orientation sexuelle","qui m'attire","--a1"]]
+   .map(([h,d,c],i)=>{const x=20+(i%2)*290,y=20+Math.floor(i/2)*135;return `<rect x="${x}" y="${y}" width="270" height="118" rx="14" fill="var(${c}-soft)"/>`+T(x+135,y+52,h,{s:19,w:800,c:`var(${c})`})+T(x+135,y+82,d,{s:15,w:500})}).join('')+
+   T(300,296,"Chacun de ces mots désigne une chose différente.",{s:13,w:500,c:"var(--muted)"}))},
+ cycle:{t:"Le cycle de la violence dans le couple", svg:SV("0 0 600 380",
+   `<ellipse cx="300" cy="185" rx="160" ry="125" fill="none" stroke="var(--line)" stroke-width="3" stroke-dasharray="8 8"/>`+
+   [["1. Tension","silences, reproches",300,60,"--warn"],["2. Crise","cris, insultes, coups",470,185,"--stop"],["3. Justification","« c'est ta faute »",300,310,"--a3"],["4. Lune de miel","excuses, cadeaux",130,185,"--a1"]]
+   .map(([h,d,x,y,c])=>`<rect x="${x-82}" y="${y-34}" width="164" height="68" rx="14" fill="var(${c}-soft)" stroke="var(${c})" stroke-width="2"/>`+T(x,y-4,h,{s:15,w:800,c:`var(${c})`})+T(x,y+18,d,{s:12,w:500})).join('')+
+   T(300,180,"Le cycle se répète",{s:14,w:700})+T(300,200,"et s'accélère",{s:14,w:700})+
+   T(300,372,"La victime n'est jamais responsable. 3919 · commentonsaime.fr",{s:13,w:600,c:"var(--muted)"}))},
+ sources:{t:"Info ou intox ? La grille des 4 questions", svg:SV("0 0 600 300",
+   [["🗣️","Qui parle ?","un expert, une institution, un inconnu ?"],["🔬","Quelles preuves ?","des sources, des chiffres vérifiables ?"],["📅","Quelle date ?","l'information est-elle à jour ?"],["💰","Quel intérêt ?","vendre, faire des vues, informer ?"]]
+   .map(([e,h,d],i)=>{const x=20+(i%2)*290,y=20+Math.floor(i/2)*130;return `<rect x="${x}" y="${y}" width="270" height="112" rx="14" fill="var(--surface-2)" stroke="var(--line)"/>`+T(x+36,y+48,e,{s:28})+T(x+70,y+46,h,{a:'start',s:18,w:800})+T(x+70,y+74,d,{a:'start',s:12.5,w:500,c:'var(--muted)'})}).join('')+
+   T(300,292,"Sites fiables : onsexprime.fr · santepubliquefrance.fr · ameli.fr",{s:13,w:600,c:"var(--a1)"}))},
+ reflexes:{t:"En ligne : mes 4 réflexes", svg:SV("0 0 600 220",
+   [["📸","Je garde","des preuves (captures)"],["🚫","Je ne cède pas","au chantage"],["🛑","Je bloque","et je signale"],["💬","J'en parle","adulte · 3018"]]
+   .map(([e,h,d],i)=>{const x=20+i*145;return `<rect x="${x}" y="20" width="130" height="150" rx="14" fill="var(--a3-soft)"/>`+T(x+65,70,e,{s:34})+T(x+65,118,h,{s:15,w:800,c:'var(--a3)'})+T(x+65,142,d,{s:12,w:500})+(i<3?T(x+138,100,"›",{s:26,w:800,c:'var(--muted)'}):'')}).join('')+
+   T(300,205,"Celui qui diffuse est responsable, jamais la victime.",{s:13,w:600,c:"var(--muted)"}))},
+ ressources:{t:"Où aller ? Gratuit et confidentiel", svg:SV("0 0 600 300",
+   [["🏫","Infirmière du lycée","écoute, conseils, orientation"],["🩺","Centre de santé sexuelle","consultation, dépistage, écoute"],["🧪","CeGIDD","dépistage des IST, gratuit"],["💊","Pharmacie (-26 ans)","préservatifs gratuits"]]
+   .map(([e,h,d],i)=>{const x=20+(i%2)*290,y=20+Math.floor(i/2)*130;return `<rect x="${x}" y="${y}" width="270" height="112" rx="14" fill="var(--a1-soft)"/>`+T(x+38,y+50,e,{s:30})+T(x+72,y+48,h,{a:'start',s:16,w:800,c:'var(--a1)'})+T(x+72,y+74,d,{a:'start',s:12,w:500})}).join('')+
+   T(300,292,"Sans autorisation parentale pour les mineurs · 0 800 08 11 11",{s:13,w:600,c:"var(--muted)"}))},
+ fiction:{t:"Fiction ou réalité ?", svg:SV("0 0 600 320",
+   `<rect x="20" y="20" width="270" height="44" rx="10" fill="var(--a2)"/><rect x="310" y="20" width="270" height="44" rx="10" fill="var(--a1)"/>`+
+   T(155,48,"Séries, films, réseaux",{s:15,w:800,c:'#fff'})+T(445,48,"Dans la vraie vie",{s:15,w:800,c:'#fff'})+
+   [["Corps « parfaits », retouchés","Des corps tous différents"],["Personne ne demande","On demande, on écoute"],["Tout est facile, rapide","On prend le temps, on se parle"],["Pas de protection","On se protège"],["Scénario écrit d'avance","Deux personnes libres"]]
+   .map(([a,b],i)=>`<rect x="20" y="${76+i*46}" width="270" height="38" rx="8" fill="var(--a2-soft)"/><rect x="310" y="${76+i*46}" width="270" height="38" rx="8" fill="var(--a1-soft)"/>`+T(155,100+i*46,a,{s:13.5,w:500})+T(445,100+i*46,b,{s:13.5,w:600})).join(''))}
+};
+
+/* =====================================================================
+   VIDÉOS, AFFICHES, ATELIERS — issus des sites cités dans le projet
+   type : video | doc | atelier · yt : identifiant YouTube vérifié (vignette)
+   ===================================================================== */
+const C = "https://www.comitys.com/";
+const SPF = "https://www.santepubliquefrance.fr/sante-sexuelle/";
+const M = {
+ emoAdo:{type:"atelier",titre:"Atelier sur les émotions — adolescents",src:"Comitys",url:C+"atelier-sur-les-emotions-adolescents/",note:"Trame d'atelier pour nommer et partager ses émotions."},
+ cnv:{type:"atelier",titre:"Cartes émotions et cartes besoins (CNV)",src:"Comitys",url:C+"cartes-emotions-et-besoins-cnv/",note:"Cartes à imprimer : relier une émotion au besoin qu'elle exprime."},
+ jeuEmo:{type:"atelier",titre:"Jeu des émotions",src:"Comitys",url:C+"jeu-langage-des-emotions/",note:"Jeu de cartes pour enrichir le vocabulaire des émotions."},
+ colere:{type:"video",titre:"Boules de colère",src:"Comitys · vidéo",url:C+"boules-de-colere/",note:"Court film sur la gestion des conflits et le vivre-ensemble."},
+ amoureux:{type:"atelier",titre:"Qu'est-ce qu'être amoureux ?",src:"Comitys",url:C+"atelier-vie-affective-etre-amoureux/",note:"Atelier construit à partir de paroles d'adolescents."},
+ questionsAdo:{type:"doc",titre:"Brochure « Questions d'ados »",src:"Santé publique France",url:SPF+"brochure/questions-dados-11-14-ans",note:"Guide construit à partir des vraies questions des jeunes. À feuilleter avec la classe."},
+ affiche:{type:"doc",titre:"Affiche OnSexprime « Corps, relations, plaisir… »",src:"Santé publique France",url:SPF+"affiche/onsexprimefr-corps-relations-plaisir-les-reponses-aux-questions-quon-nose-pas-poser-affiche-60x80cm",note:"Affiche avec QR code vers onsexprime.fr : à afficher dans la salle."},
+ catalogue:{type:"doc",titre:"Catalogue d'outils santé sexuelle pour les jeunes",src:"Santé publique France",url:SPF+"depliantflyer/outils-sur-la-sante-sexuelle-a-destination-des-jeunes",note:"Tous les outils gratuits à commander ou télécharger."},
+ semaineSS:{type:"doc",titre:"Semaine de la santé sexuelle 2026 : dépistage et prévention",src:"Santé publique France",url:"https://www.santepubliquefrance.fr/les-actualites/semaine-de-la-sante-sexuelle-2026-le-depistage-et-la-prevention-restent-essentiels",note:"Chiffres récents sur les IST chez les jeunes, pour l'enseignant."},
+ sac:{type:"atelier",titre:"« Je donnerais tout pour ce sac ! »",src:"Comitys",url:C+"je-donnerais-tout-pour-ce-sac/",note:"Outil sur le consentement et l'égalité femmes-hommes."},
+ johanna:{type:"video",yt:"7OFDv4KqKZo",titre:"Johanna et Alex — le cycle des violences",src:"Comitys · vidéo 2 min 49",url:C+"animer-un-atelier-sur-les-relations-saines/",note:"Support de l'atelier « relations saines » : affiche et livret téléchargeables sur la page."},
+ johannaAffiche:{type:"doc",titre:"Affiche « Amour sans violence » (Johanna et Alex)",src:"Comitys · PDF",url:C+"wp-content/uploads/2021/09/AFFICHE-JOHANNA-ET-ALEX-AMOURSANSVIOLENCE.pdf",note:"Affiche du cycle des violences à imprimer."},
+ johannaLivret:{type:"doc",titre:"Livret de sensibilisation « Amour sans violence »",src:"Comitys · PDF 24 p.",url:C+"wp-content/uploads/2021/09/LIVRET-DE-SENSIBILISATIONAMOURSANSVIOLENCE.pdf",note:"Pour préparer la séance."},
+ toxique:{type:"video",titre:"Sortir d'une relation toxique ?",src:"Comitys · vidéo",url:C+"sortir-dune-relation-toxique/",note:"Comment sortir d'une emprise : estime de soi, aide extérieure."},
+ vcJeunes:{type:"video",titre:"Sensibiliser les jeunes aux violences conjugales",src:"Comitys · vidéo",url:C+"sensibiliser-les-jeunes-aux-violences-conjugales/",note:"Vidéo pédagogique destinée aux jeunes."},
+ morceau:{type:"atelier",titre:"Partager un morceau de soi",src:"Comitys",url:C+"partager-un-morceau-de-soi/",note:"Images intimes, harcèlement et estime de soi."},
+ nudes:{type:"atelier",titre:"Nudes, photos dénudées, sexting sur les réseaux",src:"Comitys",url:C+"photos-denudees-sur-les-reseaux/",note:"Prévention des risques liés aux images intimes."},
+ cyber:{type:"video",titre:"La violence des mots et le cyberharcèlement",src:"Comitys · vidéo",url:C+"video-sur-la-violence-des-mots-cyberharcelement/",note:"Pour lancer le débat sur la responsabilité des témoins."},
+ clipMaelle:{type:"video",yt:"6zUxsrJqg14",titre:"Maëlle — « L'effet de masse »",src:"Comitys · clip 3 min 23",url:C+"clip-de-maelle-sur-le-harcelement/",note:"Clip de la chanteuse Maëlle sur le harcèlement scolaire et la responsabilité des témoins. Fort, sans scène choquante."},
+ amitie:{type:"video",yt:"IX24zyoxs-E",titre:"Amies pour la vie",src:"Comitys · vidéo 6 min 27",url:C+"amies-pour-la-vie-une-video-evars-pour-parler-damitie/",note:"Court film d'animation sans paroles et très émouvant : deux amies, de l'enfance à la vieillesse. Confiance, attention à l'autre, fidélité."},
+ stereo:{type:"video",titre:"Repérer les stéréotypes et les préjugés",src:"Comitys · vidéo",url:C+"reperer-les-stereotypes-et-les-prejuges/",note:"Lien entre préjugés, harcèlement et respect des différences."},
+ consentir:{type:"video",yt:"aJxr614n2DU",titre:"Consentir ou céder ?",src:"Comitys · vidéo 1 min 15",url:C+"consentir-ou-ceder/",note:"⚠️ Version renforcée. Monologue d'une jeune fille qui a « cédé ». Fort pour distinguer consentir et céder."},
+ okpasok:{type:"video",yt:"j_GYUMZYNTY",titre:"« Ok pas OK » — témoignage de Maria",src:"Santé publique France · vidéo 5-7 min",url:"https://www.youtube.com/watch?v=j_GYUMZYNTY",note:"⚠️ Version renforcée. Campagne officielle sur le consentement : une jeune raconte, sans images explicites."},
+ emprise:{type:"video",yt:"QeNUNIX2WBY",titre:"L'emprise",src:"Comitys · court-métrage 7 min 43",url:C+"reperer-les-signes-de-lemprise-amoureuse/",note:"⚠️ Version renforcée. Court-métrage de prévention intense : manipulation, menaces, puis la jeune femme décide de partir."},
+ coeur:{type:"video",titre:"Mon cœur bat pour toi",src:"Comitys · vidéo",url:C+"mon-coeur-bat-pour-toi/",note:"⚠️ Version renforcée. Sentiments amoureux entre deux personnes du même sexe, traités avec délicatesse."},
+ depistes:{type:"video",yt:"c1do6CNYIAc",titre:"« Les IST, c'est quoi ? » (DépISTés, épisode 1)",src:"Comitys · vidéo 1 min 13",url:C+"video-prevention-ist-sida-cours-reproduction-humaine/",note:"⚠️ Version renforcée. Ce que sont les IST, comment elles se transmettent et comment s'en protéger. Sans image choquante."},
+ coeurCerveau:{type:"video",titre:"Écouter son cœur ou son cerveau",src:"Comitys · vidéo 6 min 26",url:C+"ecouter-son-coeur-ou-son-cerveau-video/",note:"Court film d'animation sans paroles : désirs, émotions, raison. Questions d'animation sur la page."},
+ conseilsAutres:{type:"video",titre:"Les conseils des autres (sur l'amour)",src:"Comitys · vidéo 2 min 08 (France 4)",url:C+"les-conseils-des-autres-sur-lamour/",note:"Sketch humoristique sur l'influence des avis des autres et des réseaux sociaux dans la vie amoureuse."},
+ spfPotes:{type:"video",yt:"Wt4Wi_zzQ9E",titre:"« Faire attention à ses potes en soirée » (campagne C'est la base)",src:"Santé publique France · spot court",url:"https://www.santepubliquefrance.fr/determinants-de-sante/alcool/articles/campagne-c-est-la-base-a-destination-des-jeunes-de-17-25-ans",note:"Spot officiel de prévention entre pairs : veiller sur ses amis en soirée. Ne montrer que ce spot. Si un élève demande s'il a le droit de boire : la vente d'alcool est interdite aux mineurs."},
+ physique:{type:"video",titre:"Ma copine critique mon physique",src:"Comitys · vidéo",url:C+"ma-copine-critique-mon-physique/",note:"Image du corps et respect dans le couple."},
+ malEtre:{type:"atelier",titre:"Mal dans sa peau — parler du mal-être",src:"Comitys",url:C+"mal-dans-sa-peau-parler-du-mal-etre/",note:"Estime de soi et santé mentale."},
+ violento:{type:"doc",titre:"Affiche « Violentomètre »",src:"France Victimes",url:"https://france-victimes.fr/index.php/docman/grand-public/fv-vie-externe/3557-affiche-violentometre-france-victimes",note:"Graduation des comportements dans le couple, à projeter ou distribuer."},
+ spfConsent:{type:"doc",titre:"Consentement chez les adolescents : savoir l'exprimer, savoir l'entendre",src:"Santé publique France",url:"https://www.santepubliquefrance.fr/index.php/presse/consentement-chez-les-adolescents-savoir-lexprimer-savoir-lentendre",note:"Repères pour l'enseignant."},
+ onsex:{type:"doc",titre:"onsexprime.fr — les questions des 12-18 ans",src:"Santé publique France",url:"https://www.onsexprime.fr/vos-questions",note:"Pour préparer les réponses à la boîte à questions."}
+};
+const MEDIA = {
+ "3pm":[ {v:["emotions"],m:["emoAdo","jeuEmo","cnv"]}, {v:["ressources"],m:["questionsAdo","affiche","onsex"]}, {v:["intimite","feu"],m:["physique","vcJeunes"]} ],
+ "2nde":[ {v:["vocab"],m:["affiche","catalogue"]}, {v:["emotions"],m:["amoureux","cnv"]}, {v:["reflexes"],m:["cyber","morceau","nudes"]} ],
+ "1re":[ {v:["ressources"],m:["semaineSS","affiche","onsex"]}, {v:["consent","feu"],m:["consentir","johannaAffiche","clipMaelle"]}, {v:["vocab"],m:["sac"]} ],
+ "tle":[ {v:["fiction"],m:["onsex","affiche","questionsAdo"]}, {v:["cycle"],m:["johanna","johannaAffiche","johannaLivret","violento"]}, {v:["consent","sources"],m:["spfConsent","semaineSS","onsex"]} ],
+ "cap1":[ {v:["vocab"],m:["physique","malEtre","questionsAdo"]}, {v:["emotions","consent"],m:["emoAdo","jeuEmo"]}, {v:["intimite","reflexes"],m:["nudes","morceau","cyber"]} ],
+ "cap2":[ {v:["ressources"],m:["affiche","semaineSS","onsex"]}, {v:["cycle","feu"],m:["johanna","toxique","violento"]}, {v:["consent"],m:["sac"]} ]
+};
+const ICON={video:"🎬",doc:"📄",atelier:"🧩"}, LBL={video:"VIDÉO",doc:"DOCUMENT",atelier:"ATELIER"};
+function mediaCard(k){const x=M[k]; if(!x) return '';
+  const th = x.yt ? `<img src="https://i.ytimg.com/vi/${x.yt}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play"></span>` : (x.type==='video'?`<span>${ICON.video}</span>`:`<span>${ICON[x.type]}</span>`);
+  return `<a class="mcard" href="${x.url}" target="_blank" rel="noopener"><div class="thumb t-${x.type}">${th}<span class="badge">${LBL[x.type]}</span></div><div class="mbody"><div class="msrc">${x.src}</div><div class="mtitle">${x.titre}</div><div class="mnote">${x.note}</div><div class="mgo">${x.type==='video'?'Voir la vidéo →':'Ouvrir →'}</div></div></a>`;}
+function visualBlock(k){const v=VISUELS[k]; return v?`<div class="visual"><button class="btn fs" type="button" data-fs>⛶ Projeter</button><div class="sec-h" style="margin:2px 0 6px">${v.t}</div>${v.svg}</div>`:'';}
+const MEDIATHEQUE = `
+<h2>Médiathèque : vidéos, affiches et ateliers</h2>
+<p class="lead"><b>Version renforcée</b> : les vidéos marquées ⚠️ abordent des sujets plus sensibles. Elles s'adressent aux enseignants à l'aise avec ces thèmes ; les consignes et réponses types sont dans le déroulé et les points de vigilance de chaque séance. Toutes les vidéos proviennent exclusivement des sites cités dans le projet : Comitys et Santé publique France (onsexprime.fr). Seul document d'une autre source : le violentomètre de France Victimes (affiche, pas une vidéo). Elles sont aussi proposées dans chaque séance concernée.</p>
+<div class="box warn"><strong>⚠️ Avant de projeter une vidéo</strong>
+<ul style="margin:0;padding-left:20px"><li><b>La visionner en entier avant la séance</b> et vérifier qu'elle convient à votre classe.</li>
+<li>Annoncer le thème : « Cette vidéo peut toucher certains d'entre vous. Vous pouvez détourner le regard ou sortir un moment. »</li>
+<li>Passer en plein écran et arrêter la lecture avant la fin, pour éviter les suggestions automatiques de YouTube.</li>
+<li>Une vidéo n'est jamais une fin en soi : elle lance toujours un temps d'échange.</li></ul></div>
+<div class="sec-h">Vidéos</div><div class="media">${Object.keys(M).filter(k=>M[k].type==='video').map(mediaCard).join('')}</div>
+<div class="sec-h">Ateliers et jeux</div><div class="media">${Object.keys(M).filter(k=>M[k].type==='atelier').map(mediaCard).join('')}</div>
+<div class="sec-h">Affiches et brochures</div><div class="media">${Object.keys(M).filter(k=>M[k].type==='doc').map(mediaCard).join('')}</div>
+<div class="sec-h">Visuels à projeter (créés pour le projet)</div><div class="grid">${Object.keys(VISUELS).map(visualBlock).join('')}</div>`;
+
+
+/* ---- Contenu du parcours Moodle (Terminale, axe 3, version B) ---- */
+const MOODLE = [
+ {t:"Module 1 — Le consentement et la loi (8 min)", lire:"Le consentement est un accord libre, éclairé, donné avant, pour un acte précis, et qu'on peut retirer à tout moment. Depuis la loi du 6 novembre 2025, tout acte sexuel non consenti est une agression sexuelle. Le silence ou l'absence de réaction ne valent pas consentement.",
+  q:[["Le silence vaut-il consentement ?","Non"],["Peut-on retirer son consentement à tout moment ?","Oui"],["Une personne très alcoolisée peut-elle consentir ?","Non"]]},
+ {t:"Module 2 — Reconnaître les violences sexistes et sexuelles (10 min)", lire:"Les violences sexistes et sexuelles vont des remarques sexistes au harcèlement sexuel et aux agressions. Elles existent partout, y compris en stage et au travail. On peut alerter : tuteur, professeur référent, CPE, inspection du travail ; le 3919 écoute 24h/24.",
+  q:[["Des remarques sexuelles répétées en stage peuvent constituer un harcèlement sexuel.","Vrai"],["Dans la majorité des cas, l'agresseur est un inconnu.","Faux : il est le plus souvent connu de la victime"],["En stage, à qui peut-on s'adresser ?","Tuteur, professeur référent, CPE, inspection du travail"]]},
+ {t:"Module 3 — Santé sexuelle : dépistage et prévention (7 min)", lire:"Pour les moins de 26 ans, le dépistage des IST est possible sans ordonnance en laboratoire, pris en charge à 100 %, ou gratuitement au CeGIDD. Les préservatifs sont gratuits en pharmacie. Le centre de santé sexuelle accueille gratuitement et en toute confidentialité.",
+  q:[["Une IST donne toujours des symptômes.","Faux"],["Les préservatifs sont gratuits en pharmacie pour les moins de 26 ans.","Vrai"],["Il faut l'accord des parents pour aller au CeGIDD.","Faux"]]},
+ {t:"Module 4 — Info ou intox ? (6 min)", lire:"Avant de croire une information : qui parle ? quelles preuves ? quelle date ? quel intérêt (informer, vendre, faire des vues) ?",
+  q:[["onsexprime.fr (Santé publique France)","Source fiable"],["Une vidéo d'influenceur qui vend un produit « miracle »","Prudence : intérêt commercial"],["Un forum anonyme sans source","Peu fiable"]]}
+];
+function renderMoodle(){
+  return `<div class="sec-h">Contenu du parcours Moodle (version B) — à mettre en ligne avec le référent EVARS</div><div class="faq">${MOODLE.map(m=>`<details><summary>${m.t}</summary><p><b>À lire :</b> ${m.lire}</p><p><b>Quiz :</b></p><ul style="margin:0;padding-left:20px">${m.q.map(([q,a])=>`<li>${q} → <i>${a}</i></li>`).join('')}</ul></details>`).join('')}</div>`;
+}
+/* =====================================================================
+   2e PARTIE DES SÉANCES DE 2 H (55 min) — même structure pour tous :
+   relance 5 · vidéo + analyse 15 · atelier de production 20 · présentation et vote 10 · clôture 5
+   ===================================================================== */
+const PART2 = {
+ "3pm":{
+  0:{vid:"colere",vq:["Quelles émotions voit-on dans la vidéo ?","Qu'est-ce qui fait monter la colère ? Qu'est-ce qui la fait redescendre ?","Comment exprimer sa colère sans blesser ?"],
+     prod:{h:"Le dico des émotions de la classe",el:"En îlot : choisissez 3 émotions. Pour chacune : sa définition avec vos mots, comment on la reconnaît, une façon respectueuse de l'exprimer.",prof:"Distribuer la fiche « atelier ». Chaque îlot prend 3 émotions différentes (éviter les doublons). Les productions forment un « dico » affiché en classe."}},
+  2:{vid:"physique",vq:["Comment se sent le jeune homme ?","Est-ce normal que sa copine critique son physique ? Pourquoi ?","Qu'est-ce qu'il pourrait faire, et qui pourrait l'aider ?"],
+     prod:{h:"Affiche « Les signaux d'alerte »",el:"En îlot : créez une affiche pour les élèves de votre âge, avec 3 signaux d'alerte, 1 conseil et 2 personnes ou numéros à contacter.",prof:"Les affiches peuvent être exposées au CDI ou à la vie scolaire après validation. Vérifier l'exactitude des numéros."}}
+ },
+ "2nde":{
+  1:{vid:"amitie",vq:["Quelles émotions traversent les deux amies au fil de leur vie ?","Qu'est-ce qui fait qu'une relation dure : en amitié comme en amour ?","Avez-vous repéré un moment où l'une se sent mise à l'écart ? Comment l'autre réagit-elle ?"],
+     prod:{h:"Lettre à un personnage",el:"En îlot : choisissez un personnage des études de cas et écrivez-lui un court message de conseil, bienveillant, qui l'aide à comprendre ce qu'il ressent et ce qu'il peut faire.",prof:"Les messages sont lus à voix haute par un rapporteur. Relever les formulations bienveillantes."}},
+  2:{vid:"cyber",vq:["Comment les mots peuvent-ils devenir une violence ?","Quel est le rôle de ceux qui likent ou partagent ?","Qu'est-ce qui aurait pu arrêter la situation ?"],
+     prod:{h:"Campagne de prévention sur les réseaux",el:"En îlot : imaginez 3 publications (texte + idée d'image, sans photo de personne réelle) pour une campagne « Je ne partage pas, je soutiens ».",prof:"Rappeler : aucun élève réel, aucune photo de personne. Les campagnes peuvent être reprises par les éco-délégués ou les ambassadeurs pHARe."}}
+ },
+ "1re":{
+  0:{vid:"depistes",warn:"La vidéo explique comment les IST se transmettent. Si un élève pose une question sur les pratiques : « Ici, on ne parle pas des pratiques. Ce qui compte : le préservatif et le dépistage. Pour une question précise : l'infirmière ou onsexprime.fr. »",vq:["Une IST se voit-elle toujours ?","Comment se protéger des IST ?","Où peut-on se faire dépister gratuitement, et sans ses parents ?"],
+     prod:{h:"Le kit « soirée safe »",el:"En îlot : créez un kit en 5 conseils pour une soirée où chacun rentre en sécurité (se protéger, veiller sur les autres, consentement, urgence, numéros).",prof:"Aucune information sur les modes de consommation des produits. Vérifier les numéros (15, 112, Alcool Info Service, Drogues Info Service)."}},
+  1:{vid:"johanna",vq:["La jalousie d'Alex est-elle une preuve d'amour ?","Quels besoins ont Johanna et Alex ? Sont-ils respectés ?","Retrouvez les étapes : tension, crise, justification, lune de miel."],
+     prod:{h:"Relations saines : nos règles",el:"En îlot : écrivez 5 règles d'une relation saine et respectueuse (consentement, respect, liberté), et 1 phrase pour poser une limite.",prof:"Atelier « relations saines » de Comitys (trame d'animation, affiche et livret sur la page de la vidéo). Le CPE peut co-animer. La classe vote pour les règles affichées."}},
+  2:{vid:"coeur",warn:"La vidéo parle de sentiments amoureux entre deux personnes du même sexe. Si un débat s'engage : « Chacun a ses convictions ; ici, la règle commune est la loi et le respect : chacun est libre d'aimer qui il veut, et les insultes sont punies. » Ne jamais demander à un élève de parler de sa propre orientation.",vq:["Quels sentiments le personnage ressent-il ?","Qu'est-ce qui l'empêche d'en parler ?","Comment l'entourage peut-il aider chacun à se sentir libre d'être soi ?"],
+     prod:{h:"Détourner une pub stéréotypée",el:"En îlot : décrivez une publicité ou un jouet qui véhicule un stéréotype, puis réinventez-la sans stéréotype (slogan + description).",prof:"Partir d'exemples génériques (jouets, produits ménagers, voitures, cosmétiques). Pas d'image de personne réelle."}}
+ },
+ "tle":{
+  0:{vid:"coeurCerveau",vq:["Que veulent le cœur et le cerveau de Paul ? Lequel gagne, et pourquoi ?","Écouter ses désirs, écouter sa raison : faut-il choisir ?","Dans une relation, comment écouter à la fois ce qu'on ressent et ce que l'autre ressent ?"],
+     prod:{h:"Le mur des idées reçues",el:"En îlot : écrivez 3 idées reçues sur l'amour ou la sexualité que les jeunes entendent, et pour chacune, la réalité vérifiée sur onsexprime.fr.",prof:"Valider chaque correction avant affichage. Écarter toute formulation explicite."}},
+  1:{vid:"emprise",warn:"Court-métrage de 7 min 43, intense (manipulation, menaces). Annoncer le thème avant de lancer la vidéo et rappeler qu'on peut sortir un moment. Laisser 7 min d'échange. Risque de confidence : protocole « Si un élève se confie » ; 3919, commentonsaime.fr.",vq:["Quels signes d'emprise avez-vous repérés ?","Pourquoi est-il si difficile d'en sortir ?","Qu'est-ce qui aide la jeune femme à partir ?"],
+     prod:{h:"Guide « Aider un ami »",el:"En îlot : rédigez un mini-guide en 5 points pour aider un ami qui vit une relation toxique (ce qu'on dit, ce qu'on évite, vers qui l'orienter).",prof:"Insister sur : écouter sans juger, ne pas forcer la rupture, rester présent, en parler à un adulte, 3919 et commentonsaime.fr."}},
+  2:{vid:"okpasok",warn:"Témoignage d'une jeune sur le consentement. Annoncer le thème avant la vidéo. Ne jamais demander aux élèves de raconter des situations vécues. Risque de confidence : protocole « Si un élève se confie ».",vq:["Qu'est-ce qui a manqué pour que ce soit « OK » ?","Comment exprimer un non, et comment l'entendre ?","Que dit la loi depuis novembre 2025 ?"],
+     prod:{h:"Campagne contre les violences sexistes et sexuelles",el:"En îlot : créez une campagne de 3 messages contre les violences sexistes et sexuelles, au lycée ou en stage, avec les ressources utiles.",prof:"Concerne la version B (Moodle). Valider les messages avant affichage."}}
+ },
+ "cap1":{
+  0:{vid:"physique",vq:["Comment se sent le personnage ?","Les critiques sur le physique sont-elles acceptables dans un couple ?","Qu'est-ce qui aide à avoir une image positive de soi ?"],
+     prod:{h:"Affiche « Tous les corps sont différents »",el:"En îlot : créez une affiche avec 5 messages positifs sur l'image de soi et le respect du corps des autres.",prof:"Aucune photo de personne réelle. Les affiches peuvent être exposées en classe."}},
+  1:{vid:"clipMaelle",vq:["Que ressent l'élève harcelé ? À quoi le voit-on ?","Pourquoi la chanson s'appelle-t-elle « L'effet de masse » ?","Qu'aurait pu faire un seul témoin pour changer les choses ?"],
+     prod:{h:"Les phrases qui aident",el:"En îlot : écrivez 3 phrases pour dire non, 3 phrases pour soutenir une victime, et 3 phrases pour arrêter un harceleur sans violence.",prof:"Faire lire les phrases à voix haute ; garder les meilleures pour une affiche."}},
+  2:{vid:"cyber",vq:["Comment les mots deviennent-ils une violence en ligne ?","Que faire si on reçoit un message blessant ?","Pourquoi est-il important de ne pas partager ?"],
+     prod:{h:"Notre charte numérique",el:"En îlot : proposez 5 règles pour bien se comporter en ligne et protéger son intimité. La classe gardera les meilleures.",prof:"Construire une charte commune à partir des propositions des îlots."}}
+ },
+ "cap2":{
+  0:{vid:"spfPotes",vq:["Que font les amis dans la vidéo pour se protéger ?","Pourquoi l'alcool augmente-t-il les risques, y compris dans les relations ?","Qui appeler si un ami ne va pas bien ? (15, 112)"],
+     prod:{h:"Créer des cartes pour une autre classe",el:"En îlot : inventez 4 nouvelles cartes questions pour le jeu de l'oie (une par couleur), avec la bonne réponse.",prof:"Vérifier l'exactitude des réponses ; les meilleures cartes enrichissent le jeu pour l'année suivante."}},
+  1:{vid:"vcJeunes",vq:["Quelles violences voit-on dans la vidéo ?","Comment la situation s'installe-t-elle ?","Qui aurait pu aider, et comment ?"],
+     prod:{h:"Guide « Aider un ami »",el:"En îlot : rédigez 5 conseils pour aider un ami en couple avec quelqu'un qui le contrôle ou le rabaisse.",prof:"Insister sur l'écoute sans jugement et l'orientation vers un adulte, le 3919, commentonsaime.fr."}},
+  2:{vid:"stereo",vq:["Quels préjugés la vidéo montre-t-elle ?","D'où viennent-ils, et qui les transmet ?","Que peut-on faire face à un préjugé, au lycée ou en stage ?"],
+     prod:{h:"Affiche « Libre d'être soi »",el:"En îlot : créez une affiche qui présente votre charte de la liberté avec un slogan.",prof:"Les affiches reprennent la charte construite en 1re partie."}}
+ }
+};
+
+/* ---- construction des séances de 2 h à partir du plan 55 min + 2e partie ---- */
+(function build2h(){
+  Object.keys(PART2).forEach(niv=>{
+    Object.entries(PART2[niv]).forEach(([idx,p2])=>{
+      const pl=PLAN[niv][+idx];
+      // phase à transformer : la seule phase élèves, ou la version B en Terminale axe 3
+      const ph = pl.phases.length===1 ? pl.phases[0] : pl.phases.find(x=>/Version B/.test(x.nom||''));
+      if(!ph || ph._2h) return;
+      ph._2h=true;
+      const last=ph.steps[ph.steps.length-1];
+      last.h="Synthèse de la 1re partie et pause";
+      last.prof="Faire formuler par 2 ou 3 élèves ce qu'ils retiennent de la 1re partie. Pause.";
+      last.el="Qu'est-ce qu'on retient de cette 1re partie ?";
+      last.b=[{c:`<h2>☕ Pause</h2><p class="big">Avant la pause : qu'est-ce que vous retenez de cette 1re partie ?</p><p class="big">On reprend dans quelques minutes.</p>`}];
+      const base = ph.nom ? ph.nom.replace(/\s*\(55 min\)/,'') + ' · ' : '';
+      ph.nom = base + "1re partie (55 min)";
+      const v = p2.vid ? M[p2.vid] : null;
+      const vidSlide = v
+        ? `<p class="kick">${v.type==='video'?'🎬':'🧩'} ${v.src}</p><h1>${v.titre}</h1><p class="big">${v.type==='video'?'Regardez attentivement, puis on en parle.':'Découvrons ce support ensemble, puis on en parle.'}</p><a class="startT" style="text-decoration:none" href="${v.url}" target="_blank" rel="noopener">▶ Ouvrir ${v.type==='video'?'la vidéo':'le support'}</a>`
+        : `<p class="kick">🔎 Enquête</p><h1>Les réponses sur onsexprime.fr</h1><p class="big">En binômes, cherchez la réponse à chaque question sur le site de Santé publique France.</p><a class="startT" style="text-decoration:none" href="https://www.onsexprime.fr/" target="_blank" rel="noopener">▶ Ouvrir onsexprime.fr</a>`;
+      const steps=[
+        {d:5,h:"Relance",prof:"Rappeler la charte et le fil de la 1re partie. Traiter une question de la boîte à questions si besoin.",el:"On reprend : qu'avons-nous vu en 1re partie ?",b:[{c:`<h2>On reprend</h2><p class="big">En 1re partie, qu'avons-nous découvert ? Une idée chacun, en un mot.</p>`}]},
+        {d:15,h: v ? (v.type==='video'?"Vidéo et analyse":"Support Comitys et analyse") : "Enquête sur onsexprime.fr",
+         prof: v ? `Projeter « ${v.titre} » (${v.src}, lien sur la diapo et dans la médiathèque — à consulter avant la séance). Puis 1-2-4-Tous sur les questions.${p2.warn?' ⚠️ '+p2.warn:''}` : "En binômes, sur ordinateurs ou téléphones, chercher les réponses sur onsexprime.fr. Mise en commun et vérification.",
+         el: v ? "Regardez, puis répondez aux questions : seul, à deux, puis tous ensemble." : "En binômes, trouvez les réponses sur onsexprime.fr.",
+         b:[{c:vidSlide},{c:`<h2>${v?'On en parle':'Vos recherches'}</h2><ol class="qs">${p2.vq.map(q=>`<li>${q}</li>`).join('')}</ol><p class="small">1 min seul · 2 min à deux · puis on partage</p>`}]},
+        {d:20,h:"Atelier : "+p2.prod.h,prof:p2.prod.prof,el:p2.prod.el,b:[{c:`<p class="kick">🛠️ Atelier en îlots · 20 min</p><h1>${p2.prod.h}</h1><p class="big">${p2.prod.el}</p>`}]},
+        {d:10,h:"Présentation et vote",prof:"Chaque îlot présente sa production (1 min). La classe réagit, puis vote pour la production à afficher.",el:"Chaque îlot présente. Ensuite, on vote !",b:[{c:`<h2>🗳️ Présentation et vote</h2><p class="big">Chaque îlot présente en 1 minute. Les autres réagissent : « J'aime… », « Je proposerais… ».</p><p class="big">Puis on vote pour la production à afficher.</p>`}]},
+        {d:5,h:"Clôture",prof:CLOT_PROF,el:"",b:CLOT}
+      ];
+      const ph2={nom: base + "2e partie (55 min)", steps};
+      pl.phases.splice(pl.phases.indexOf(ph)+1,0,ph2);
+      pl.p2=p2;
+    });
+  });
+})();
+
+
+const FICHES = `
+<h2>Fiches à imprimer</h2>
+<p class="lead">Deux fiches d'une page : la fiche réflexe à garder sous les yeux pendant la séance, la fiche bilan à remplir après chaque séance et à remettre au référent EVARS.</p>
+<div class="tools" style="margin:0 0 16px"><button class="btn" data-printfiche="reflexe">🖨️ Imprimer la fiche réflexe</button><button class="btn" data-printfiche="bilan">🖨️ Imprimer la fiche bilan</button></div>
+<div class="a4" id="f-reflexe">
+  <div class="a4h"><span>Lycée Jean Hanzelet · EVARS 2026-2027</span><span>Fiche réflexe enseignant</span></div>
+  <h2>Fiche réflexe — pendant la séance</h2>
+  <h3>1. La charte (à projeter en début de séance)</h3>
+  <ol>${["On parle en « on » : personne ne raconte sa vie.","On respecte toutes les paroles : pas de moquerie, pas de jugement.","On a le droit de ne pas parler et de sortir un moment.","Ce qui est dit ici reste ici, sauf si quelqu'un est en danger.","Les questions qu'on n'ose pas poser vont dans la boîte."].map(x=>`<li>${x}</li>`).join('')}</ol>
+  <h3>2. Les réponses types</h3>
+  <table class="rt">
+   <tr><td>« Et vous, vous l'avez déjà fait ? »</td><td>« Ici, personne ne parle de sa vie privée, ni vous ni moi. Ta question cache peut-être une question générale : on la reformule ? »</td></tr>
+   <tr><td>Question technique ou médicale</td><td>« Je ne veux pas te dire une bêtise : je la note et je te réponds la prochaine fois, ou l'infirmière te répondra. »</td></tr>
+   <tr><td>Question pour faire rire</td><td>Reformuler sérieusement : « Si je traduis, la question est… ». Sinon : « Ce n'est pas le cadre ; si c'est une vraie question, mets-la dans la boîte. »</td></tr>
+   <tr><td>« C'est normal si mon corps… ? »</td><td>« Chaque corps est différent. Pour une question personnelle : l'infirmière, c'est confidentiel. »</td></tr>
+   <tr><td>Sujet hors du thème de la séance</td><td>« C'est une vraie question, mais ce n'est pas le sujet d'aujourd'hui. Je la mets au parking : on y répondra, ou l'infirmière le fera. »</td></tr>
+   <tr><td>Débat sur les valeurs, la religion</td><td>« Chacun a ses convictions. Ici, la règle commune, c'est la loi et le respect : les discriminations sont interdites. »</td></tr>
+  </table>
+  <h3>3. Si un élève se confie</h3>
+  <ol>
+   <li>Devant la classe : « C'est important, on en parle tous les deux juste après. »</li>
+   <li>En tête-à-tête : écouter, croire, ne pas questionner en détail. « Tu as bien fait d'en parler. Ce n'est pas de ta faute. »</li>
+   <li>Ne pas promettre le secret : « Je vais en parler à des personnes qui peuvent t'aider. »</li>
+   <li>Le jour même : informer la direction, le CPE ou l'infirmière. Noter les mots exacts de l'élève.</li>
+   <li>En cas de doute : <b>119</b>.</li>
+  </ol>
+  <p class="a4f">Au lycée : infirmière · CPE &nbsp;|&nbsp; 119 · 3020 · 3018 · 3919 · 0 800 235 236 · onsexprime.fr</p>
+</div>
+<div class="a4" id="f-bilan">
+  <div class="a4h"><span>Lycée Jean Hanzelet · EVARS 2026-2027</span><span>Fiche bilan de séance</span></div>
+  <h2>Fiche bilan — après la séance</h2>
+  <p>À remplir après chaque séance et à remettre au référent EVARS.</p>
+  <table class="fb">
+   <tr><td>Enseignant(s)</td><td></td><td>Date</td><td></td></tr>
+   <tr><td>Classe / niveau</td><td></td><td>Axe</td><td>1 · 2 · 3</td></tr>
+  </table>
+  <h3>Déroulé</h3>
+  <table class="fb">
+   <tr><td>Toutes les étapes ont-elles été menées ?</td><td colspan="3">☐ Oui &nbsp; ☐ Non — lesquelles ont manqué :</td></tr>
+   <tr><td>Le minutage était-il tenable ?</td><td colspan="3">☐ Oui &nbsp; ☐ Trop long &nbsp; ☐ Trop court</td></tr>
+   <tr><td>Participation de la classe</td><td colspan="3">☐ Très bonne &nbsp; ☐ Bonne &nbsp; ☐ Moyenne &nbsp; ☐ Difficile</td></tr>
+  </table>
+  <h3>Ce qui a bien fonctionné</h3><div class="lines"></div>
+  <h3>Ce qui a posé difficulté</h3><div class="lines"></div>
+  <h3>Questions d'élèves difficiles ou hors cadre</h3><div class="lines"></div>
+  <h3>Incident ou confidence</h3>
+  <p>☐ Aucun &nbsp; ☐ Oui — transmis le ……………… à : ☐ direction ☐ CPE ☐ infirmière <i>(ne pas détailler ici)</i></p>
+  <h3>Suggestions pour l'an prochain</h3><div class="lines"></div>
+</div>`;
+/* =====================================================================
+   RENDU
+   ===================================================================== */
+const TABS=[{id:"cadre",label:"🧭 Cadre commun",html:CADRE}].concat(NIVEAUX.map(n=>({id:n.id,label:n.label,niv:n}))).concat([{id:"fiches",label:"📄 Fiches à imprimer",html:FICHES},{id:"media",label:"🎬 Médiathèque",html:MEDIATHEQUE},{id:"num",label:"☎️ Ressources",html:NUMEROS}]);
+const tabbar=document.getElementById('tabbar'), panels=document.getElementById('panels');
+const AXE_LBL={1:"Axe 1 · Se connaître, vivre et grandir avec son corps",2:"Axe 2 · Rencontrer les autres et construire des relations",3:"Axe 3 · Trouver sa place dans la société"};
+let uid=0;
+function renderGame(g){
+  if(!g) return '';
+  let h=`<div class="game"><div class="game-title">🎲 ${g.titre}</div><div class="game-rule">${g.regle}</div>`;
+  if(g.type==='flip'){
+    h+='<div class="flips">'+g.items.map(i=>`<button class="flip" type="button" aria-label="Retourner la carte"><div class="flip-in"><div class="face front">${i.q}<small>Cliquer pour retourner</small></div><div class="face back">${i.a}</div></div></button>`).join('')+'</div>';
+  } else if(g.type==='tri'){
+    h+='<div class="tri">'+g.items.map(i=>`<div class="tri-row" data-r="${i.r}"><div>${i.s}</div><div class="tri-btns">${g.choix.map(c=>`<button type="button" data-c="${c}">${c}</button>`).join('')}</div><div class="tri-fb"><b>Réponse : ${i.r}.</b> ${i.e}</div></div>`).join('')+'</div>';
+  }
+  return h+'</div>';
+}
+function renderExt(s,i){
+  const id='s'+(uid++);
+  return `<details class="seance s${s.axe}" id="${id}">
+  <summary><div class="num">${i+1}</div><div><div class="sum-title">${s.titre.split(' — ')[0]} — intervention du Centre de santé sexuelle</div><div class="sum-meta">${AXE_LBL[s.axe]} · ${s.periode} · intervention de 2 h</div></div><svg class="chev" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+  <div class="sbody">
+    <div class="meta">
+      <div><b>Objectif</b>${s.objectif}</div>
+      <div><b>Intervenants</b>${s.intervenant}</div>
+    </div>
+    <div class="sec-h">Thèmes traités par les intervenantes</div>
+    <div class="tags">${s.themes.map(t=>`<span class="tag">✓ ${t}</span>`).join('')}</div>
+    <div class="box ok"><strong>Séance animée par les intervenantes, avec leurs propres supports</strong>Aucun support n'est à préparer par l'enseignant pour cette séance.</div>
+    <div class="sec-h">Rôle de l'enseignant</div>
+    <ul>
+      <li>Être présent dans la salle, garant du cadre et de la discipline.</li>
+      <li>Ne pas répondre à la place des intervenantes et ne pas commenter les questions des élèves.</li>
+      <li>Faire un point avec les intervenantes en fin de séance (confidences éventuelles, questions restées en suspens).</li>
+      <li>Informer les familles de l'intervention via l'ENT (information, pas autorisation : l'EVARS est obligatoire).</li>
+    </ul>
+  </div></details>`;
+}
+function renderSeance(s,i){
+  if(s.ext) return renderExt(s,i);
+  const id='s'+(uid++);
+  return `<details class="seance s${s.axe}" id="${id}">
+  <summary><div class="num">${i+1}</div><div><div class="sum-title">${s.titre}</div><div class="sum-meta">${AXE_LBL[s.axe]} · ${s.periode} · ${s.duree}</div></div><svg class="chev" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+  <div class="sbody">
+    <div class="meta">
+      <div><b>Objectif</b>${s.objectif}</div>
+      <div><b>Intervenants</b>${s.intervenant}</div>
+      <div><b>Matériel</b>${s.materiel}</div>
+    </div>
+    <div class="sec-h">Thèmes du projet couverts</div>
+    <div class="tags">${s.themes.map(t=>`<span class="tag">✓ ${t}</span>`).join('')}</div>
+    <div class="sec-h">Déroulé minuté (commun à tous les enseignants du niveau)</div><p><a class="btn" style="text-decoration:none;display:inline-block" href="evars_supports_eleves.html#${s._niv}-${s._idx}" target="_blank" rel="noopener">📽️ Ouvrir le diaporama de cette séance</a></p>
+    ${renderPlan(s.plan)}${s.moodle?renderMoodle():''}
+    ${s.med?`<div class="sec-h">Visuels à projeter</div><div class="vis-wrap">${s.med.v.map(visualBlock).join('')}</div><div class="sec-h">Vidéos et supports (sites du projet)</div><div class="media">${s.med.m.map(mediaCard).join('')}</div><p class="hint">Toujours visionner avant la séance. Chaque vidéo est suivie du temps d'échange.</p>`:''}
+    <div class="sec-h">Activité ludique</div>
+    ${renderGame(s.jeu)}
+    ${s.jeu2?'<div style="height:10px"></div>'+renderGame(s.jeu2):''}
+    ${s.debat?`<div class="sec-h">Débat mouvant — affirmations</div><div class="debat">${s.debat.map(d=>`<div class="debat-item"><div class="st">« ${d} »</div></div>`).join('')}</div><p class="hint">Pas de bonne réponse imposée pendant le débat : on fait argumenter, puis l'enseignant conclut avec les repères (respect, loi, liberté de chacun).</p>`:''}
+    ${s.ech?`<div class="sec-h">Temps d'échange collectif</div><div class="box ok"><strong>🗣️ ${s.ech.f.replace(/\s*\(\d+ min\)/,'')}</strong><ul style="margin:4px 0 0;padding-left:20px">${s.ech.q.map(q=>`<li>${q}</li>`).join('')}</ul><p class="hint" style="margin:8px 0 0">Laisser répondre plusieurs élèves, faire réagir aux réponses des autres, puis conclure avec les repères de la séance.</p></div>`:''}
+    <div class="sec-h">Si un élève demande…</div>
+    <div class="faq">${s.faq.map(f=>`<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('')}</div>
+    <div class="box warn"><strong>⚠️ Points de vigilance</strong><ul style="margin:0;padding-left:20px">${s.vigilance.map(v=>`<li>${v}</li>`).join('')}</ul></div>
+  </div></details>`;
+}
+TABS.forEach((t,k)=>{
+  const b=document.createElement('button');
+  b.className='tab'; b.role='tab'; b.textContent=t.label; b.dataset.id=t.id;
+  b.setAttribute('aria-selected',k===0?'true':'false');
+  tabbar.appendChild(b);
+  const p=document.createElement('section'); p.className='panel'+(k===0?' on':''); p.id='p-'+t.id;
+  if(t.html){p.innerHTML=t.html;}
+  else{
+    const n=t.niv;
+    n.seances.forEach((s,j)=>{s.ech=(ECHANGES[n.id]||[])[j]; s.med=(MEDIA[n.id]||[])[j]; s.plan=(PLAN[n.id]||[])[j]; s.ext=(n.id==='3pm'&&j===1)||(n.id==='2nde'&&j===0); s.moodle=(n.id==='tle'&&j===2); s._niv=n.id; s._idx=j; if(s.plan&&s.plan.p2&&s.plan.p2.warn) s.vigilance=[...s.vigilance,'<b>Vidéo de la version renforcée.</b> '+s.plan.p2.warn]; if(s.plan&&s.plan.warn1) s.vigilance=[...s.vigilance,'<b>Vidéo de la version renforcée.</b> '+s.plan.warn1]; if(s.plan&&s.plan.p2&&s.plan.p2.vid&&s.med&&!s.med.m.includes(s.plan.p2.vid)) s.med={v:s.med.v,m:[s.plan.p2.vid,...s.med.m]}; if(s.plan&&s.plan.p2) s.duree = n.id==='tle'&&j===2 ? 'Version A : avant 20 min + ateliers + après 20 min · Version B : 2 h (2 × 55 min)' : '2 h (2 × 55 min)';});
+    p.innerHTML=`<h2>${n.label}</h2><p class="lead">Élèves de ${n.age} environ · 3 séances, une par axe. Avant chaque séance : relire le <a href="#" data-goto="cadre">cadre commun</a>.</p>`+n.seances.map(renderSeance).join('');
+  }
+  panels.appendChild(p);
+});
+function show(id){
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x.dataset.id===id?'true':'false'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('on',x.id==='p-'+id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+tabbar.addEventListener('click',e=>{const b=e.target.closest('.tab'); if(b) show(b.dataset.id);});
+document.addEventListener('click',e=>{
+  const pf=e.target.closest('[data-printfiche]'); if(pf){document.body.dataset.printfiche=pf.dataset.printfiche; window.print(); setTimeout(()=>delete document.body.dataset.printfiche,500); return;}
+  const g=e.target.closest('[data-goto]'); if(g){e.preventDefault(); show(g.dataset.goto); return;}
+  const fsb=e.target.closest('[data-fs]'); if(fsb){const v=fsb.closest('.visual'); if(document.fullscreenElement) document.exitFullscreen(); else if(v.requestFullscreen) v.requestFullscreen(); return;}
+  const f=e.target.closest('.flip'); if(f){f.classList.toggle('on'); return;}
+  const c=e.target.closest('.tri-btns button');
+  if(c){const row=c.closest('.tri-row'); row.querySelectorAll('button').forEach(x=>x.classList.remove('good','bad'));
+    c.classList.add(c.dataset.c===row.dataset.r?'good':'bad'); row.classList.add('done');}
+});
+document.getElementById('openAll').onclick=()=>document.querySelectorAll('.panel.on details').forEach(d=>d.open=true);
+document.getElementById('closeAll').onclick=()=>document.querySelectorAll('.panel.on details').forEach(d=>d.open=false);
+document.getElementById('theme').onclick=()=>{
+  const r=document.documentElement, dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+};
+(function(){const k=document.querySelector('.top .kicker'); if(k){const b=document.createElement('span'); b.className='vbadge v-'+VERSION; b.innerHTML=(VERSION==='renforcee'?'Version renforcée':'Version essentielle')+' · <a href="../index.html">changer</a>'; k.appendChild(document.createTextNode(' · ')); k.appendChild(b);}})();
+window.addEventListener('beforeprint',()=>document.querySelectorAll('details').forEach(d=>d.open=true));
+</script>
+</body>
+</html>
