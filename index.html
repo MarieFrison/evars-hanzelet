@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVARS Jean Hanzelet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --surface-2:#f0ede5; --ink:#1d1f24; --muted:#5d6270; --line:#ddd8cc;
+  --a1:#0f8b8d; --a1-soft:#dff3f2; --a2:#d9572b; --a2-soft:#fde8df; --a3:#6c4bb5; --a3-soft:#ece6fa;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15171c; --surface:#1e2128; --surface-2:#262a33; --ink:#eceae4; --muted:#a3a8b5; --line:#343945;
+    --a1:#4cc4c6; --a1-soft:#173537; --a2:#f08a62; --a2-soft:#3a2219; --a3:#a98bf0; --a3-soft:#2a2340;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+main{max-width:920px;margin:0 auto;padding:48px 16px 32px}
+.kicker{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:8px 0 12px;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;margin:0}
+.lead{color:var(--muted);max-width:62ch;margin:0 0 20px}
+.axes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.pill{padding:4px 10px;border-radius:999px;font-size:.82rem;font-weight:600}
+.ax1{background:var(--a1-soft);color:var(--a1)} .ax2{background:var(--a2-soft);color:var(--a2)} .ax3{background:var(--a3-soft);color:var(--a3)}
+.common{background:var(--surface-2);border-radius:14px;padding:14px 18px;margin-bottom:22px;font-size:.95rem}
+.versions{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.ver{display:flex;flex-direction:column;gap:12px;padding:22px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.ver.e{border-top:6px solid var(--a1)} .ver.r{border-top:6px solid var(--a2)}
+.tag{align-self:flex-start;font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.e .tag{background:var(--a1-soft);color:var(--a1)} .r .tag{background:var(--a2-soft);color:var(--a2)}
+.ver h2{font-size:1.5rem}
+.ver p{margin:0;color:var(--muted)}
+.ver ul{margin:0;padding-left:20px;font-size:.92rem}
+.ver li{margin:3px 0}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid transparent}
+.e .btn.main{background:var(--a1);color:#fff} .r .btn.main{background:var(--a2);color:#fff}
+.btn.alt{border-color:var(--line);color:var(--ink);background:var(--surface-2)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.note{margin-top:22px;border-left:4px solid var(--a2);background:var(--a2-soft);border-radius:10px;padding:12px 16px;font-size:.92rem}
+footer{max-width:920px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">Lycée polyvalent Jean Hanzelet · Année 2026-2027</div>
+  <h1>Projet EVARS</h1>
+  <p class="lead">Éducation à la vie affective et relationnelle, et à la sexualité. Déroulés et supports communs à tous les enseignants d'un même niveau.</p>
+  <div class="axes">
+    <span class="pill ax1">Axe 1 · Se connaître, vivre et grandir avec son corps</span>
+    <span class="pill ax2">Axe 2 · Rencontrer les autres et construire des relations</span>
+    <span class="pill ax3">Axe 3 · Trouver sa place dans la société</span>
+  </div>
+
+  <div class="common"><b>Les deux versions ont le même plan</b> : mêmes séances, mêmes activités, mêmes minutages, mêmes fiches élèves. Seules les vidéos de cinq séances changent. Choisissez selon votre aisance avec les sujets abordés.</div>
+
+  <div class="versions">
+    <section class="ver e">
+      <span class="tag">Recommandée</span>
+      <h2>Version essentielle</h2>
+      <p>Des vidéos courtes et sans risque : films d'animation, clips et spots de prévention. Aucune ne porte sur des situations intimes.</p>
+      <ul>
+        <li>Adaptée à tous les enseignants, y compris les moins à l'aise avec le sujet.</li>
+        <li>Une vidéo officielle par séance (Comitys, Santé publique France).</li>
+      </ul>
+      <div class="links">
+        <a class="btn main" href="guide_essentielle.html">📘 Guide enseignant</a>
+        <a class="btn alt" href="eleves_essentielle.html">📽️ Supports élèves</a>
+      </div>
+    </section>
+    <section class="ver r">
+      <span class="tag">Pour enseignants à l'aise</span>
+      <h2>Version renforcée</h2>
+      <p>Les mêmes séances, avec des vidéos plus marquantes dans cinq séances de Première et de Terminale. Chacune est signalée par ⚠️, avec ses consignes et ses réponses types dans le guide.</p>
+      <ul>
+        <li>1re axe 1 : « Les IST, c'est quoi ? »</li>
+        <li>1re axe 2 : « Consentir ou céder ? »</li>
+        <li>1re axe 3 : « Mon cœur bat pour toi »</li>
+        <li>Terminale axe 2 : « L'emprise »</li>
+        <li>Terminale axe 3 : « Ok pas OK »</li>
+      </ul>
+      <div class="links">
+        <a class="btn main" href="guide_renforcee.html">📘 Guide enseignant</a>
+        <a class="btn alt" href="eleves_renforcee.html">📽️ Supports élèves</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="note">La version renforcée est à faire valider par la direction ou le référent EVARS avant utilisation. Dans les deux versions, chaque enseignant visionne la vidéo avant sa séance.</div>
+</main>
+<footer>Conception : Mme Marie Frison · Lycée polyvalent Jean Hanzelet · Vidéos issues exclusivement de comitys.com et santepubliquefrance.fr</footer>
+</body>
+</html>
